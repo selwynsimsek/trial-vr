@@ -308,10 +308,12 @@ void main(){
   ;(format t "~a" (current-eye *head*))
   (setf (current-eye *head*)  (if (typep pass 'left-eye-render-pass)
                                   :left :right))
- ; (trial:project-view *head* nil)
+ (trial:project-view *head* nil)
   (call-next-method))
 
+;(trial:project-view *head* nil)
 
+;(typep *right-render-pass* 'right-eye-render-pass)
 ;(vr::get-recommended-render-target-size ) 1852 2056
 
 ;(setf (current-eye *head*) :left
@@ -319,6 +321,4 @@ void main(){
 ;      )
 ;(setf (current-eye *head*) :right)
 
-(defun launch ()
-  (trial:launch 'workbench
-                :width 1852 :height 2056))
+(defun launch () (trial:launch 'workbench :width 1852 :height 2056))
