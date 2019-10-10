@@ -5,10 +5,13 @@
   :depends-on ("trial-glfw"
                "3b-openvr"
                "sb-cga"
+               "bordeaux-threads"
                "cl-xwd")
   :components ((:module "src"
                 :components
                 ((:file "package")
+                 (:file "environment" :depends-on ("main"))
+                 (:file "emacs-cube")
                  (:file "main")
                  (:file "low-level")
                  (:file "rendering"))))
