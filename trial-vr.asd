@@ -3,7 +3,7 @@
   :author "Selwyn Simsek"
   :license ""
   :depends-on ("trial-glfw"
-               "3b-openvr-hello"
+               "3b-openvr"
                "cl-xwd")
   :components ((:module "src"
                 :components

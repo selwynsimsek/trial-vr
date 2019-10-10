@@ -11,10 +11,10 @@
   :base 'trial:trial)
 
 (trial:define-asset (workbench grid) trial:mesh
-    (trial:make-line-grid 10 200 200))
+    (trial:make-line-grid 10 2 2))
 
 (trial:define-asset (workbench cube) trial:mesh
-    (trial:make-cube 20))
+    (trial:make-cube 0.2 ))
 
 (trial:define-shader-subject grid (trial:vertex-entity trial:colored-entity)
   ()
@@ -51,8 +51,8 @@
 layout(location = 1) in vec3 direction;
 
 out vec2 line_normal;
-uniform float line_width = 3.0;
-uniform vec2 view_size = vec2(800,600);
+uniform float line_width = 0.1;
+uniform vec2 view_size = vec2(1852,2056);
 uniform mat4 model_matrix;
 uniform mat4 view_matrix;
 uniform mat4 projection_matrix;
@@ -81,38 +81,53 @@ void main(){
    color *= (1-length(line_normal))*16;
 }")
 
-
-
-(trial:define-asset (workbench cube) trial:mesh
-    (trial:make-cube 20))
-
 (trial:define-shader-subject cube (trial:vertex-entity trial:colored-entity trial:textured-entity trial:located-entity trial:rotated-entity trial:selectable)
-  ((vel :initform 0;(/ (random 1.0) (+ 10 (random 20)))
-        :accessor vel
-        ))
+  ((vel :initform 0
+        :accessor vel))
   (:default-initargs :vertex-array (trial:asset 'workbench 'cube)
                      :texture
                      (make-instance 'trial:texture
                                     :width 1024
-                                    :height 768
+                                    :height 1024
                                     :pixel-data
                                     (cl-xwd:shared-memory-raw-pointer
                                      (parse-integer
                                       (alexandria:read-file-into-string
                                        (merge-pathnames #p"vrx-utils/shared-memory-id"
                                                         (user-homedir-pathname)))))
-                                        ;(cl-xwd:shared-memory-raw-pointer 851977)
                                     :pixel-type :unsigned-short-5-6-5
                                     :internal-format :rgb
                                     :levels 0)
                      :rotation (trial::vec (/ PI -2) 0 0)
-                     :color (trial::vec4-random 0.2 0.8)
-                     :location (trial::vx_z (trial::vec3-random -100 100))))
+                     :color (trial::vec3-random 0.2 0.8)
+                     :location (trial::vec3 0 0.05 -0.4)))
 
 (trial:define-handler (cube trial:tick) (trial::ev)
-  ;(incf (trial::vz (rotation cube)) 0)
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
-  (trial:allocate (trial:texture cube)))
+  (trial:allocate (trial:texture cube))
+  (let* ((loc (trial:location cube))
+         (rot (trial:rotation cube))
+         (speed (* (vel cube)
+                   (if (trial:retained 'key :left-shift) 5 1)
+                   (if (trial:retained 'key :left-alt) 1/5 1))))
+    (cond ((trial:retained 'key :a)
+           (decf (vx loc) (* speed (cos (vy rot))))
+           (decf (vz loc) (* speed (sin (vy rot)))))
+          ((trial:retained 'key :d)
+           (incf (vx loc) (* speed (cos (vy rot))))
+           (incf (vz loc) (* speed (sin (vy rot))))))
+    (cond ((trial:retained 'key :w)
+           (incf (vx loc) (* speed (sin (vy rot))))
+           (decf (vz loc) (* speed (cos (vy rot))))
+           (decf (vy loc) (* speed (sin (vx rot)))))
+          ((trial:retained 'key :s)
+           (decf (vx loc) (* speed (sin (vy rot))))
+           (incf (vz loc) (* speed (cos (vy rot))))
+           (incf (vy loc) (* speed (sin (vx rot))))))
+    (cond ((trial:retained 'key :space)
+           (incf (vy loc) speed))
+          ((trial:retained 'key :c)
+           (decf (vy loc) speed)))))
 
 (defun create-framebuffer ()
   )
@@ -128,7 +143,7 @@ void main(){
    :location (trial::vec 0 30 200)
    :fov 75
    :current-eye :left
-   :near-plane 1f0
+   :near-plane 0.1f0
    :hmd-pose (3d-matrices:meye 4)
    :far-plane 1000000.0f0
    :left-eye (make-instance 'eye :side :left)
@@ -149,15 +164,6 @@ void main(){
                                 (trial:near-plane camera) (trial:far-plane camera))
   (get-eye-projection (current-eye camera)))
 
-
-(defmethod trial:project-view ((camera head) ev)
-                                        ;Sets up the projection-view matrix when we are using the head camera.
-  (setf trial:*view-matrix* (3d-matrices:m*
-                             ;(get-eye-projection (current-eye camera))
-                             (get-eye-pose (current-eye camera))
-                             (hmd-pose camera)
-                             ))) ; for now
-
 (defun sb->3d (matrix)
   (if (typep matrix 'simple-array)
       (funcall #'3d-matrices:matn 4 4 (coerce matrix 'list))
@@ -169,7 +175,7 @@ void main(){
 
 (defun get-eye-projection (side)
   (vr::vr-system)
-  (sb->3d (vr::get-projection-matrix side 1f0 1000000.0f0)))
+  (sb->3d (vr::get-projection-matrix side 0.01f0 1000000.0f0)))
 
 (let ((poses (make-array (list  vr::+max-tracked-device-count+) :initial-element 0)))
   (defun get-latest-hmd-pose ()
@@ -179,47 +185,33 @@ void main(){
     (loop for device below vr::+max-tracked-device-count+
           for tracked-device = (aref poses device)
           when (getf tracked-device 'vr::pose-is-valid)
-          do 
-             (setf (aref poses device)
+          do (setf (aref poses device)
                    (getf tracked-device 'vr::device-to-absolute-tracking))
-             ;; (setf (aref (dev-class-char o) device)
-             ;;       (case (vr::get-tracked-device-class device)
-             ;;         (:controller #\C)
-             ;;         (:hmd #\H)
-             ;;         (:invalid #\I)
-             ;;         (:generic-tracker #\G)
-             ;;         (:tracking-reference #\T)
-             ;;         (t #\?)))
-             ;; (setf (pose-classes o) (format nil "~a~a" (pose-classes o)
-             ;;                                (aref (dev-class-char o) device)))
           finally
           (return
             (sb->3d (aref poses vr::+tracked-device-index-hmd+))))))
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
-                                        ; Updates head and eyes.
     (incf time (trial::dt ev))
-    (when (> time (/ 90)) ;90 FPS the target!
-        (progn (setf time 0)
-               (setf (pose (left-eye head))
-                     (get-eye-pose :left)
-                     
-                     (pose (right-eye head))
-                     (get-eye-pose :right)
-                     
-                     (projection (left-eye head))
-                     (get-eye-projection :left)
-                     
-                     (projection (right-eye head))
-                     (get-eye-projection :right)
-                     
-                     (hmd-pose head)
-                     (get-latest-hmd-pose)))
+    (when (> time (/ 30))
+        (setf time 0)
+        (setf (pose (left-eye head))
+              (get-eye-pose :left)
+              
+              (pose (right-eye head))
+              (get-eye-pose :right)
+              
+              (projection (left-eye head))
+              (get-eye-projection :left)
+              
+              (projection (right-eye head))
+              (get-eye-projection :right)
+              
+              (hmd-pose head)
+              (get-latest-hmd-pose))
         (submit-to-compositor *left-render-pass*)
-        (submit-to-compositor *right-render-pass*))
-                                        ; (format t "~a~%" trial:*view-matrix*)
-    ))
+        (submit-to-compositor *right-render-pass*))))
 
 (defmethod trial:start :before ((main workbench))
   "Set up OpenVR environment."
@@ -234,12 +226,25 @@ void main(){
 (defparameter *right-render-pass* nil)
 (defparameter *head* nil)
 
+(trial:define-asset (workbench trial::skybox) trial::image
+    '(#p"nissi-beach/posx.jpg"
+      #p"nissi-beach/negx.jpg"
+      #p"nissi-beach/posy.jpg"
+      #p"nissi-beach/negy.jpg"
+      #p"nissi-beach/posz.jpg"
+      #p"nissi-beach/negz.jpg")
+  :target :texture-cube-map)
+
 (progn
   (defmethod trial:setup-scene ((workbench workbench) scene)
-    (trial:enter (make-instance 'grid) scene)
-    (dotimes (i 5)
-      (trial:enter (make-instance 'cube) scene))
-    (trial:enter (make-instance 'lines :points (list (trial::vec 0 0 0) (trial::vec 100 100 0) (trial::vec 100 0 0))) scene)
+    ;(trial:enter (make-instance 'grid) scene)
+    (trial:enter (make-instance 'trial::skybox
+                                :texture (trial:asset
+                                          'workbench
+                                          'trial::skybox))
+                 scene)
+    (trial:enter (make-instance 'cube) scene)
+    ;(trial:enter (make-instance 'lines :points (list (trial::vec 0 0 0) (trial::vec 0 100 100) (trial::vec 100 0 0))) scene)
     (trial:enter (setf *head* (make-instance 'head)) scene)
     (trial:enter (setf *left-render-pass* (make-instance 'left-eye-render-pass)) scene)
     (trial:enter (setf *right-render-pass* (make-instance 'right-eye-render-pass)) scene))
@@ -255,70 +260,35 @@ void main(){
 (trial:define-shader-pass right-eye-render-pass (eye-render-pass)
   ())
 
-
-                                        ;(get-eye-pose :left)
-                                        ;(get-eye-pose :right)
-
-                                        ;(get-eye-projection :left)
-                                        ;(get-eye-projection :right)
-                                        ;(get-latest-hmd-pose)
-
-                                        ;vr::*%init*
-                                        ;vr::*system*
-
-                                        ;(vr::vr-system)
-
-;(untrace trial:project-view)
-
-;trial:*view-matrix*
-
-                                        ;trial:*projection-matrix*
-
-
-                                        ;(trace trial:setup-perspective)
-
-
-                                        ;(3d-matrices:m/ trial:*view-matrix*)
-
-
-                                        ;(3d-matrices:mdet (get-latest-hmd-pose))
-
-
-                                        ;(3d-matrices:minv (get-latest-hmd-pose))
-
-
-;(inspect (texture-id *custom-render-pass*))
-
 (defun texture-id (eye-render-pass)
   (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
 
 (defun submit-to-compositor (eye-render-pass)
   (vr::submit
    (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
-              (list 'vr::handle (texture-id eye-render-pass)
+   (list 'vr::handle (texture-id eye-render-pass)
                           'vr::type :open-gl
                           'vr::color-space :gamma)))
 
-
-                                        ;(vr::vr-compositor)
-
-(untrace trial:paint )
+(defmethod trial:project-view ((camera head) ev)
+                                        ;Sets up the projection-view matrix when we are using the head camera.
+  (setf trial:*view-matrix* (3d-matrices:m*
+                                        ;(get-eye-projection (current-eye camera))
+                             (get-eye-pose (current-eye camera))
+                             (hmd-pose camera)
+                             )))
 
 (defmethod trial:paint-with :around ((pass eye-render-pass) thing)
-  ;(format t "~a" (current-eye *head*))
   (setf (current-eye *head*)  (if (typep pass 'left-eye-render-pass)
                                   :left :right))
  (trial:project-view *head* nil)
   (call-next-method))
 
-;(trial:project-view *head* nil)
 
-;(typep *right-render-pass* 'right-eye-render-pass)
-;(vr::get-recommended-render-target-size ) 1852 2056
+(defun launch ()
+  (sb-thread:make-thread (lambda () (trial:launch 'workbench :width 926 :height 1028))))
 
-;(setf (current-eye *head*) :left
-      
-;      )
-;(setf (current-eye *head*) :right)
-
-(defun launch () (trial:launch 'workbench :width 1852 :height 2056))
+(setf vr::*%init nil
+      vr::*system* nil
+      vr::*chaperone* nil
+      vr::*compositor* nil)
