@@ -4,10 +4,14 @@
   :license ""
   :depends-on ("trial-glfw"
                "3b-openvr"
+               "sb-cga"
                "cl-xwd")
   :components ((:module "src"
                 :components
-                ((:file "main"))))
+                ((:file "package")
+                 (:file "main")
+                 (:file "low-level")
+                 (:file "rendering"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 
