@@ -12,7 +12,7 @@
    :location (trial::vec 0 30 200)
    :fov 75
    :current-eye :left
-   :near-plane 0.01f0
+   :near-plane 0.001f0
    :hmd-pose (3d-matrices:meye 4)
    :far-plane 1000000.0f0
    :left-eye (make-instance 'eye :side :left)
@@ -52,11 +52,15 @@
    (right-pass-depth :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head) ev)
- ; (princ (current-eye camera))
-  (setf trial:*projection-matrix* (get-eye-projection (current-eye camera)))
-  (setf trial:*view-matrix* (3d-matrices:m*
-                             (get-eye-pose (current-eye camera))
-                             *hmd-pose*)))
+                                        ; (princ (current-eye camera))
+  (trial:reset-matrix (trial:projection-matrix))
+  (trial:reset-matrix (trial:view-matrix))
+  (when (or (eq (current-eye camera) :left) t)
+    (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))))
+  (when (or (eq (current-eye camera) :right) t)
+    (setf (trial:view-matrix) (3d-matrices:m*
+                               (get-eye-pose (current-eye camera))
+                               *hmd-pose*))))
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
@@ -70,17 +74,15 @@
                                         ; need to set up projection matrix on the tick as well 
 
 (defmethod trial:setup-perspective ((camera head) ev)
-  (setf trial:*projection-matrix* (get-eye-projection :left)))
+  (setf (trial:projection-matrix) (get-eye-projection :left)))
 
-(defmethod trial:paint :around ((subject trial:pipelined-scene) (pass left-eye-render-pass))
+(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
   (setf (current-eye *head*) :left)
-  (trial:project-view *head* nil)
-  (call-next-method subject pass))
+  (trial:project-view *head* nil))
 
-(defmethod trial:paint :around ((subject trial:pipelined-scene) (pass right-eye-render-pass))
+(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass right-eye-render-pass))
   (setf (current-eye *head*) :right)
-  (trial:project-view *head* nil)
-  (call-next-method subject pass))
+  (trial:project-view *head* nil))
 
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   )
@@ -115,9 +117,10 @@
 (defun print-view-projection-info ()
   (map nil 'print (list trial::*view-matrix* trial::*projection-matrix*)))
 ;(print-render-info)
-;(trace-for-one-second  vr::submit wait-get-poses)
-                                        ;(trial:maybe-reload-scene)
+;(trace-for-one-second trial:project-view %gl:uniform-matrix-4fv)
+                     ;(trial:maybe-reload-scene)
 ;(print-view-projection-info)
                                         ;(hmd-pose *head*)
                                         ;*hmd-pose*
 ;(get-latest-hmd-pose)
+;trial:reset-matrix

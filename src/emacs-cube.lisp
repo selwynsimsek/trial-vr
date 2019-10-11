@@ -14,7 +14,7 @@
      (merge-pathnames #p"vrx-utils/shared-memory-id" (user-homedir-pathname))))))
 
 (trial:define-asset (workbench cube) trial:mesh
-    (trial:make-cube 10))
+    (trial:make-cube 1))
 
 (trial:define-shader-subject cube (trial:vertex-entity trial:colored-entity trial:textured-entity
                                                        trial:located-entity trial:rotated-entity
@@ -31,12 +31,12 @@
                                              :levels 0)
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
-                     :location (trial::vec3 0 5 -30)))
+                     :location (trial::vec3 0 0.5 -30)))
 
 (trial:define-handler (cube trial:tick) (trial::ev)
  ;(setf (trial:texture cube) (cadar (trial:attachments (trial:framebuffer *right-render-pass*))))
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
   (trial:allocate (trial:texture cube)))
-;(describe (cadar (trial:attachments (trial:framebuffer *left-render-pass*))))
+                                        ;(describe (cadar (trial:attachments (trial:framebuffer *left-render-pass*)))
 
 
