@@ -1,5 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; low-level.lisp
+;;;; Convenience layer that fetches poses and projection matrices from 3b-openvr.
+
 (in-package :trial-vr)
 
 (defun sb->3d (matrix)

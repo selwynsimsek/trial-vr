@@ -19,11 +19,10 @@
 (defparameter *left-render-pass* nil)
 (defparameter *right-render-pass* nil)
 (defparameter *compositor-render-pass* nil)
-
 (defparameter *head* nil)
 (defparameter *hmd-pose* (3d-matrices:meye 4))
-(trial:define-shader-pass eye-render-pass (trial:render-pass)
-  ())
+
+(trial:define-shader-pass eye-render-pass (trial:render-pass) ())
 
 (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
   ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec (:target :texture-2d))
@@ -69,8 +68,7 @@
   (setf (current-eye *head*) :right)
   (trial:project-view *head* nil))
 
-(defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
-  )
+(defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass)))
 
 (defun texture-id (eye-render-pass)
   (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
