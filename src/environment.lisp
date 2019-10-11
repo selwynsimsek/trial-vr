@@ -12,9 +12,12 @@
   (vr::vr-shutdown-internal)
   (setf vr::*%init* nil))
 
-(defun launch ()
+(defun launch (&key (own-thread nil))
   "Launch the trial VR workbench."
-  (setf vr::*%init nil vr::*system* nil vr::*chaperone* nil vr::*compositor* nil)
-  (bt:make-thread (lambda () (trial:launch 'workbench :width 926 :height 1028))))
+  (let ((call-lambda (lambda () (trial:launch 'workbench :width 926 :height 1028))))
+    (if own-thread
+        (bt:make-thread call-lambda)
+        (funcall call-lambda))))
 
 (export 'launch)
+(setf vr::*%init nil vr::*system* nil vr::*chaperone* nil vr::*compositor* nil)

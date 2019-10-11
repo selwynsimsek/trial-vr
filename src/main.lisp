@@ -18,14 +18,6 @@
       #p"nissi-beach/negz.jpg")
   :target :texture-cube-map)
 
-(defun texture-id (eye-render-pass)
-  (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
-
-(defun submit-to-compositor (eye-render-pass)
-  (vr::submit
-   (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
-   (list 'vr::handle (texture-id eye-render-pass) 'vr::type :open-gl 'vr::color-space :gamma)))
-
 (progn
   (defmethod trial:setup-scene ((workbench workbench) scene)
     (trial:enter (make-instance 'trial::skybox

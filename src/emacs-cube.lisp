@@ -32,3 +32,9 @@
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
                      :location (trial::vec3 0 5 -30)))
+
+(trial:define-handler (cube trial:tick) (trial::ev)
+  (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
+  (trial:allocate (trial:texture cube)))
+
+

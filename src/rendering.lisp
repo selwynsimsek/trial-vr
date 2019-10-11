@@ -28,55 +28,59 @@
    :pose (3d-matrices:meye 4)
    :projection (3d-matrices:meye 4)))
 
-(defmethod trial:setup-perspective ((camera head) ev)
-  (trial:perspective-projection (fov camera) (/ (trial:width ev) (max 1 (trial:height ev)))
-                                (trial:near-plane camera) (trial:far-plane camera))
-  (get-eye-projection (current-eye camera)))
-
-(let ((time 0))
-  (trial:define-handler (head trial::tick) (ev)
-    (incf time (trial::dt ev))
-    (when (> time (/ 30))
-      (setf time 0)
-      (setf (pose (left-eye head))
-            (get-eye-pose :left)
-            
-            (pose (right-eye head))
-            (get-eye-pose :right)
-            
-            (projection (left-eye head))
-            (get-eye-projection :left)
-            
-            (projection (right-eye head))
-            (get-eye-projection :right)
-            
-            (hmd-pose head)
-            (get-latest-hmd-pose))
-      (submit-to-compositor *left-render-pass*)
-      (submit-to-compositor *right-render-pass*))))
 (defparameter *left-render-pass* nil)
 (defparameter *right-render-pass* nil)
 (defparameter *head* nil)
+(trial:define-shader-pass eye-render-pass (trial:render-pass)
+  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec #1=(:target :texture-2d) )
+   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec #1#)))
 
-(trial:define-shader-pass eye-render-pass ()
+(trial:define-shader-pass left-eye-render-pass (eye-render-pass)
   ())
 
-(trial:define-shader-pass left-eye-render-pass (eye-render-pass trial:render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec (:target :texture-2d) )
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec (:target :texture-2d))))
-
-(trial:define-shader-pass right-eye-render-pass (eye-render-pass trial:render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment1 :texspec (:target :texture-2d) )
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec (:target :texture-2d))))
+(trial:define-shader-pass right-eye-render-pass (eye-render-pass)
+  ())
 
 (defmethod trial:project-view ((camera head) ev)
   (setf trial:*view-matrix* (3d-matrices:m*
-
                              (get-eye-pose (current-eye camera))
                              (hmd-pose camera)))
   (setf trial:*projection-matrix* (get-eye-projection (current-eye camera))))
+                                        ; need to set up projection matrix on the tick as well 
 
-(defmethod trial:paint-with :around ((pass eye-render-pass) thing)
-  (setf (current-eye *head*)  (if (typep pass 'left-eye-render-pass)
-                                  :left :right))
-  (call-next-method))
+(defmethod trial:setup-perspective ((camera head) ev)
+  (setf trial:*projection-matrix* (get-eye-projection :left)))
+
+(defmethod trial:paint :around ((subject trial:pipelined-scene) (pass left-eye-render-pass))
+  (setf (current-eye *head*) :left)
+  (trial:project-view *head* nil)
+  (call-next-method subject pass))
+
+(defmethod trial:paint :around ((subject trial:pipelined-scene) (pass right-eye-render-pass))
+  (setf (current-eye *head*) :right)
+  (trial:project-view *head* nil)
+  (call-next-method subject pass))
+
+(defmethod trial:render :around ((source workbench) (target trial:display))
+  (call-next-method source target)
+  (when *left-render-pass* (submit-to-compositor *left-render-pass*))
+  (when *right-render-pass* (submit-to-compositor *right-render-pass*)))
+
+
+(defun texture-id (eye-render-pass)
+  (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
+
+                                        ;(texture-id *right-render-pass*)
+(defun submit-to-compositor (eye-render-pass)
+  (vr::vr-compositor)
+  (when vr::*compositor*
+                                        ; (format t "C")
+    (format t "~{~a ~}~%" (list vr::*compositor* (typep eye-render-pass 'left-eye-render-pass) (texture-id eye-render-pass)))
+    (vr::submit
+     (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
+     (list 'vr::handle (texture-id eye-render-pass) 'vr::type :open-gl 'vr::color-space :gamma))))
+
+(progn
+  (trace trial:paint)
+  (sleep 1)
+  (untrace trial:paint))
