@@ -10,11 +10,7 @@
    (current-eye :initarg :current-eye :accessor current-eye))
   (:default-initargs
    :name :head
-   :location (trial::vec 0 30 200)
-   :current-eye :left
-   :near-plane 0.001f0
-   :hmd-pose (3d-matrices:meye 4)
-   :far-plane 1000000.0f0))
+   :current-eye :left))
 
 (defparameter *left-render-pass* nil)
 (defparameter *right-render-pass* nil)
@@ -25,12 +21,16 @@
 (trial:define-shader-pass eye-render-pass (trial:render-pass) ())
 
 (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec (:target :texture-2d))
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec (:target :texture-2d))))
+  ((trial:color :port-type trial:output :attachment :color-attachment0
+                :texspec (:target :texture-2d))
+   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment
+                :texspec (:target :texture-2d))))
 
 (trial:define-shader-pass right-eye-render-pass (eye-render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec (:target :texture-2d))
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec (:target :texture-2d))))
+  ((trial:color :port-type trial:output :attachment :color-attachment0
+                :texspec (:target :texture-2d))
+   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment
+                :texspec (:target :texture-2d))))
 
 (trial:define-shader-pass compositor-render-pass (trial:render-pass)
   ((left-pass-color :port-type trial:input)
@@ -44,9 +44,7 @@
   (when (or (eq (current-eye camera) :left) t)
     (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))))
   (when (or (eq (current-eye camera) :right) t)
-    (setf (trial:view-matrix) (3d-matrices:m*
-                               (get-eye-pose (current-eye camera))
-                               *hmd-pose*))))
+    (setf (trial:view-matrix) (3d-matrices:m* (get-eye-pose (current-eye camera)) *hmd-pose*))))
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
@@ -73,25 +71,12 @@
 (defun texture-id (eye-render-pass)
   (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
 
+(defun render-pass-side (eye-render-pass)
+  (if (typep eye-render-pass 'left-eye-render-pass) :left :right))
+
 (defun submit-to-compositor (eye-render-pass)
   (vr::vr-compositor)
   (when vr::*compositor* 
     (vr::submit
-     (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
-     (list 'vr::handle (texture-id eye-render-pass) 'vr::type :open-gl 'vr::color-space :gamma))))
-
-(defmacro trace-for-one-second (&rest specs)
-  `(progn
-    (trace ,@specs)
-    (sleep 1)
-    (untrace ,@specs)))
-
-(defun print-render-info ()
-  (map nil #'describe (list *head* *left-render-pass* *right-render-pass*
-                            (trial:framebuffer *left-render-pass*)
-                            (trial:framebuffer *right-render-pass*)
-                            (cadar (trial:attachments (trial:framebuffer *left-render-pass*)))
-                            (cadar (trial:attachments (trial:framebuffer *right-render-pass*))))))
-
-(defun print-view-projection-info ()
-  (map nil 'print (list trial::*view-matrix* trial::*projection-matrix*)))
+     (render-pass-side eye-render-pass)
+     `(vr::handle ,(texture-id eye-render-pass) vr::type :open-gl vr::color-space :gamma))))

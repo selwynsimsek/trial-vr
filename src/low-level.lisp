@@ -20,7 +20,7 @@
   (vr::vr-system)
   (sb->3d (vr::get-projection-matrix side near far)))
 
-(let ((poses (make-array (list  vr::+max-tracked-device-count+) :initial-element 0)))
+(let ((poses (make-array (list vr::+max-tracked-device-count+) :initial-element 0)))
   (defun wait-get-poses ()
     (vr::wait-get-poses poses nil))
   (defun get-latest-hmd-pose ()
@@ -32,11 +32,3 @@
           when (getf tracked-device 'vr::pose-is-valid)
           do (setf (aref poses device) (getf tracked-device 'vr::device-to-absolute-tracking))
           finally (return (sb->3d (aref poses vr::+tracked-device-index-hmd+))))))
-
-(defun hmd-info ()
-  (map nil #'print (list
-                    (get-eye-projection :left)
-                    (get-eye-projection :right)
-                    (get-eye-pose :left)
-                    (get-eye-pose :right)
-                    (get-latest-hmd-pose))))

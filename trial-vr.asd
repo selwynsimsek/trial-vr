@@ -14,7 +14,8 @@
                  (:file "emacs-cube")
                  (:file "main")
                  (:file "low-level")
-                 (:file "rendering"))))
+                 (:file "rendering")
+                 (:file "debug"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 
