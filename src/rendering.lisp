@@ -7,28 +7,14 @@
   ((left-eye :initarg :left-eye :accessor left-eye)
    (right-eye :initarg :right-eye :accessor right-eye)
    (hmd-pose :initarg :hmd-pose :accessor hmd-pose)
-   (current-eye :initarg :current-eye :accessor current-eye)
-   (fov :initarg :fov :accessor fov))
+   (current-eye :initarg :current-eye :accessor current-eye))
   (:default-initargs
    :name :head
    :location (trial::vec 0 30 200)
-   :fov 75
    :current-eye :left
    :near-plane 0.001f0
    :hmd-pose (3d-matrices:meye 4)
-   :far-plane 1000000.0f0
-   :left-eye (make-instance 'eye :side :left)
-   :right-eye (make-instance 'eye :side :right)))
-
-(trial:define-subject eye (trial:located-entity)
-  ((side :initarg :side :accessor side)
-   (pose :initarg :pose :accessor pose)
-   (projection :initarg :projection :accessor projection))
-  (:default-initargs
-   :name :eye
-   :side nil
-   :pose (3d-matrices:meye 4)
-   :projection (3d-matrices:meye 4)))
+   :far-plane 1000000.0f0))
 
 (defparameter *left-render-pass* nil)
 (defparameter *right-render-pass* nil)
@@ -54,7 +40,6 @@
    (right-pass-depth :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head) ev)
-                                        ; (princ (current-eye camera))
   (trial:reset-matrix (trial:projection-matrix))
   (trial:reset-matrix (trial:view-matrix))
   (when (or (eq (current-eye camera) :left) t)
