@@ -30,22 +30,41 @@
 
 (defparameter *left-render-pass* nil)
 (defparameter *right-render-pass* nil)
+(defparameter *compositor-render-pass* nil)
+
 (defparameter *head* nil)
+(defparameter *hmd-pose* (3d-matrices:meye 4))
 (trial:define-shader-pass eye-render-pass (trial:render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec #1=(:target :texture-2d) )
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec #1#)))
+  ())
 
 (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
-  ())
+  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec (:target :texture-2d))
+   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec (:target :texture-2d))))
 
 (trial:define-shader-pass right-eye-render-pass (eye-render-pass)
-  ())
+  ((trial:color :port-type trial:output :attachment :color-attachment0 :texspec (:target :texture-2d))
+   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment :texspec (:target :texture-2d))))
+
+(trial:define-shader-pass compositor-render-pass (trial:render-pass)
+  ((left-pass-color :port-type trial:input)
+   (right-pass-color :port-type trial:input)
+   (left-pass-depth :port-type trial:input)
+   (right-pass-depth :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head) ev)
+ ; (princ (current-eye camera))
+  (setf trial:*projection-matrix* (get-eye-projection (current-eye camera)))
   (setf trial:*view-matrix* (3d-matrices:m*
                              (get-eye-pose (current-eye camera))
-                             (hmd-pose camera)))
-  (setf trial:*projection-matrix* (get-eye-projection (current-eye camera))))
+                             *hmd-pose*)))
+
+(let ((time 0))
+  (trial:define-handler (head trial::tick) (ev)
+    (incf time (trial::dt ev))
+    (when (> time (/ 30))
+      ;(print head)
+      (setf time 0)
+      (setf *hmd-pose* (get-latest-hmd-pose)))))
                                         ; need to set up projection matrix on the tick as well 
 
 (defmethod trial:setup-perspective ((camera head) ev)
@@ -61,11 +80,9 @@
   (trial:project-view *head* nil)
   (call-next-method subject pass))
 
-(defmethod trial:render :around ((source workbench) (target trial:display))
-  (call-next-method source target)
+(defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   (when *left-render-pass* (submit-to-compositor *left-render-pass*))
   (when *right-render-pass* (submit-to-compositor *right-render-pass*)))
-
 
 (defun texture-id (eye-render-pass)
   (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
@@ -75,12 +92,31 @@
   (vr::vr-compositor)
   (when vr::*compositor*
                                         ; (format t "C")
-    (format t "~{~a ~}~%" (list vr::*compositor* (typep eye-render-pass 'left-eye-render-pass) (texture-id eye-render-pass)))
+                                        ;(format t "~{~a ~}~%" (list vr::*compositor* (typep eye-render-pass 'left-eye-render-pass) (texture-id eye-render-pass)))
+    (wait-get-poses)
     (vr::submit
      (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
      (list 'vr::handle (texture-id eye-render-pass) 'vr::type :open-gl 'vr::color-space :gamma))))
 
-(progn
-  (trace trial:paint)
-  (sleep 1)
-  (untrace trial:paint))
+(defmacro trace-for-one-second (&rest specs)
+  `(progn
+    (trace ,@specs)
+    (sleep 1)
+    (untrace ,@specs)))
+
+(defun print-render-info ()
+  (map nil #'describe (list *head* *left-render-pass* *right-render-pass*
+                            (trial:framebuffer *left-render-pass*)
+                            (trial:framebuffer *right-render-pass*)
+                            (cadar (trial:attachments (trial:framebuffer *left-render-pass*)))
+                            (cadar (trial:attachments (trial:framebuffer *right-render-pass*))))))
+
+(defun print-view-projection-info ()
+  (map nil 'print (list trial::*view-matrix* trial::*projection-matrix*)))
+;(print-render-info)
+;(trace-for-one-second vr::submit)
+                                        ;(trial:maybe-reload-scene)
+;(print-view-projection-info)
+                                        ;(hmd-pose *head*)
+                                        ;*hmd-pose*
+;(get-latest-hmd-pose)
