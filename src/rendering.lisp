@@ -64,7 +64,9 @@
     (when (> time (/ 30))
       ;(print head)
       (setf time 0)
-      (setf *hmd-pose* (get-latest-hmd-pose)))))
+      (setf *hmd-pose* (get-latest-hmd-pose))
+      (when *left-render-pass* (submit-to-compositor *left-render-pass*))
+      (when *right-render-pass* (submit-to-compositor *right-render-pass*)))))
                                         ; need to set up projection matrix on the tick as well 
 
 (defmethod trial:setup-perspective ((camera head) ev)
@@ -81,8 +83,7 @@
   (call-next-method subject pass))
 
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
-  (when *left-render-pass* (submit-to-compositor *left-render-pass*))
-  (when *right-render-pass* (submit-to-compositor *right-render-pass*)))
+  )
 
 (defun texture-id (eye-render-pass)
   (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
@@ -93,7 +94,7 @@
   (when vr::*compositor*
                                         ; (format t "C")
                                         ;(format t "~{~a ~}~%" (list vr::*compositor* (typep eye-render-pass 'left-eye-render-pass) (texture-id eye-render-pass)))
-    (wait-get-poses)
+    
     (vr::submit
      (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
      (list 'vr::handle (texture-id eye-render-pass) 'vr::type :open-gl 'vr::color-space :gamma))))
@@ -114,7 +115,7 @@
 (defun print-view-projection-info ()
   (map nil 'print (list trial::*view-matrix* trial::*projection-matrix*)))
 ;(print-render-info)
-;(trace-for-one-second vr::submit)
+;(trace-for-one-second  vr::submit wait-get-poses)
                                         ;(trial:maybe-reload-scene)
 ;(print-view-projection-info)
                                         ;(hmd-pose *head*)
