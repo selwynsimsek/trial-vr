@@ -1,4 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; low-level.lisp
 (in-package :trial-vr)
 
 (defun sb->3d (matrix)
@@ -38,5 +39,3 @@
                     (get-eye-pose :left)
                     (get-eye-pose :right)
                     (get-latest-hmd-pose))))
-
-;(hmd-info)

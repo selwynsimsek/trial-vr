@@ -34,9 +34,5 @@
                      :location (trial::vec3 0 0.5 -30)))
 
 (trial:define-handler (cube trial:tick) (trial::ev)
- ;(setf (trial:texture cube) (cadar (trial:attachments (trial:framebuffer *right-render-pass*))))
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
   (trial:allocate (trial:texture cube)))
-                                        ;(describe (cadar (trial:attachments (trial:framebuffer *left-render-pass*)))
-
-

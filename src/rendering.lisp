@@ -1,4 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Handles the multiple render passes and submission to the OpenVR compositor.
+
 (in-package :trial-vr)
 
 (trial:define-subject head (trial:camera)
@@ -66,12 +68,10 @@
   (trial:define-handler (head trial::tick) (ev)
     (incf time (trial::dt ev))
     (when (> time (/ 30))
-      ;(print head)
       (setf time 0)
       (setf *hmd-pose* (get-latest-hmd-pose))
       (when *left-render-pass* (submit-to-compositor *left-render-pass*))
       (when *right-render-pass* (submit-to-compositor *right-render-pass*)))))
-                                        ; need to set up projection matrix on the tick as well 
 
 (defmethod trial:setup-perspective ((camera head) ev)
   (setf (trial:projection-matrix) (get-eye-projection :left)))
@@ -90,13 +90,9 @@
 (defun texture-id (eye-render-pass)
   (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
 
-                                        ;(texture-id *right-render-pass*)
 (defun submit-to-compositor (eye-render-pass)
   (vr::vr-compositor)
-  (when vr::*compositor*
-                                        ; (format t "C")
-                                        ;(format t "~{~a ~}~%" (list vr::*compositor* (typep eye-render-pass 'left-eye-render-pass) (texture-id eye-render-pass)))
-    
+  (when vr::*compositor* 
     (vr::submit
      (if (typep eye-render-pass 'left-eye-render-pass) :left :right)
      (list 'vr::handle (texture-id eye-render-pass) 'vr::type :open-gl 'vr::color-space :gamma))))
@@ -116,11 +112,3 @@
 
 (defun print-view-projection-info ()
   (map nil 'print (list trial::*view-matrix* trial::*projection-matrix*)))
-;(print-render-info)
-;(trace-for-one-second trial:project-view %gl:uniform-matrix-4fv)
-                     ;(trial:maybe-reload-scene)
-;(print-view-projection-info)
-                                        ;(hmd-pose *head*)
-                                        ;*hmd-pose*
-;(get-latest-hmd-pose)
-;trial:reset-matrix

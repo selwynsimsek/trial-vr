@@ -39,7 +39,5 @@
                    scene)
     (trial:connect (trial:port *right-render-pass* 'trial:depth)
                    (trial:port *compositor-render-pass* 'right-pass-depth)
-                   scene)
-    ;(trial:enter (make-instance 'trial:render-pass) scene)
-    )
+                   scene))
   (trial:maybe-reload-scene))
