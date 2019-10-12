@@ -33,11 +33,21 @@
    (right-pass-depth :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head) ev)
-  (when (or (eq (current-eye camera) :left) t)
-    (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))))
-  (when (or (eq (current-eye camera) :right) t)
+  (let ((eye (current-eye camera))
+        (left-eye-pose (get-eye-pose :left))
+        (right-eye-pose (get-eye-pose :right))
+        (current-eye-pose (get-eye-pose (current-eye camera)))
+        (hmd-pose (hmd-pose camera)))
+    (setf (trial:projection-matrix) (get-eye-projection (current-eye camera)))
     (setf (trial:view-matrix)
-          (3d-matrices:m* (get-eye-pose (current-eye camera)) (hmd-pose camera)))))
+          (3d-matrices:m*
+           (3d-matrices:mtranspose current-eye-pose)
+           (3d-matrices:minv
+            (3d-matrices:mtranspose hmd-pose))
+           ))))
+
+(defun dummy (&rest args) (apply #'values args))
+(trace-for-one-second dummy)
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
