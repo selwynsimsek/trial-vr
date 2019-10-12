@@ -76,7 +76,7 @@
   ;; other threads to grab it.
   (let ((context (trial:context target)))
     (trial:with-context (context :reentrant T)
-      (gl:viewport 0 0 1852 2056) ; Hack to prevent excessive clearing on eye framebuffers.
+      (apply #'gl:viewport 0 0 (eye-framebuffer-size)) ; Hack to prevent excessive clearing on eye framebuffers.
       (let ((c (trial:clear-color target)))
         (gl:clear-color (trial::vx c) (trial::vy c) (trial::vz c) (if (trial::vec4-p c) (trial::vw c) 0.0)))
       (gl:clear :color-buffer :depth-buffer :stencil-buffer)
