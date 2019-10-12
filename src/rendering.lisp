@@ -40,14 +40,15 @@
         (hmd-pose (hmd-pose camera)))
     (setf (trial:projection-matrix) (get-eye-projection (current-eye camera)))
     (setf (trial:view-matrix)
-          (3d-matrices:m*
-           (3d-matrices:mtranspose current-eye-pose)
-           (3d-matrices:minv
-            (3d-matrices:mtranspose hmd-pose))
-           ))))
+          (3d-matrices:mtranspose
+           (3d-matrices:m*
+            
+            (3d-matrices:minv
+             hmd-pose)
+            current-eye-pose
+            )))))
 
 (defun dummy (&rest args) (apply #'values args))
-(trace-for-one-second dummy)
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
