@@ -70,3 +70,15 @@
       (vr::submit
        :right
        `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))))
+
+(defmethod trial:render :around (source (target trial:display))
+  ;; Potentially release context every time to allow
+  ;; other threads to grab it.
+  (let ((context (trial:context target)))
+    (trial:with-context (context :reentrant T)
+      (gl:viewport 0 0 1852 2056) ; Hack to prevent excessive clearing on eye framebuffers.
+      (let ((c (trial:clear-color target)))
+        (gl:clear-color (trial::vx c) (trial::vy c) (trial::vz c) (if (trial::vec4-p c) (trial::vw c) 0.0)))
+      (gl:clear :color-buffer :depth-buffer :stencil-buffer)
+      (call-next-method)
+      (trial:swap-buffers context))))

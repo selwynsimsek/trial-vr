@@ -15,7 +15,7 @@
   (vr::vr-system)
   (sb->3d (sb-cga:inverse-matrix (vr::get-eye-to-head-transform side))))
 
-(defun get-eye-projection (side &key (near 0.1f0) (far 100.0f0))
+(defun get-eye-projection (side &key (near 0.3f0) (far 100.0f0))
   "Returns the per eye projection matrix."
   (vr::vr-system)
   (sb->3d (vr::get-projection-matrix side near far)))

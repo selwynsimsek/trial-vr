@@ -17,7 +17,7 @@
 
 (defun launch (&key (own-thread nil))
   "Launch the trial VR workbench."
-  (let ((call-lambda (lambda () (trial:launch 'workbench :width 640 :height 480))))
+  (let ((call-lambda (lambda () (trial:launch 'workbench :width 160 :height 120))))
     (if own-thread
         (bt:make-thread call-lambda)
         (funcall call-lambda))))
