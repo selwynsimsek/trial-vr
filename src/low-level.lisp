@@ -32,3 +32,10 @@
           when (getf tracked-device 'vr::pose-is-valid)
           do (setf (aref poses device) (getf tracked-device 'vr::device-to-absolute-tracking))
           finally (return (sb->3d (aref poses vr::+tracked-device-index-hmd+))))))
+
+(defun eye-framebuffer-size ()
+  "Returns the recommended render target size. Defaults to that of the HTC Vive."
+  (vr::vr-system)
+  (if (vr::vr-system)
+      (vr::get-recommended-render-target-size)
+      (list 1852 2056)))
