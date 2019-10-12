@@ -4,21 +4,15 @@
 (in-package :trial-vr)
 
 (trial:define-subject head (trial:camera)
-  ((left-eye :initarg :left-eye :accessor left-eye)
-   (right-eye :initarg :right-eye :accessor right-eye)
-   (hmd-pose :initarg :hmd-pose :accessor hmd-pose)
+  ((hmd-pose :initarg :hmd-pose :accessor hmd-pose)
    (current-eye :initarg :current-eye :accessor current-eye))
   (:default-initargs
    :name :head
-   :current-eye :left))
+   :current-eye :left
+   :hmd-pose (3d-matrices:meye 4)))
 
-(defparameter *left-render-pass* nil)
-(defparameter *right-render-pass* nil)
-(defparameter *compositor-render-pass* nil)
-(defparameter *head* nil)
-(defparameter *hmd-pose* (3d-matrices:meye 4))
-
-(trial:define-shader-pass eye-render-pass (trial:render-pass) ())
+(trial:define-shader-pass eye-render-pass (trial:render-pass)
+  ((head :initarg :head :accessor head)))
 
 (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
   ((trial:color :port-type trial:output :attachment :color-attachment0
@@ -39,44 +33,40 @@
    (right-pass-depth :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head) ev)
-  (trial:reset-matrix (trial:projection-matrix))
-  (trial:reset-matrix (trial:view-matrix))
   (when (or (eq (current-eye camera) :left) t)
     (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))))
   (when (or (eq (current-eye camera) :right) t)
-    (setf (trial:view-matrix) (3d-matrices:m* (get-eye-pose (current-eye camera)) *hmd-pose*))))
+    (setf (trial:view-matrix)
+          (3d-matrices:m* (get-eye-pose (current-eye camera)) (hmd-pose camera)))))
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
     (incf time (trial::dt ev))
     (when (> time (/ 30))
       (setf time 0)
-      (setf *hmd-pose* (get-latest-hmd-pose))
-      (when *left-render-pass* (submit-to-compositor *left-render-pass*))
-      (when *right-render-pass* (submit-to-compositor *right-render-pass*)))))
+      (setf (hmd-pose head) (get-latest-hmd-pose)))))
 
 (defmethod trial:setup-perspective ((camera head) ev)
   (setf (trial:projection-matrix) (get-eye-projection :left)))
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
-  (setf (current-eye *head*) :left)
-  (trial:project-view *head* nil))
+  (setf (current-eye (head pass)) :left)
+  (trial:project-view (head pass) nil))
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass right-eye-render-pass))
-  (setf (current-eye *head*) :right)
-  (trial:project-view *head* nil))
+  (setf (current-eye (head pass)) :right)
+  (trial:project-view (head pass) nil))
 
-(defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass)))
-
-(defun texture-id (eye-render-pass)
-  (trial:data-pointer (cadar (trial:attachments (trial:framebuffer eye-render-pass)))))
-
-(defun render-pass-side (eye-render-pass)
-  (if (typep eye-render-pass 'left-eye-render-pass) :left :right))
-
-(defun submit-to-compositor (eye-render-pass)
+(defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   (vr::vr-compositor)
-  (when vr::*compositor* 
-    (vr::submit
-     (render-pass-side eye-render-pass)
-     `(vr::handle ,(texture-id eye-render-pass) vr::type :open-gl vr::color-space :gamma))))
+  (when vr::*compositor*
+    (let ((left-texture-id
+            (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
+          (right-texture-id
+            (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color)))))
+      (vr::submit
+       :left
+       `(vr::handle ,left-texture-id vr::type :open-gl vr::color-space :gamma))
+      (vr::submit
+       :right
+       `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))))

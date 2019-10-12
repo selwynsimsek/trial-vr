@@ -9,15 +9,10 @@
      (sleep 1)
      (untrace ,@specs)))
 
-(defun print-render-info ()
-  (map nil #'describe (list *head* *left-render-pass* *right-render-pass*
-                            (trial:framebuffer *left-render-pass*)
-                            (trial:framebuffer *right-render-pass*)
-                            (cadar (trial:attachments (trial:framebuffer *left-render-pass*)))
-                            (cadar (trial:attachments (trial:framebuffer *right-render-pass*))))))
+(defun print-render-info () )
 
 (defun print-view-projection-info ()
-  (map nil 'print (list trial::*view-matrix* trial::*projection-matrix*)))
+  (map nil 'print (list (trial:view-matrix) (trial:projection-matrix))))
 
 (defun hmd-info ()
   (map nil #'print (list

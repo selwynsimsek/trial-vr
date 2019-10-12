@@ -7,7 +7,7 @@
   "Convenience method to convert matrices from sb-cga to 3d-matrices.
    3b-openvr uses the former while Trial uses the latter."
   (if (typep matrix 'simple-array)
-      (funcall #'3d-matrices:matn 4 4 (coerce matrix 'list))
+      (3d-matrices:mat4 matrix)
       (3d-matrices:meye 4)))
 
 (defun get-eye-pose (side)
