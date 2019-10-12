@@ -4,13 +4,12 @@
 (in-package :trial-vr)
 
 (defclass actor ()
-  ((head :initarg :head)
-   (compositor-render-pass :initarg :compositor-render-pass)))
+  ((name :initarg :actor)))
 
 (defmethod trial:enter ((unit actor) scene)
   (let* ((head (make-instance 'head))
-         (left-render-pass (make-instance 'left-eye-render-pass :head head))
-         (right-render-pass (make-instance 'right-eye-render-pass :head head))
+         (left-render-pass (make-instance 'left-eye-render-pass))
+         (right-render-pass (make-instance 'right-eye-render-pass))
          (compositor-render-pass (make-instance 'compositor-render-pass)))
     (trial:enter head scene)
     (trial:enter left-render-pass scene)
@@ -27,6 +26,4 @@
                    scene)
     (trial:connect (trial:port right-render-pass 'trial:depth)
                    (trial:port compositor-render-pass 'right-pass-depth)
-                   scene)
-    (setf (slot-value unit 'head) head
-          (slot-value unit 'compositor-render-pass) compositor-render-pass)))
+                   scene)))

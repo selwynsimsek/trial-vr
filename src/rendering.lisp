@@ -12,7 +12,7 @@
    :hmd-pose (3d-matrices:meye 4)))
 
 (trial:define-shader-pass eye-render-pass (trial:render-pass)
-  ((head :initarg :head :accessor head)))
+  ())
 
 (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
   ((trial:color :port-type trial:output :attachment :color-attachment0
@@ -50,12 +50,12 @@
   (setf (trial:projection-matrix) (get-eye-projection :left)))
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
-  (setf (current-eye (head pass)) :left)
-  (trial:project-view (head pass) nil))
+  (setf (current-eye (trial::unit :head subject)) :left)
+  (trial:project-view (trial::unit :head subject) nil))
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass right-eye-render-pass))
-  (setf (current-eye (head pass)) :right)
-  (trial:project-view (head pass) nil))
+  (setf (current-eye (trial::unit :head subject)) :right)
+  (trial:project-view (trial::unit :head subject) nil))
 
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   (vr::vr-compositor)
