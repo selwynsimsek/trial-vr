@@ -41,12 +41,12 @@
         (hmd-pose (hmd-pose camera)))
     (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))
           (trial:view-matrix)
-          (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose) current-eye-pose)))))
+          (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose)  current-eye-pose)))))
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
     (incf time (trial::dt ev))
-    (when (> time (/ 30))
+    (when (> time (/ 80))
       (setf time 0)
       (setf (hmd-pose head) (get-latest-hmd-pose)))))
 
