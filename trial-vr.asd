@@ -10,6 +10,7 @@
   :components ((:module "src"
                 :components
                 ((:file "package")
+                 (:file "actor")
                  (:file "environment" :depends-on ("main"))
                  (:file "emacs-cube")
                  (:file "main")
