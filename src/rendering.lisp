@@ -13,18 +13,18 @@
 
 (trial:define-shader-pass eye-render-pass (trial:render-pass)
   ())
+(progn
+  (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
+    ((trial:color :port-type trial:output :attachment :color-attachment0
+                  :texspec #1=(:target :texture-2d :width 1852 :height 2056)) 
+     (trial:depth :port-type trial:output :attachment :depth-stencil-attachment
+                  :texspec #1#)))
 
-(trial:define-shader-pass left-eye-render-pass (eye-render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0
-                :texspec (:target :texture-2d))
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment
-                :texspec (:target :texture-2d))))
-
-(trial:define-shader-pass right-eye-render-pass (eye-render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0
-                :texspec (:target :texture-2d))
-   (trial:depth :port-type trial:output :attachment :depth-stencil-attachment
-                :texspec (:target :texture-2d))))
+  (trial:define-shader-pass right-eye-render-pass (eye-render-pass)
+    ((trial:color :port-type trial:output :attachment :color-attachment0
+                  :texspec #1#)
+     (trial:depth :port-type trial:output :attachment :depth-stencil-attachment
+                  :texspec #1#))))
 
 (trial:define-shader-pass compositor-render-pass (trial:render-pass)
   ((left-pass-color :port-type trial:input)
