@@ -13,6 +13,7 @@
 
 (trial:define-shader-pass eye-render-pass (trial:render-pass)
   ())
+
 (progn
   (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
     ((trial:color :port-type trial:output :attachment :color-attachment0
@@ -38,17 +39,9 @@
         (right-eye-pose (get-eye-pose :right))
         (current-eye-pose (get-eye-pose (current-eye camera)))
         (hmd-pose (hmd-pose camera)))
-    (setf (trial:projection-matrix) (get-eye-projection (current-eye camera)))
-    (setf (trial:view-matrix)
-          (3d-matrices:mtranspose
-           (3d-matrices:m*
-            
-            (3d-matrices:minv
-             hmd-pose)
-            current-eye-pose
-            )))))
-
-(defun dummy (&rest args) (apply #'values args))
+    (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))
+          (trial:view-matrix)
+          (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose) current-eye-pose)))))
 
 (let ((time 0))
   (trial:define-handler (head trial::tick) (ev)
@@ -87,9 +80,10 @@
   ;; other threads to grab it.
   (let ((context (trial:context target)))
     (trial:with-context (context :reentrant T)
-      (apply #'gl:viewport 0 0 (eye-framebuffer-size)) ; Hack to prevent excessive clearing on eye framebuffers.
+      (apply #'gl:viewport 0 0 (eye-framebuffer-size))
       (let ((c (trial:clear-color target)))
-        (gl:clear-color (trial::vx c) (trial::vy c) (trial::vz c) (if (trial::vec4-p c) (trial::vw c) 0.0)))
+        (gl:clear-color (trial::vx c) (trial::vy c) (trial::vz c)
+                        (if (trial::vec4-p c) (trial::vw c) 0.0)))
       (gl:clear :color-buffer :depth-buffer :stencil-buffer)
       (call-next-method)
       (trial:swap-buffers context))))

@@ -21,3 +21,4 @@
                          (get-eye-pose :right)
                          (get-latest-hmd-pose))))
 
+(defun dummy (&rest args) (apply #'values args))
