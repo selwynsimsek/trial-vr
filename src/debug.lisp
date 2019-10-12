@@ -15,10 +15,9 @@
   (map nil 'print (list (trial:view-matrix) (trial:projection-matrix))))
 
 (defun hmd-info ()
-  (map nil #'print (list
-                    (get-eye-projection :left)
-                    (get-eye-projection :right)
-                    (get-eye-pose :left)
-                    (get-eye-pose :right)
-                    (get-latest-hmd-pose))))
+  (map nil #'print (list (get-eye-projection :left)
+                         (get-eye-projection :right)
+                         (get-eye-pose :left)
+                         (get-eye-pose :right)
+                         (get-latest-hmd-pose))))
 
