@@ -18,12 +18,10 @@
       #p"nissi-beach/negz.jpg")
   :target :texture-cube-map)
 
-
 (progn
   (defmethod trial:setup-scene ((workbench workbench) scene)
-    (trial:enter (make-instance 'trial::skybox
-                                :texture (trial:asset 'workbench 'trial::skybox))
+    (trial:enter (make-instance 'trial::skybox :texture (trial:asset 'workbench 'trial::skybox))
                  scene)
     (trial:enter (make-instance 'cube) scene)
-    (trial:enter (make-instance 'actor) scene)
-    (trial:maybe-reload-scene)))
+    (trial:enter (make-instance 'actor) scene))
+  (trial:maybe-reload-scene))

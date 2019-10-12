@@ -11,9 +11,9 @@
                 :components
                 ((:file "package")
                  (:file "actor")
-                 (:file "environment" :depends-on ("main"))
+                 (:file "environment" :depends-on ("workbench"))
                  (:file "emacs-cube")
-                 (:file "main")
+                 (:file "workbench")
                  (:file "low-level")
                  (:file "rendering")
                  (:file "debug"))))
