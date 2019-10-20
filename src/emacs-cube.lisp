@@ -14,7 +14,7 @@
      (merge-pathnames #p"vrx-utils/shared-memory-id" (user-homedir-pathname))))))
 
 (trial:define-asset (workbench cube) trial:mesh
-    (trial:make-cube 0.4))
+    (trial:make-cube 0.5))
 
 (trial:define-shader-subject cube (trial:vertex-entity trial:colored-entity trial:textured-entity
                                                        trial:located-entity trial:rotated-entity

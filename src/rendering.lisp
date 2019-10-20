@@ -43,13 +43,6 @@
           (trial:view-matrix)
           (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose)  current-eye-pose)))))
 
-(let ((time 0))
-  (trial:define-handler (head trial::tick) (ev)
-    (incf time (trial::dt ev))
-    (when (> time (/ 80))
-      (setf time 0)
-      (setf (hmd-pose head) (get-latest-hmd-pose)))))
-
 (defmethod trial:setup-perspective ((camera head) ev)
   (setf (trial:projection-matrix) (get-eye-projection :left)))
 
@@ -73,17 +66,6 @@
        `(vr::handle ,left-texture-id vr::type :open-gl vr::color-space :gamma))
       (vr::submit
        :right
-       `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))))
-
-(defmethod trial:render :around (source (target trial:display))
-  ;; Potentially release context every time to allow
-  ;; other threads to grab it.
-  (let ((context (trial:context target)))
-    (trial:with-context (context :reentrant T)
-      (apply #'gl:viewport 0 0 (eye-framebuffer-size))
-      (let ((c (trial:clear-color target)))
-        (gl:clear-color (trial::vx c) (trial::vy c) (trial::vz c)
-                        (if (trial::vec4-p c) (trial::vw c) 0.0)))
-      (gl:clear :color-buffer :depth-buffer :stencil-buffer)
-      (call-next-method)
-      (trial:swap-buffers context))))
+       `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))
+    (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
+      (setf (hmd-pose (trial::unit :head subject)) latest-pose))))

@@ -24,14 +24,13 @@
   (defun wait-get-poses ()
     (vr::wait-get-poses poses nil))
   (defun get-latest-hmd-pose ()
-    (vr::vr-system)
-    (vr::vr-compositor)
-    (vr::wait-get-poses poses nil)
-    (loop for device below vr::+max-tracked-device-count+
-          for tracked-device = (aref poses device)
-          when (getf tracked-device 'vr::pose-is-valid)
-          do (setf (aref poses device) (getf tracked-device 'vr::device-to-absolute-tracking))
-          finally (return (sb->3d (aref poses vr::+tracked-device-index-hmd+))))))
+    (when (and vr::*system* vr::*compositor*)
+      (vr::wait-get-poses poses nil)
+      (loop for device below vr::+max-tracked-device-count+
+            for tracked-device = (aref poses device)
+            when (getf tracked-device 'vr::pose-is-valid)
+            do (setf (aref poses device) (getf tracked-device 'vr::device-to-absolute-tracking))
+            finally (return (sb->3d (aref poses vr::+tracked-device-index-hmd+)))))))
 
 (defun eye-framebuffer-size ()
   "Returns the recommended render target size. Defaults to that of the HTC Vive."
