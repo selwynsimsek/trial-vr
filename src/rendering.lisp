@@ -11,8 +11,7 @@
    :current-eye :left
    :hmd-pose (3d-matrices:meye 4)))
 
-(trial:define-shader-pass eye-render-pass (trial:render-pass)
-  ())
+(trial:define-shader-pass eye-render-pass (trial:render-pass) ())
 
 (progn
   (trial:define-shader-pass left-eye-render-pass (eye-render-pass)
@@ -39,9 +38,10 @@
         (right-eye-pose (get-eye-pose :right))
         (current-eye-pose (get-eye-pose (current-eye camera)))
         (hmd-pose (hmd-pose camera)))
-    (setf (trial:projection-matrix) (get-eye-projection (current-eye camera))
+    (setf (trial:projection-matrix)
+          (get-eye-projection (current-eye camera))
           (trial:view-matrix)
-          (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose)  current-eye-pose)))))
+          (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose) current-eye-pose)))))
 
 (defmethod trial:setup-perspective ((camera head) ev)
   (setf (trial:projection-matrix) (get-eye-projection :left)))
@@ -61,11 +61,7 @@
             (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
           (right-texture-id
             (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color)))))
-      (vr::submit
-       :left
-       `(vr::handle ,left-texture-id vr::type :open-gl vr::color-space :gamma))
-      (vr::submit
-       :right
-       `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))
+      (vr::submit :left `(vr::handle ,left-texture-id vr::type :open-gl vr::color-space :gamma))
+      (vr::submit :right `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))
     (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
       (setf (hmd-pose (trial::unit :head subject)) latest-pose))))
