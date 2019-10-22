@@ -16,6 +16,7 @@
                  (:file "workbench")
                  (:file "low-level")
                  (:file "rendering")
+                 (:file "event-handling")
                  (:file "debug"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))

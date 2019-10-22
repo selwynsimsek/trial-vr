@@ -38,3 +38,7 @@
   (if (vr::vr-system)
       (vr::get-recommended-render-target-size)
       (list 1852 2056)))
+
+(defun trigger-haptic-pulse (controller-id &key (axis-id 0) (duration 100))
+  "Triggers a haptic pulse. The duration is measured in microseconds."
+  (vr::%trigger-haptic-pulse *system* controller-id axis-id duration))
