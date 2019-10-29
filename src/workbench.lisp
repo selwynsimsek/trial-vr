@@ -3,7 +3,7 @@
 
 (in-package :trial-vr)
 
-(defclass workbench (trial:main vr-input-handler) ()
+(defclass workbench (trial:main vr-input-handler ode-physics-handler) ()
   (:default-initargs :clear-color (trial::vec 0.3 0.3 0.3 0)))
 
 (trial:define-pool workbench

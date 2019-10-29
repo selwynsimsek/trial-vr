@@ -28,8 +28,8 @@
       (vr::wait-get-poses poses nil)
       (loop for device below vr::+max-tracked-device-count+
             for tracked-device = (aref poses device)
-            when (getf tracked-device 'vr::pose-is-valid)
-            do (setf (aref poses device) (getf tracked-device 'vr::device-to-absolute-tracking))
+            when (vr::pose-valid-p tracked-device)
+            do (setf (aref poses device) (vr::device-to-absolute-tracking tracked-device))
             finally (return (sb->3d (aref poses vr::+tracked-device-index-hmd+)))))))
 
 (defun eye-framebuffer-size ()

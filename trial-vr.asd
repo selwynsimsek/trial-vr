@@ -5,6 +5,7 @@
   :depends-on ("trial-glfw"
                "3b-openvr"
                "sb-cga"
+               "cl-ode"
                "bordeaux-threads"
                "cl-xwd")
   :components ((:module "src"
@@ -17,6 +18,7 @@
                  (:file "low-level")
                  (:file "rendering")
                  (:file "event-handling")
+                 (:file "physics")
                  (:file "debug"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
