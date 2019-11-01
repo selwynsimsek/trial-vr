@@ -20,17 +20,13 @@
   (vr::vr-system)
   (sb->3d (vr::get-projection-matrix side near far)))
 
-(let ((poses (make-array (list vr::+max-tracked-device-count+) :initial-element 0)))
+(let ((poses (make-array (list vr::+max-tracked-device-count+) :initial-element nil)))
   (defun wait-get-poses ()
     (vr::wait-get-poses poses nil))
   (defun get-latest-hmd-pose ()
     (when (and vr::*system* vr::*compositor*)
       (vr::wait-get-poses poses nil)
-      (loop for device below vr::+max-tracked-device-count+
-            for tracked-device = (aref poses device)
-            when (vr::pose-valid-p tracked-device)
-            do (setf (aref poses device) (vr::device-to-absolute-tracking tracked-device))
-            finally (return (sb->3d (aref poses vr::+tracked-device-index-hmd+)))))))
+      (sb->3d (vr::device-to-absolute-tracking  (aref poses vr::+tracked-device-index-hmd+))))))
 
 (defun eye-framebuffer-size ()
   "Returns the recommended render target size. Defaults to that of the HTC Vive."

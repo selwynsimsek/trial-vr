@@ -55,11 +55,12 @@
   (trial:project-view (trial::unit :head subject) nil))
 
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
+  (vr::vr-compositor)
   (let ((left-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
         (right-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color)))))
-    (vr::submit :left `(vr::handle ,left-texture-id vr::type :open-gl vr::color-space :gamma))
-    (vr::submit :right `(vr::handle ,right-texture-id vr::type :open-gl vr::color-space :gamma)))
+    (vr::submit :left left-texture-id :compositor vr::*compositor*)
+    (vr::submit :right right-texture-id :compositor vr::*compositor*))
   (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
     (setf (hmd-pose (trial::unit :head subject)) latest-pose)))
