@@ -3,30 +3,10 @@
 
 (in-package :trial-vr)
 
-(defun nullify-vr-tables ()
-  (setf vr::*%init* (vr::vr-init :scene)
-        vr::*system* nil
-        vr::*chaperone* nil
-        vr::*chaperone-setup* nil
-        vr::*compositor* nil
-        vr::*overlay* nil
-        vr::*resources* nil
-        vr::*render-models* nil
-        vr::*extended-display* nil
-        vr::*settings* nil
-        vr::*applications* nil
-        vr::*tracked-camera* nil
-        vr::*screenshots* nil
-        vr::*driver-manager* nil
-        vr::*input* nil
-        vr::*io-buffer* nil
-        vr::*spatial-anchors* nil
-        vr::*debug* nil
-        vr::*notifications* nil))
-
 (defmethod trial:start :before ((main workbench))
   "Set up OpenVR environment."
-  (nullify-vr-tables)
+  (setf vr::*%init* (vr::vr-init :scene))
+  (vr::clear)
   (vr::vr-system)
   (vr::vr-chaperone)
   (vr::vr-chaperone-setup)
@@ -48,7 +28,7 @@
 
 (defmethod trial:finalize :after ((main workbench))
   "Shut down OpenVR environment."
-  (nullify-vr-tables)
+  (vr::clear)
   (vr::vr-shutdown-internal))
 
 (defun launch (&key (own-thread nil))
