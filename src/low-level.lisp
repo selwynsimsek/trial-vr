@@ -12,12 +12,10 @@
 
 (defun get-eye-pose (side)
   "Head to eye transform. Taken from 3b-openvr-hello."
-  (vr::vr-system)
   (sb->3d (sb-cga:inverse-matrix (vr::get-eye-to-head-transform side))))
 
 (defun get-eye-projection (side &key (near 0.3f0) (far 100.0f0))
   "Returns the per eye projection matrix."
-  (vr::vr-system)
   (sb->3d (vr::get-projection-matrix side near far)))
 
 (let ((poses (make-array (list vr::+max-tracked-device-count+) :initial-element nil)))
@@ -25,16 +23,13 @@
     (vr::wait-get-poses poses nil))
   (defun get-latest-hmd-pose ()
     (vr::wait-get-poses poses nil)
-    (if (and vr::*system* vr::*compositor* (aref poses vr::+tracked-device-index-hmd+))
+    (if (aref poses vr::+tracked-device-index-hmd+)
         (sb->3d (vr::device-to-absolute-tracking (aref poses vr::+tracked-device-index-hmd+)))
         (3d-matrices:meye 4))))
 
 (defun eye-framebuffer-size ()
   "Returns the recommended render target size. Defaults to that of the HTC Vive."
-  (vr::vr-system)
-  (if (vr::vr-system)
-      (vr::get-recommended-render-target-size)
-      (list 1852 2056)))
+  (vr::get-recommended-render-target-size))
 
 (defun trigger-haptic-pulse (controller-id &key (axis-id 0) (duration 100))
   "Triggers a haptic pulse. The duration is measured in microseconds."

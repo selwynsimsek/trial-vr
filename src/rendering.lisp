@@ -55,7 +55,6 @@
   (trial:project-view (trial::unit :head subject) nil))
 
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
-  (vr::vr-compositor)
   (let ((left-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
         (right-texture-id

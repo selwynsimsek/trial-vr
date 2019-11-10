@@ -11,8 +11,6 @@
 (defvar *action-manifest-path* "/home/selwyn/openvr/samples/bin/hellovr_actions.json")
 
 (defmethod trial:start :after ((handler vr-input-handler))
-  (setf vr::*input* nil)
-  (vr::vr-input)
   (vr::set-action-manifest-path *action-manifest-path*)
   (setf (action-set handler) (vr::action-set "/actions/demo")
         (button-action handler) (vr::action "/actions/demo/in/HideCubes")
