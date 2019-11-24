@@ -58,7 +58,8 @@
   (let ((left-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
         (right-texture-id
-          (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color)))))
+          (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color)))
+          ))
     (vr::submit :left left-texture-id :compositor vr::*compositor*)
     (vr::submit :right right-texture-id :compositor vr::*compositor*))
   (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))

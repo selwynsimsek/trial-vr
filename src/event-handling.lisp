@@ -33,6 +33,7 @@
                                                   :padding 0))))
 
 (defun pull-data ()
-  (vr::pose-action-data-for-next-frame (vr::action "/actions/demo/in/Hand_Right") :seated)
-  ;(vr::digital-action-data (vr::action "/actions/demo/in/HideCubes"))
-)
+  (values
+  ; (vr::pose-action-data-for-next-frame (vr::action "/actions/demo/in/Hand_Right") :seated)
+   (vr::digital-action-data (vr::action "/actions/demo/in/HideCubes"))
+   ))

@@ -24,7 +24,8 @@
   (vr::vr-io-buffer)
   (vr::vr-spatial-anchors)
   (vr::vr-debug)
-  (vr::vr-notifications))
+  (vr::vr-notifications)
+  (harmony-simple:initialize))
 
 (defmethod trial:finalize :after ((main workbench))
   "Shut down OpenVR environment."

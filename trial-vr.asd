@@ -7,7 +7,9 @@
                "sb-cga"
                "cl-ode"
                "bordeaux-threads"
-               "cl-xwd")
+               "cl-xwd"
+               "classimp"
+               "harmony-simple")
   :components ((:module "src"
                 :components
                 ((:file "package")
