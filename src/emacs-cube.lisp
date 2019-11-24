@@ -37,3 +37,4 @@
 (trial:define-handler (cube trial:tick) (trial::ev)
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
   (trial:allocate (trial:texture cube)))
+

@@ -8,7 +8,7 @@
                "cl-ode"
                "bordeaux-threads"
                "cl-xwd"
-               "classimp"
+               "trial-assimp"
                "harmony-simple")
   :components ((:module "src"
                 :components
@@ -21,7 +21,8 @@
                  (:file "rendering")
                  (:file "event-handling")
                  (:file "physics")
-                 (:file "debug"))))
+                 (:file "debug")
+                 (:file "render-models"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 

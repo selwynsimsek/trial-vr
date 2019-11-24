@@ -25,7 +25,8 @@
   (vr::vr-spatial-anchors)
   (vr::vr-debug)
   (vr::vr-notifications)
-  (harmony-simple:initialize))
+  (harmony-simple:initialize)
+  (vr::set-action-manifest-path "/home/selwyn/openvr/samples/bin/hellovr_actions.json"))
 
 (defmethod trial:finalize :after ((main workbench))
   "Shut down OpenVR environment."
