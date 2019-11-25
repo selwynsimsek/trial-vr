@@ -14,7 +14,7 @@
      (merge-pathnames #p"vrx-utils/shared-memory-id" (user-homedir-pathname))))))
 
 (trial:define-asset (workbench cube) trial:mesh
-    (trial:make-cube 0.5))
+    (trial:make-cube 1.3))
 
 (trial:define-shader-subject cube (trial:vertex-entity trial:colored-entity trial:textured-entity
                                                        trial:located-entity trial:rotated-entity
@@ -32,7 +32,7 @@
                      :name :cube
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
-                     :location (trial::vec3 0 1 -1.4)))
+                     :location (trial::vec3 0 1 -1.55)))
 
 (trial:define-handler (cube trial:tick) (trial::ev)
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))

@@ -24,5 +24,5 @@
                  scene)
     (trial:enter (make-instance 'cube) scene)
     (trial:enter (make-instance 'actor) scene)
-    (trial:enter (make-instance 'controller-body :location (trial::vec3 0 1 -1)) scene))
+    (trial:enter (make-instance 'controller-body) scene))
   (trial:maybe-reload-scene))
