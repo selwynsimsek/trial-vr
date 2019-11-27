@@ -1,0 +1,2114 @@
+steamvr registers 67hz frame rate but trial at 44hz! what's going on?
+
+
+Number of samples:   2316
+Sample interval:     0.01 seconds
+Total sampling time: 23.16 seconds
+Number of cycles:    0
+Sampled threads:
+ #<SB-THREAD:THREAD "auto-flush-thread" RUNNING {1003677DB3}>
+ #<SB-THREAD:THREAD "#<DEFAULT-SERVER running> process thread." RUNNING {1007BCC693}>
+ #<SB-THREAD:THREAD "repl-thread" RUNNING {10036783E3}>
+ #<SB-THREAD:THREAD "renderable thread" RUNNING {1007BCCD43}>
+
+                               Callers
+                 Total.     Function
+ Count     %  Count     %      Callees
+------------------------------------------------------------------------
+     1   0.0                   "foreign function pthread_mutex_lock" [7]
+     2   0.1                   "foreign function write" [297]
+     3   0.1                   "foreign function __libc_malloc" [17]
+     2   0.1                   "foreign function cfree" [14]
+     1   0.0                   "foreign function pthread_cond_signal" [293]
+     1   0.0                   "foreign function syscall" [23]
+     1   0.0                   "foreign function _XSend" [159]
+     4   0.2                   "foreign function getpid" [33]
+     1   0.0                   "foreign function pa_detect_fork" [301]
+     1   0.0                   "foreign function pa_mutex_lock" [283]
+     1   0.0                   "foreign function __libc_calloc" [271]
+     2   0.1                   "foreign function __pthread_mutex_unlock" [8]
+    51   2.2                   "foreign function __poll" [206]
+   405  17.5    405  17.5   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function getpid" [33]
+     1   0.0                   "foreign function __libc_malloc" [17]
+     1   0.0                   "foreign function pthread_cond_timedwait" [256]
+     2   0.1                   "foreign function write" [297]
+     1   0.0                   "foreign function pa_pstream_send_memblock" [317]
+     2   0.1                   "foreign function __sched_yield" [279]
+     1   0.0                   "foreign function realloc" [292]
+    14   0.6                   "foreign function __poll" [206]
+   128   5.5    129   5.6   "foreign function recvmsg" [2]
+     1   0.0                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+    69   3.0     69   3.0   "foreign function open64" [3]
+------------------------------------------------------------------------
+     3   0.1                   "foreign function __poll" [206]
+     3   0.1                   SB-UNIX:NANOSLEEP [32]
+    35   1.5                   (SB-PCL::EMF TRIAL:POLL-INPUT) [42]
+    61   2.6     61   2.6   "foreign function __nanosleep" [4]
+------------------------------------------------------------------------
+     1   0.0                   (FLET "CLEANUP-FUN-6" :IN FLARE:PAINT) [343]
+     2   0.1                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     3   0.1                   (SB-PCL::FAST-METHOD FLOW:PORTS (FLOW:STATIC-NODE)) [126]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE (TRIAL:FOREIGN-RESOURCE)) [312]
+     2   0.1                   (FLET TRIAL::THUNK :IN TRIAL:ALLOCATE-TEXTURE-STORAGE) [156]
+     3   0.1                   (SB-PCL::FAST-METHOD SB-MOP:SLOT-VALUE-USING-CLASS (FLOW:STATIC-NODE-CLASS T FLOW::EFFECTIVE-PORT-DEFINITION)) [321]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL::ACTIVATE (TRIAL:FRAMEBUFFER)) [310]
+     6   0.3                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     7   0.3                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     5   0.2                   CFFI::MEM-SET [257]
+     1   0.0                   CL-OPENGL:DELETE-TEXTURES [258]
+     5   0.2                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY)) [261]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     1   0.0                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+    47   2.0     47   2.0   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+    30   1.3                   SXHASH [90]
+     3   0.1                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+    43   1.9     43   1.9   "foreign function read" [6]
+------------------------------------------------------------------------
+     2   0.1                   "foreign function __poll" [206]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     3   0.1                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+    41   1.8     49   2.1   "foreign function pthread_mutex_lock" [7]
+     1   0.0                   "foreign function ioctl" [1]
+     2   0.1                   "foreign function new_thread_trampoline" [230]
+     4   0.2                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     1   0.0                   "foreign function __poll" [206]
+     1   0.0                   3B-OPENVR::%UPDATE-ACTION-STATE [114]
+    32   1.4     40   1.7   "foreign function __pthread_mutex_unlock" [8]
+     1   0.0                   SXHASH [90]
+     1   0.0                   "foreign function __poll" [206]
+     2   0.1                   "foreign function new_thread_trampoline" [230]
+     2   0.1                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     3   0.1                   "foreign function __poll" [206]
+    28   1.2     28   1.2   "foreign function writev" [9]
+------------------------------------------------------------------------
+    39   1.7                   SB-IMPL::GETHASH3 [45]
+    24   1.0     39   1.7   (FLET "BODY-FUN-0" :IN SB-IMPL::GETHASH3) [10]
+     6   0.3                   SB-IMPL::EQUAL-HASH [52]
+     8   0.3                   (LABELS SB-IMPL::EQUAL-AUX :IN EQUAL) [26]
+     1   0.0                   SB-IMPL::EQ-HASH [137]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:UPDATE (TRIAL:MAIN T T T)) [334]
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+     7   0.3                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0                   FIND [158]
+     6   0.3                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:DESTRUCTOR (TRIAL:TEXTURE)) [311]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     2   0.1                   3B-OPENVR::GET-EYE-TO-HEAD-TRANSFORM [280]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PROCESS (TRIAL:EVENT-LOOP)) [234]
+    23   1.0     23   1.0   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+------------------------------------------------------------------------
+     1   0.0                   TRIAL:PREPARE-PASS-PROGRAM [249]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T TRIAL:HANDLER)) [273]
+     1   0.0                   CFFI::CHECK-FOR-TYPEDEF-CYCLES [295]
+    13   0.6                   CFFI::PARSE-TYPE [86]
+    16   0.7     16   0.7   SB-KERNEL:CLASSOID-TYPEP [12]
+------------------------------------------------------------------------
+     3   0.1                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+     1   0.0                   3B-OPENVR::WAIT-GET-POSES [266]
+     2   0.1                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0                   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+     5   0.2                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+     1   0.0                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::INPUT-POSE-ACTION-DATA-T-TCLASS)) [85]
+     1   0.0                   3B-OPENVR::%GET-PROJECTION-MATRIX [115]
+    14   0.6     14   0.6   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+------------------------------------------------------------------------
+     3   0.1                   "foreign function __poll" [206]
+    13   0.6     31   1.3   "foreign function cfree" [14]
+     1   0.0                   "foreign function XFlush" [347]
+     2   0.1                   "foreign function ioctl" [1]
+     5   0.2                   "foreign function new_thread_trampoline" [230]
+     4   0.2                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+    13   0.6                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+    13   0.6     13   0.6   "foreign function arch_set_fp_modes" [15]
+------------------------------------------------------------------------
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :BEFORE (TRIAL:COLORED-ENTITY TRIAL:SHADER-PASS)) [348]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     2   0.1                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T 3B-OPENVR::VR-ACTIVE-ACTION-SET-T-TCLASS T)) [154]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:SUBJECT-HANDLER)) [177]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     1   0.0                   (SB-PCL::FAST-METHOD HARMONY:RUN (HARMONY:SERVER)) [254]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0                   (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [309]
+    12   0.5     12   0.5   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+------------------------------------------------------------------------
+     4   0.2                   "foreign function __poll" [206]
+     4   0.2                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+    12   0.5     37   1.6   "foreign function __libc_malloc" [17]
+     1   0.0                   "foreign function __poll" [206]
+     3   0.1                   "foreign function ioctl" [1]
+     1   0.0                   "foreign function recvmsg" [2]
+     1   0.0                   "foreign function pa_frame_size" [247]
+    13   0.6                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+   928  40.1                   (SB-PCL::EMF TRIAL:POLL-INPUT) [42]
+    11   0.5    929  40.1   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     3   0.1                   VALUES [80]
+     1   0.0                   ASH [55]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+     5   0.2                   (LAMBDA (SB-PCL::|.P0.|)) [75]
+     2   0.1                   TRIAL-VR::DUMMY [91]
+     4   0.2                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;BRAID.LISP") [50]
+     4   0.2                   "foreign function __libc_malloc" [17]
+   130   5.6                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+   763  32.9                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+------------------------------------------------------------------------
+     9   0.4                   (LAMBDA (CFFI::NAME) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cffi_0.20.1/src/types.lisp") [144]
+     1   0.0                   "foreign function __poll" [206]
+    37   1.6                   CFFI::PARSE-TYPE [86]
+    11   0.5     47   2.0   CFFI::FIND-TYPE-PARSER [19]
+    36   1.6                   SB-IMPL::GETHASH3 [45]
+------------------------------------------------------------------------
+    10   0.4                   3B-OPENVR::%UPDATE-ACTION-STATE [114]
+    11   0.5     11   0.5   "foreign function _ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base" [20]
+------------------------------------------------------------------------
+    10   0.4     10   0.4   "foreign function __tls_get_addr" [21]
+------------------------------------------------------------------------
+  1049  45.3                   TRIAL:LAUNCH [207]
+     9   0.4   1049  45.3   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     1   0.0                   %CL-GLFW3:POLL-EVENTS [180]
+     1   0.0                   "foreign function glfwPollEvents" [163]
+     3   0.1                   "foreign function XPending" [74]
+     4   0.2                   "foreign function glfwWindowShouldClose" [53]
+     6   0.3                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     3   0.1                   CL-GLFW3:WINDOW-SHOULD-CLOSE-P [68]
+     6   0.3                   %CL-GLFW3:WINDOW-SHOULD-CLOSE-P [34]
+     3   0.1                   "foreign function pthread_mutex_lock" [7]
+    12   0.5                   SB-UNIX:NANOSLEEP [32]
+     3   0.1                   "foreign function read" [6]
+   983  42.4                   (SB-PCL::EMF TRIAL:POLL-INPUT) [42]
+------------------------------------------------------------------------
+     9   0.4     11   0.5   "foreign function syscall" [23]
+     1   0.0                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER)) [233]
+     3   0.1                   CFFI::MEM-SET [257]
+     8   0.3      8   0.3   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [24]
+------------------------------------------------------------------------
+     8   0.3      8   0.3   "foreign function mixed_to_float" [25]
+------------------------------------------------------------------------
+     8   0.3                   (FLET "BODY-FUN-0" :IN SB-IMPL::GETHASH3) [10]
+     8   0.3      8   0.3   (LABELS SB-IMPL::EQUAL-AUX :IN EQUAL) [26]
+------------------------------------------------------------------------
+     2   0.1                   3B-OPENVR::%GET-PROJECTION-MATRIX [115]
+     5   0.2                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     7   0.3      7   0.3   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1. SB-PCL::.ARG2.) :IN "SYS:SRC;PCL;DLISP3.LISP") [27]
+------------------------------------------------------------------------
+     1   0.0                   CFFI::CHECK-FOR-TYPEDEF-CYCLES [295]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     1   0.0                   (FLET "CLEANUP-FUN-72" :IN TRIAL:RENDER) [345]
+     1   0.0                   (SB-PCL::FAST-METHOD HARMONY:PROCESS :AROUND (HARMONY:PACK-DRAIN T)) [129]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     2   0.1                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-VECTOR-3-T-TCLASS)) [47]
+     1   0.0                   (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp") [130]
+     1   0.0                   SB-KERNEL::VALUES-SPECIFIER-TYPE-R [151]
+     7   0.3      9   0.4   SB-VM::ALLOC-TRAMP [28]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+     1   0.0                   SB-KERNEL:TWO-ARG-= [198]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY)) [261]
+     1   0.0                   SLOT-VALUE [248]
+     6   0.3      6   0.3   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::GET-ACCESSOR-FROM-SVUC-METHOD-FUNCTION) [29]
+------------------------------------------------------------------------
+     1   0.0                   TRIAL:ALLOCATE-TEXTURE-STORAGE [319]
+     1   0.0                   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+     1   0.0                   3B-OPENVR::SUBMIT [83]
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS)) [299]
+     3   0.1                   CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER [305]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     3   0.1                   CL-OPENGL:TEX-PARAMETER [49]
+     5   0.2                   3B-OPENVR::%GET-POSE-ACTION-DATA-RELATIVE-TO-NOW [59]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     6   0.3     18   0.8   CFFI::%FOREIGN-ENUM-VALUE [30]
+     6   0.3                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+     6   0.3                   SB-IMPL::GETHASH3 [45]
+------------------------------------------------------------------------
+     6   0.3                   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK [262]
+     6   0.3      6   0.3   (FLET "CLEANUP-FUN-70" :IN SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK) [31]
+------------------------------------------------------------------------
+    12   0.5                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     6   0.3     12   0.5   SB-UNIX:NANOSLEEP [32]
+     2   0.1                   "foreign function sb_nanosleep" [108]
+     3   0.1                   "foreign function __nanosleep" [4]
+------------------------------------------------------------------------
+     5   0.2                   "foreign function __poll" [206]
+     6   0.3     30   1.3   "foreign function getpid" [33]
+     1   0.0                   "foreign function pa_thread_is_running" [350]
+     1   0.0                   "foreign function recvmsg" [2]
+     6   0.3                   "foreign function new_thread_trampoline" [230]
+     4   0.2                   "foreign function ioctl" [1]
+     1   0.0                   "foreign function pa_queue_push" [277]
+     2   0.1                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+     6   0.3                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     6   0.3      6   0.3   %CL-GLFW3:WINDOW-SHOULD-CLOSE-P [34]
+------------------------------------------------------------------------
+     1   0.0                   3D-MATRICES:NMTRANSLATE [333]
+     2   0.1                   3D-MATRICES:NMROTATE [300]
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     6   0.3      6   0.3   3D-MATRICES::2MAT-NM* [35]
+------------------------------------------------------------------------
+     6   0.3                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+     6   0.3      6   0.3   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-MATRIX-34-T-TCLASS)) [36]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+   763  32.9                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     5   0.2    763  32.9   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     3   0.1                   ASH [55]
+     1   0.0                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T CFFI::FOREIGN-ENUM)) [196]
+     1   0.0                   SB-KERNEL:HAIRY-DATA-VECTOR-REF/CHECK-BOUNDS [189]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+     2   0.1                   SB-KERNEL:EXTENDED-SEQUENCE-P [110]
+     2   0.1                   SB-SYS:SAP+ [104]
+     7   0.3                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+     1   0.0                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [39]
+     3   0.1                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T 3B-OPENVR::VR-ACTIVE-ACTION-SET-T-TCLASS T)) [154]
+     7   0.3                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     2   0.1                   (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF T) [66]
+     7   0.3                   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+     5   0.2                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1. SB-PCL::.ARG2.) :IN "SYS:SRC;PCL;DLISP3.LISP") [27]
+    43   1.9                   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+   653  28.2                   3B-OPENVR::%UPDATE-ACTION-STATE [114]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+   130   5.6                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     5   0.2    130   5.6   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+     3   0.1                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+     1   0.0                   (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.|)) [183]
+     1   0.0                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+    10   0.4                   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+    31   1.3                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::INPUT-POSE-ACTION-DATA-T-TCLASS)) [85]
+    77   3.3                   3B-OPENVR::%GET-POSE-ACTION-DATA-RELATIVE-TO-NOW [59]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     4   0.2                   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+     5   0.2      5   0.2   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [39]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::WAIT-GET-POSES [266]
+     3   0.1                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+     1   0.0                   3B-OPENVR::SUBMIT [83]
+     7   0.3                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     5   0.2     12   0.5   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+     3   0.1                   SB-IMPL::GETHASH3 [45]
+     4   0.2                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [39]
+------------------------------------------------------------------------
+     5   0.2                   SXHASH [90]
+     1   0.0                   (LABELS SB-IMPL::SXHASH-RECURSE :IN SXHASH) [41]
+     5   0.2      6   0.3   (LABELS SB-IMPL::SXHASH-RECURSE :IN SXHASH) [41]
+     1   0.0                   SXHASH [90]
+     1   0.0                   (LABELS SB-IMPL::SXHASH-RECURSE :IN SXHASH) [41]
+------------------------------------------------------------------------
+   983  42.4                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     4   0.2    983  42.4   (SB-PCL::EMF TRIAL:POLL-INPUT) [42]
+    11   0.5                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+    35   1.5                   "foreign function __nanosleep" [4]
+   928  40.1                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+------------------------------------------------------------------------
+   134   5.8                   (SB-PCL::FAST-METHOD TRIAL:PROCESS (TRIAL:EVENT-LOOP)) [234]
+   115   5.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER)) [233]
+     4   0.2    134   5.8   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     2   0.1                   (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [342]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:SUBJECT-HANDLER)) [177]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:EVENT-LOOP)) [117]
+     1   0.0                   (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [309]
+    42   1.8                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AROUND (TRIAL:RESOURCE)) [141]
+    33   1.4                   (LAMBDA (TRIAL-VR::CUBE TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial-vr/src/emacs-cube.lisp") [135]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+    19   0.8                   (SB-PCL::EMF TRIAL:HANDLE) [81]
+    28   1.2                   (SB-PCL::EMF TRIAL:PROJECT-VIEW) [232]
+------------------------------------------------------------------------
+     2   0.1                   (LAMBDA (SB-PCL::|.P0.|)) [75]
+     2   0.1                   (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.| SB-PCL::|.P3.| SB-PCL::|.P4.| SB-PCL::|.P5.|)) [61]
+     4   0.2      4   0.2   SB-PCL::%MAKE-STANDARD-INSTANCE [44]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS)) [299]
+     3   0.1                   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+     1   0.0                   SB-IMPL::GETHASH3 [45]
+     3   0.1                   (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp") [130]
+    36   1.6                   CFFI::FIND-TYPE-PARSER [19]
+     6   0.3                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     4   0.2     50   2.2   SB-IMPL::GETHASH3 [45]
+     1   0.0                   SB-IMPL::GETHASH3 [45]
+     4   0.2                   SB-IMPL::EQUAL-HASH [52]
+     3   0.1                   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING [275]
+    39   1.7                   (FLET "BODY-FUN-0" :IN SB-IMPL::GETHASH3) [10]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function write" [297]
+     4   0.2      6   0.3   "foreign function pthread_self" [46]
+------------------------------------------------------------------------
+     6   0.3                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+     4   0.2      6   0.3   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-VECTOR-3-T-TCLASS)) [47]
+     2   0.1                   SB-VM::ALLOC-TRAMP [28]
+------------------------------------------------------------------------
+     3   0.1                   3B-OPENVR::WAIT-GET-POSES [266]
+    23   1.0                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::INPUT-POSE-ACTION-DATA-T-TCLASS)) [85]
+     4   0.2     26   1.1   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+     3   0.1                   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+     5   0.2                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+     6   0.3                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-MATRIX-34-T-TCLASS)) [36]
+     6   0.3                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-VECTOR-3-T-TCLASS)) [47]
+------------------------------------------------------------------------
+    13   0.6                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     4   0.2     13   0.6   CL-OPENGL:TEX-PARAMETER [49]
+     1   0.0                   (FLET "CLEANUP-FUN-70" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-F) [337]
+     1   0.0                   (FLET "CLEANUP-FUN-362" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I) [330]
+     1   0.0                   (FLET "CLEANUP-FUN-250" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I) [322]
+     3   0.1                   CFFI:FOREIGN-ENUM-VALUE [160]
+     3   0.1                   CFFI::%FOREIGN-ENUM-VALUE [30]
+------------------------------------------------------------------------
+     4   0.2                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     4   0.2      4   0.2   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;BRAID.LISP") [50]
+------------------------------------------------------------------------
+     6   0.3                   CFFI::CHECK-FOR-TYPEDEF-CYCLES [295]
+     4   0.2      6   0.3   MAKE-HASH-TABLE [51]
+     2   0.1                   SB-IMPL::%MAKE-HASH-TABLE [96]
+------------------------------------------------------------------------
+     6   0.3                   (FLET "BODY-FUN-0" :IN SB-IMPL::GETHASH3) [10]
+     4   0.2                   SB-IMPL::GETHASH3 [45]
+     4   0.2     10   0.4   SB-IMPL::EQUAL-HASH [52]
+     6   0.3                   SXHASH [90]
+------------------------------------------------------------------------
+     4   0.2                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     4   0.2      4   0.2   "foreign function glfwWindowShouldClose" [53]
+------------------------------------------------------------------------
+     4   0.2      4   0.2   "foreign function _ZNSt10_HashtableImmSaImENSt8__detail9_IdentityESt8equal_toImESt4hashImENS1_18_Mod_range_hashingENS1_20_Default_ranged_hashENS1_20_Prime_rehash_policyENS1_17_Hashtable_traitsILb0ELb1ELb1EEEE9_M_assignIZNSC_C4ERKSC_EUlPKNS1_10_Hash_nodeImLb0EEEE_EEvSF_RKT_" [54]
+------------------------------------------------------------------------
+     3   0.1                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     4   0.2      4   0.2   ASH [55]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FOR-ITERATOR:MAKE-ITERATOR (FLARE-QUEUE:QUEUE)) [344]
+     1   0.0                   (LAMBDA (TRIAL-VR::CUBE TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial-vr/src/emacs-cube.lisp") [135]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     3   0.1      3   0.1   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [56]
+------------------------------------------------------------------------
+     1   0.0                   SB-KERNEL::VALUES-SPECIFIER-TYPE-R [151]
+     5   0.2                   SB-ALIEN-INTERNALS:PARSE-ALIEN-TYPE [243]
+     3   0.1      6   0.3   SB-IMPL::GET-INFO-VALUE [57]
+     3   0.1                   SB-IMPL::PACKED-INFO-VALUE-INDEX [72]
+------------------------------------------------------------------------
+     3   0.1                   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+     3   0.1      3   0.1   SB-ALIEN::MAKE-ALIEN-SINGLE-FLOAT-TYPE [58]
+------------------------------------------------------------------------
+    77   3.3                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+     3   0.1     77   3.3   3B-OPENVR::%GET-POSE-ACTION-DATA-RELATIVE-TO-NOW [59]
+     5   0.2                   CFFI::%FOREIGN-ENUM-VALUE [30]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD HARMONY:RUN (HARMONY:SERVER)) [254]
+    18   0.8                   CL-MIXED-CFFI:SEGMENT-SEQUENCE-MIX [253]
+     3   0.1     19   0.8   "foreign function mixed_segment_sequence_mix" [60]
+------------------------------------------------------------------------
+     5   0.2                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::INPUT-POSE-ACTION-DATA-T-TCLASS)) [85]
+     3   0.1      5   0.2   (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.| SB-PCL::|.P3.| SB-PCL::|.P4.| SB-PCL::|.P5.|)) [61]
+     2   0.1                   SB-PCL::%MAKE-STANDARD-INSTANCE [44]
+------------------------------------------------------------------------
+     3   0.1      3   0.1   "foreign function clock_gettime" [62]
+------------------------------------------------------------------------
+     3   0.1                   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING [275]
+     3   0.1      3   0.1   (FLET "CLEANUP-FUN-92" :IN SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING) [63]
+------------------------------------------------------------------------
+     3   0.1      3   0.1   "foreign function _ZNKSt8__detail20_Prime_rehash_policy14_M_need_rehashEmmm" [64]
+------------------------------------------------------------------------
+     3   0.1      4   0.2   "foreign function _Znwm" [65]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::%UPDATE-ACTION-STATE [114]
+     2   0.1                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     3   0.1      3   0.1   (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF T) [66]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD STREAM-FORCE-OUTPUT :AROUND (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [289]
+     4   0.2                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     3   0.1      5   0.2   GET-INTERNAL-REAL-TIME [67]
+     1   0.0                   "foreign function __vdso_gettimeofday" [149]
+------------------------------------------------------------------------
+     3   0.1                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     3   0.1      3   0.1   CL-GLFW3:WINDOW-SHOULD-CLOSE-P [68]
+------------------------------------------------------------------------
+     3   0.1      3   0.1   "foreign function _ZdlPv" [69]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+     2   0.1                   CFFI::LIBFFI/CALL [298]
+     3   0.1      3   0.1   "foreign function ffi_call" [70]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY)) [261]
+     2   0.1                   (SB-PCL::FAST-METHOD FLOW:PORTS (FLOW:STATIC-NODE)) [126]
+     3   0.1      3   0.1   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-OPTIMIZED-STD-READER-METHOD-FUNCTION) [71]
+------------------------------------------------------------------------
+     3   0.1                   SB-IMPL::GET-INFO-VALUE [57]
+     3   0.1      3   0.1   SB-IMPL::PACKED-INFO-VALUE-INDEX [72]
+------------------------------------------------------------------------
+     1   0.0                   (FLET "CLEANUP-FUN-70" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-F) [337]
+     1   0.0                   SB-VM:FLOATING-POINT-MODES [101]
+     1   0.0                   CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER [305]
+     3   0.1      3   0.1   "foreign function arch_get_fp_modes" [73]
+------------------------------------------------------------------------
+     3   0.1                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     3   0.1      3   0.1   "foreign function XPending" [74]
+------------------------------------------------------------------------
+     5   0.2                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     3   0.1      5   0.2   (LAMBDA (SB-PCL::|.P0.|)) [75]
+     2   0.1                   SB-PCL::%MAKE-STANDARD-INSTANCE [44]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     1   0.0                   "foreign function write" [297]
+     3   0.1      4   0.2   "foreign function _ZNSs9_M_mutateEmmm" [76]
+------------------------------------------------------------------------
+     3   0.1                   CFFI::PARSE-TYPE [86]
+     3   0.1      3   0.1   (LAMBDA (SB-KERNEL::CACHE SB-KERNEL::OBJECT) :IN SB-KERNEL::CACHED-TYPEP) [77]
+------------------------------------------------------------------------
+     1   0.0                   (FLET SB-IMPL::F :IN SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT) [105]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:UPDATE :BEFORE (FLARE:CLOCK)) [326]
+     3   0.1      3   0.1   SB-KERNEL:%SINGLE-FLOAT [78]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     3   0.1      3   0.1   "foreign function _ZNSs15_M_replace_safeEmmPKcm" [79]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     3   0.1      3   0.1   VALUES [80]
+------------------------------------------------------------------------
+    19   0.8                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     2   0.1    133   5.7   (SB-PCL::EMF TRIAL:HANDLE) [81]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :BEFORE (FLARE:TICK TRIAL:SCENE)) [165]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (FLARE:CLOCK)) [138]
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (T)) [242]
+   127   5.5                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:EVENT-LOOP)) [117]
+------------------------------------------------------------------------
+     2   0.1                   CL-OPENGL:DELETE-TEXTURES [258]
+    11   0.5                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     2   0.1     13   0.6   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+     2   0.1                   CFFI-SYS::CONVERT-FOREIGN-TYPE [106]
+     1   0.0                   SB-ALIEN::ALIEN-SINGLE-FLOAT-TYPE-TRANSLATOR [153]
+     3   0.1                   SB-ALIEN::MAKE-ALIEN-SINGLE-FLOAT-TYPE [58]
+     5   0.2                   SB-ALIEN-INTERNALS:PARSE-ALIEN-TYPE [243]
+------------------------------------------------------------------------
+    63   2.7                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+     2   0.1     63   2.7   3B-OPENVR::SUBMIT [83]
+     1   0.0                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     1   0.0                   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+    59   2.5                   3B-OPENVR::%SUBMIT [245]
+------------------------------------------------------------------------
+    42   1.8                   "foreign function funcall_alien_callback" [252]
+     2   0.1     42   1.8   (LAMBDA (SB-ALIEN::ARGS-POINTER SB-ALIEN::RESULT-POINTER FUNCTION) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cl-mixed-20190710-git/segments/virtual.lisp") [84]
+    40   1.7                   (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp") [130]
+------------------------------------------------------------------------
+    31   1.3                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+     2   0.1     31   1.3   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::INPUT-POSE-ACTION-DATA-T-TCLASS)) [85]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+    23   1.0                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+     5   0.2                   (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.| SB-PCL::|.P3.| SB-PCL::|.P4.| SB-PCL::|.P5.|)) [61]
+------------------------------------------------------------------------
+     5   0.2                   CFFI::ENSURE-PARSED-BASE-TYPE [316]
+     8   0.3                   CFFI::MEM-SET [257]
+    65   2.8                   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+     2   0.1     78   3.4   CFFI::PARSE-TYPE [86]
+     1   0.0                   (LAMBDA NIL :IN CFFI::NOTICE-FOREIGN-TYPE) [201]
+     1   0.0                   ALEXANDRIA.1.0.0:ENSURE-LIST [100]
+     3   0.1                   (LAMBDA (SB-KERNEL::CACHE SB-KERNEL::OBJECT) :IN SB-KERNEL::CACHED-TYPEP) [77]
+    10   0.4                   CFFI::CHECK-FOR-TYPEDEF-CYCLES [295]
+    13   0.6                   SB-KERNEL:CLASSOID-TYPEP [12]
+     9   0.4                   (LAMBDA (CFFI::NAME) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cffi_0.20.1/src/types.lisp") [144]
+    37   1.6                   CFFI::FIND-TYPE-PARSER [19]
+------------------------------------------------------------------------
+    36   1.6                   (SB-PCL::EMF TRIAL:ALLOCATE) [276]
+     2   0.1     36   1.6   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:TARGET (TRIAL:TEXTURE)) [182]
+     1   0.0                   SB-C::CHECK-DS-LIST [181]
+     1   0.0                   FIND [158]
+     1   0.0                   CL-OPENGL:GEN-TEXTURE [335]
+     2   0.1                   TRIAL:ALLOCATE-TEXTURE-STORAGE [319]
+     6   0.3                   (FLET TRIAL::THUNK :IN TRIAL:ALLOCATE-TEXTURE-STORAGE) [156]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+    13   0.6                   CL-OPENGL:TEX-PARAMETER [49]
+     5   0.2                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     2   0.1      2   0.1   "foreign function _ZNKSt8__detail20_Prime_rehash_policy11_M_next_bktEm" [88]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     2   0.1      2   0.1   "foreign function _ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag" [89]
+------------------------------------------------------------------------
+     1   0.0                   (LABELS SB-IMPL::SXHASH-RECURSE :IN SXHASH) [41]
+     1   0.0                   SB-KERNEL::VALUES-SPECIFIER-TYPE-R [151]
+     1   0.0                   "foreign function __pthread_mutex_unlock" [8]
+     6   0.3                   SB-IMPL::EQUAL-HASH [52]
+     5   0.2                   "foreign function __poll" [206]
+     2   0.1     42   1.8   SXHASH [90]
+     1   0.0                   "foreign function __errno_location" [97]
+     5   0.2                   (LABELS SB-IMPL::SXHASH-RECURSE :IN SXHASH) [41]
+    30   1.3                   "foreign function read" [6]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER)) [18]
+     2   0.1      2   0.1   TRIAL-VR::DUMMY [91]
+------------------------------------------------------------------------
+     2   0.1      4   0.2   "foreign function __clock_gettime" [92]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     4   0.2                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS)) [299]
+     2   0.1      5   0.2   CL-OPENGL-BINDINGS:UNIFORM-MATRIX-4FV [93]
+     2   0.1                   (FLET "CLEANUP-FUN-1") [306]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     2   0.1      2   0.1   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT (TRIAL:DISPLAY)) [94]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     2   0.1      3   0.1   CL-OPENGL-BINDINGS:BLIT-FRAMEBUFFER [95]
+     1   0.0                   (FLET "CLEANUP-FUN-1") [303]
+------------------------------------------------------------------------
+     2   0.1                   MAKE-HASH-TABLE [51]
+     2   0.1      2   0.1   SB-IMPL::%MAKE-HASH-TABLE [96]
+------------------------------------------------------------------------
+     1   0.0                   SXHASH [90]
+     2   0.1      4   0.2   "foreign function __errno_location" [97]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER)) [233]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     2   0.1      2   0.1   (LAMBDA (SB-PCL::.PV. SB-PCL::.NEXT-METHOD-CALL. SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-STD-READER-METHOD-FUNCTION) [98]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL-BINDINGS:UNIFORM-4F [308]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     2   0.1      2   0.1   SB-KERNEL:%UNARY-TRUNCATE [99]
+------------------------------------------------------------------------
+     1   0.0                   CFFI::PARSE-TYPE [86]
+     1   0.0                   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+     2   0.1      2   0.1   ALEXANDRIA.1.0.0:ENSURE-LIST [100]
+------------------------------------------------------------------------
+     1   0.0                   (FLET "CLEANUP-FUN-1") [306]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL::ACTIVATE (TRIAL:FRAMEBUFFER)) [310]
+     1   0.0                   CL-OPENGL:DELETE-TEXTURES [258]
+     2   0.1      3   0.1   SB-VM:FLOATING-POINT-MODES [101]
+     1   0.0                   "foreign function arch_get_fp_modes" [73]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE)) [119]
+     2   0.1      2   0.1   "foreign function glViewport" [102]
+------------------------------------------------------------------------
+     7   0.3                   SB-KERNEL:%MAP [323]
+     2   0.1      7   0.3   SB-KERNEL:%MAP-FOR-EFFECT-ARITY-1 [103]
+     2   0.1                   (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF SINGLE-FLOAT) [113]
+     3   0.1                   (FLET SB-IMPL::F :IN SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT) [105]
+------------------------------------------------------------------------
+     2   0.1                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     2   0.1      2   0.1   SB-SYS:SAP+ [104]
+------------------------------------------------------------------------
+     3   0.1                   SB-KERNEL:%MAP-FOR-EFFECT-ARITY-1 [103]
+     2   0.1      3   0.1   (FLET SB-IMPL::F :IN SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT) [105]
+     1   0.0                   SB-KERNEL:%SINGLE-FLOAT [78]
+------------------------------------------------------------------------
+     2   0.1                   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+     2   0.1      2   0.1   CFFI-SYS::CONVERT-FOREIGN-TYPE [106]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     2   0.1      2   0.1   CL-OPENGL-BINDINGS:ACTIVE-TEXTURE [107]
+------------------------------------------------------------------------
+     2   0.1                   SB-UNIX:NANOSLEEP [32]
+     2   0.1      2   0.1   "foreign function sb_nanosleep" [108]
+------------------------------------------------------------------------
+     2   0.1                   "foreign function funcall_alien_callback" [252]
+     2   0.1      2   0.1   SB-ALIEN-INTERNALS:ENTER-ALIEN-CALLBACK [109]
+------------------------------------------------------------------------
+     2   0.1                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     2   0.1      2   0.1   SB-KERNEL:EXTENDED-SEQUENCE-P [110]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     2   0.1      2   0.1   "foreign function _IO_vfprintf" [111]
+------------------------------------------------------------------------
+     2   0.1      2   0.1   "foreign function _ZNSs6assignEPKcm" [112]
+------------------------------------------------------------------------
+     2   0.1                   SB-KERNEL:%MAP-FOR-EFFECT-ARITY-1 [103]
+     2   0.1      2   0.1   (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF SINGLE-FLOAT) [113]
+------------------------------------------------------------------------
+   653  28.2                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0    653  28.2   3B-OPENVR::%UPDATE-ACTION-STATE [114]
+     1   0.0                   "foreign function __pthread_mutex_unlock" [8]
+     1   0.0                   (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF T) [66]
+     1   0.0                   "foreign function _ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_" [167]
+    10   0.4                   "foreign function _ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base" [20]
+------------------------------------------------------------------------
+    18   0.8                   TRIAL-VR::GET-EYE-PROJECTION [231]
+     1   0.0     18   0.8   3B-OPENVR::%GET-PROJECTION-MATRIX [115]
+     2   0.1                   CFFI::LIBFFI/CALL [298]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1. SB-PCL::.ARG2.) :IN "SYS:SRC;PCL;DLISP3.LISP") [27]
+    12   0.5                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+------------------------------------------------------------------------
+    53   2.3                   (SB-PCL::EMF TRIAL:PROJECT-VIEW) [232]
+     1   0.0     53   2.3   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     1   0.0                   3D-MATRICES:MINV [199]
+     1   0.0                   3D-MATRICES:MTRANSPOSE [192]
+     6   0.3                   3D-MATRICES:MAT4 [325]
+     1   0.0                   3D-MATRICES::2MAT-M* [166]
+     3   0.1                   3D-MATRICES::2MAT-NM* [35]
+    22   0.9                   TRIAL-VR::GET-EYE-POSE [281]
+    18   0.8                   TRIAL-VR::GET-EYE-PROJECTION [231]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+   127   5.5                   (SB-PCL::EMF TRIAL:HANDLE) [81]
+     1   0.0    128   5.5   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:EVENT-LOOP)) [117]
+   127   5.5                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER)) [233]
+------------------------------------------------------------------------
+   138   6.0                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE)) [119]
+     1   0.0    138   6.0   (SB-PCL::FAST-METHOD TRIAL:PROCESS :AROUND (TRIAL:SCENE)) [118]
+   137   5.9                   (SB-PCL::FAST-METHOD TRIAL:PROCESS (TRIAL:EVENT-LOOP)) [234]
+------------------------------------------------------------------------
+   413  17.8                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP :AROUND (TRIAL:DISPLAY)) [235]
+     1   0.0    413  17.8   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE)) [119]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:UPDATE (TRIAL:MAIN T T T)) [334]
+     1   0.0                   "foreign function glViewport" [102]
+   269  11.6                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+   138   6.0                   (SB-PCL::FAST-METHOD TRIAL:PROCESS :AROUND (TRIAL:SCENE)) [118]
+------------------------------------------------------------------------
+    38   1.6                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     1   0.0     38   1.6   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     1   0.0                   (FLET "CLEANUP-FUN-21" :IN CL-OPENGL-BINDINGS:BIND-TEXTURE) [346]
+     1   0.0                   CL-OPENGL-BINDINGS:ACTIVE-TEXTURE [107]
+     5   0.2                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS)) [299]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     1   0.0                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL-VR::POSED-ENTITY T)) [260]
+    24   1.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:LOCATED-ENTITY T)) [251]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [56]
+------------------------------------------------------------------------
+     9   0.4                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:ROTATED-ENTITY T)) [127]
+    91   3.9                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T)) [122]
+     1   0.0     91   3.9   (SB-PCL::EMF FLARE:PAINT) [121]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :BEFORE (TRIAL:COLORED-ENTITY TRIAL:SHADER-PASS)) [348]
+     1   0.0                   CL-OPENGL-BINDINGS:UNIFORM-4F [308]
+     7   0.3                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS)) [299]
+    26   1.1                   (SB-PCL::EMF TRIAL:PROJECT-VIEW) [232]
+    54   2.3                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+------------------------------------------------------------------------
+   248  10.7                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+   235  10.1                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     1   0.0    248  10.7   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T)) [122]
+   143   6.2                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+    14   0.6                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+    91   3.9                   (SB-PCL::EMF FLARE:PAINT) [121]
+------------------------------------------------------------------------
+   269  11.6                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE)) [119]
+     1   0.0    270  11.7   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0                   (FLET "CLEANUP-FUN-72" :IN TRIAL:RENDER) [345]
+     1   0.0                   "foreign function XextFindDisplay" [185]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [24]
+     1   0.0                   (SB-PCL::EMF TRIAL::ACQUIRE-CONTEXT) [170]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+     1   0.0                   SB-KERNEL:%UNARY-TRUNCATE [99]
+     3   0.1                   CL-OPENGL-BINDINGS:BLIT-FRAMEBUFFER [95]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL::ACQUIRE-CONTEXT (TRIAL:CONTEXT)) [145]
+     1   0.0                   "foreign function glfwSwapBuffers" [133]
+   256  11.1                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (T)) [242]
+     1   0.0      2   0.1   (SB-PCL::EMF FLARE:UPDATE) [124]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:UPDATE :BEFORE (FLARE:CLOCK)) [326]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+     2   0.1                   (SB-PCL::FAST-METHOD FLOW:PORTS (FLOW:STATIC-NODE)) [126]
+     1   0.0      3   0.1   FLOW::PORT-SLOT-VALUE [125]
+     2   0.1                   SLOT-VALUE [248]
+------------------------------------------------------------------------
+     9   0.4                   TRIAL:PREPARE-PASS-PROGRAM [249]
+     1   0.0      9   0.4   (SB-PCL::FAST-METHOD FLOW:PORTS (FLOW:STATIC-NODE)) [126]
+     3   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     2   0.1                   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-OPTIMIZED-STD-READER-METHOD-FUNCTION) [71]
+     2   0.1                   FLOW::PORT-SLOT-VALUE [125]
+------------------------------------------------------------------------
+    22   0.9                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:LOCATED-ENTITY T)) [251]
+     1   0.0     22   0.9   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:ROTATED-ENTITY T)) [127]
+     9   0.4                   (SB-PCL::EMF FLARE:PAINT) [121]
+     3   0.1                   3D-MATRICES:NMROTATE [300]
+     8   0.3                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+------------------------------------------------------------------------
+     1   0.0     27   1.2   "foreign function mixed_buffer_to_packed_audio" [128]
+------------------------------------------------------------------------
+    34   1.5                   (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp") [130]
+     1   0.0     34   1.5   (SB-PCL::FAST-METHOD HARMONY:PROCESS :AROUND (HARMONY:PACK-DRAIN T)) [129]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     1   0.0                   SB-KERNEL:TWO-ARG-* [176]
+     3   0.1                   (SB-PCL::FAST-METHOD HARMONY:PROCESS (HARMONY-ALSA:ALSA-DRAIN T)) [150]
+------------------------------------------------------------------------
+    40   1.7                   (LAMBDA (SB-ALIEN::ARGS-POINTER SB-ALIEN::RESULT-POINTER FUNCTION) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cl-mixed-20190710-git/segments/virtual.lisp") [84]
+     1   0.0     40   1.7   (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp") [130]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [164]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     3   0.1                   SB-IMPL::GETHASH3 [45]
+    34   1.5                   (SB-PCL::FAST-METHOD HARMONY:PROCESS :AROUND (HARMONY:PACK-DRAIN T)) [129]
+------------------------------------------------------------------------
+     1   0.0     45   1.9   "foreign function callback_wrapper_trampoline" [131]
+    44   1.9                   "foreign function funcall_alien_callback" [252]
+------------------------------------------------------------------------
+     4   0.2                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+    11   0.5                   CL-OPENGL:DELETE-TEXTURES [258]
+    10   0.4                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+    43   1.9                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0     68   2.9   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+     1   0.0                   ALEXANDRIA.1.0.0:ENSURE-LIST [100]
+    65   2.8                   CFFI::PARSE-TYPE [86]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0      1   0.0   "foreign function glfwSwapBuffers" [133]
+------------------------------------------------------------------------
+    30   1.3                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AROUND (TRIAL:RESOURCE)) [259]
+     1   0.0     30   1.3   (SB-PCL::EMF TRIAL:DEALLOCATE) [134]
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE (TRIAL:FOREIGN-RESOURCE)) [312]
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AFTER (TRIAL:FOREIGN-RESOURCE)) [264]
+    25   1.1                   CL-OPENGL:DELETE-TEXTURES [258]
+------------------------------------------------------------------------
+    33   1.4                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     1   0.0     33   1.4   (LAMBDA (TRIAL-VR::CUBE TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial-vr/src/emacs-cube.lisp") [135]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [56]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATED-P (TRIAL:FOREIGN-RESOURCE)) [155]
+    30   1.3                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AROUND (TRIAL:RESOURCE)) [259]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL-VR::POSED-ENTITY T)) [260]
+     1   0.0      1   0.0   TRIAL-VR::SB->3D [136]
+------------------------------------------------------------------------
+     1   0.0                   (FLET "BODY-FUN-0" :IN SB-IMPL::GETHASH3) [10]
+     1   0.0      1   0.0   SB-IMPL::EQ-HASH [137]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF TRIAL:HANDLE) [81]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (FLARE:CLOCK)) [138]
+------------------------------------------------------------------------
+     1   0.0      2   0.1   "foreign function pa_stream_writable_size" [139]
+     1   0.0                   "foreign function XGetWindowAttributes" [269]
+------------------------------------------------------------------------
+     6   0.3                   TYPEP [272]
+     1   0.0      6   0.3   SB-KERNEL:SPECIFIER-TYPE [140]
+     5   0.2                   SB-KERNEL::SPECIFIER-TYPE-R [152]
+------------------------------------------------------------------------
+    42   1.8                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     1   0.0     42   1.8   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AROUND (TRIAL:RESOURCE)) [141]
+    41   1.8                   (SB-PCL::EMF TRIAL:ALLOCATE) [276]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF TRIAL:ALLOCATE) [276]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AFTER (TRIAL:RESOURCE)) [142]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   "foreign function pa_stream_write" [143]
+------------------------------------------------------------------------
+     9   0.4                   CFFI::PARSE-TYPE [86]
+     1   0.0     10   0.4   (LAMBDA (CFFI::NAME) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cffi_0.20.1/src/types.lisp") [144]
+     9   0.4                   CFFI::FIND-TYPE-PARSER [19]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL::ACQUIRE-CONTEXT (TRIAL:CONTEXT)) [145]
+------------------------------------------------------------------------
+    20   0.9                   TRIAL-VR::GET-EYE-POSE [281]
+     1   0.0     20   0.9   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+     1   0.0                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     1   0.0                   CFFI::LIBFFI/CALL [298]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+     1   0.0                   "foreign function ffi_call" [70]
+    15   0.6                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+------------------------------------------------------------------------
+    11   0.5                   (SB-PCL::EMF TRIAL:POLL-INPUT) [42]
+     1   0.0     11   0.5   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     1   0.0                   "foreign function __pthread_mutex_unlock" [8]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+     1   0.0                   "foreign function __vdso_gettimeofday" [149]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     1   0.0                   "foreign function pthread_mutex_lock" [7]
+     4   0.2                   GET-INTERNAL-REAL-TIME [67]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   SB-KERNEL:VECTOR-FILL* [148]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER)) [147]
+     1   0.0                   GET-INTERNAL-REAL-TIME [67]
+     1   0.0      2   0.1   "foreign function __vdso_gettimeofday" [149]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD HARMONY:PROCESS :AROUND (HARMONY:PACK-DRAIN T)) [129]
+     1   0.0      3   0.1   (SB-PCL::FAST-METHOD HARMONY:PROCESS (HARMONY-ALSA:ALSA-DRAIN T)) [150]
+     1   0.0                   HARMONY-ALSA-CFFI:PCM-WRITEI [188]
+------------------------------------------------------------------------
+     4   0.2                   SB-KERNEL::SPECIFIER-TYPE-R [152]
+     1   0.0      4   0.2   SB-KERNEL::VALUES-SPECIFIER-TYPE-R [151]
+     1   0.0                   SB-IMPL::GET-INFO-VALUE [57]
+     1   0.0                   SXHASH [90]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+------------------------------------------------------------------------
+     5   0.2                   SB-KERNEL:SPECIFIER-TYPE [140]
+     1   0.0      5   0.2   SB-KERNEL::SPECIFIER-TYPE-R [152]
+     4   0.2                   SB-KERNEL::VALUES-SPECIFIER-TYPE-R [151]
+------------------------------------------------------------------------
+     1   0.0                   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+     1   0.0      1   0.0   SB-ALIEN::ALIEN-SINGLE-FLOAT-TYPE-TRANSLATOR [153]
+------------------------------------------------------------------------
+     3   0.1                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0      3   0.1   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T 3B-OPENVR::VR-ACTIVE-ACTION-SET-T-TCLASS T)) [154]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+------------------------------------------------------------------------
+     1   0.0                   (LAMBDA (TRIAL-VR::CUBE TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial-vr/src/emacs-cube.lisp") [135]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:ALLOCATED-P (TRIAL:FOREIGN-RESOURCE)) [155]
+------------------------------------------------------------------------
+     6   0.3                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     1   0.0      6   0.3   (FLET TRIAL::THUNK :IN TRIAL:ALLOCATE-TEXTURE-STORAGE) [156]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:WIDTH (TRIAL:TEXTURE)) [157]
+     1   0.0                   (FLET "CLEANUP-FUN-108" :IN CL-OPENGL-BINDINGS:TEX-IMAGE-2D) [307]
+------------------------------------------------------------------------
+     1   0.0                   (FLET TRIAL::THUNK :IN TRIAL:ALLOCATE-TEXTURE-STORAGE) [156]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:WIDTH (TRIAL:TEXTURE)) [157]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     2   0.1                   (SB-PCL::FAST-METHOD FLOW:PORT (FLOW:STATIC-NODE SYMBOL)) [314]
+     1   0.0      3   0.1   FIND [158]
+     1   0.0                   EQL [171]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+------------------------------------------------------------------------
+     1   0.0      2   0.1   "foreign function _XSend" [159]
+     1   0.0                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     1   0.0                   TRIAL:ALLOCATE-TEXTURE-STORAGE [319]
+     3   0.1                   CL-OPENGL:TEX-PARAMETER [49]
+     1   0.0      6   0.3   CFFI:FOREIGN-ENUM-VALUE [160]
+     5   0.2                   CFFI::ENSURE-PARSED-BASE-TYPE [316]
+------------------------------------------------------------------------
+     1   0.0                   3D-MATRICES:NMROTATE [300]
+     1   0.0      1   0.0   3D-VECTORS::2VEC-V= [161]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     1   0.0      1   0.0   (SB-PCL::EMF FOR-ITERATOR:MAKE-ITERATOR) [162]
+------------------------------------------------------------------------
+     1   0.0                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     1   0.0      1   0.0   "foreign function glfwPollEvents" [163]
+------------------------------------------------------------------------
+     1   0.0                   (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp") [130]
+     1   0.0      1   0.0   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [164]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF TRIAL:HANDLE) [81]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:HANDLE :BEFORE (FLARE:TICK TRIAL:SCENE)) [165]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     1   0.0      1   0.0   3D-MATRICES::2MAT-M* [166]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::%UPDATE-ACTION-STATE [114]
+     1   0.0      1   0.0   "foreign function _ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_" [167]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:WIDTH (TRIAL:DISPLAY)) [168]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   "foreign function __glDispatchCheckMultithreaded" [169]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0      1   0.0   (SB-PCL::EMF TRIAL::ACQUIRE-CONTEXT) [170]
+------------------------------------------------------------------------
+     1   0.0                   FIND [158]
+     1   0.0      1   0.0   EQL [171]
+------------------------------------------------------------------------
+     1   0.0                   SB-KERNEL:%PUTHASH [332]
+     1   0.0      1   0.0   (FLET "BODY-FUN-8" :IN SB-KERNEL:%PUTHASH) [172]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   "foreign function _IO_default_xsputn" [173]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF TRIAL:PROJECT-VIEW) [232]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW :BEFORE (TRIAL:CAMERA T)) [174]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   3D-VECTORS:VEC-P [175]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD HARMONY:PROCESS :AROUND (HARMONY:PACK-DRAIN T)) [129]
+     1   0.0      1   0.0   SB-KERNEL:TWO-ARG-* [176]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     1   0.0      2   0.1   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:SUBJECT-HANDLER)) [177]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     1   0.0      2   0.1   (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT :AROUND (FOR-ITERATOR:ITERATOR)) [178]
+     1   0.0                   (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT (FLARE-QUEUE::QUEUE-ITERATOR)) [184]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD FOR-ITERATOR:HAS-MORE (FLARE-QUEUE::QUEUE-ITERATOR)) [179]
+------------------------------------------------------------------------
+     1   0.0                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+     1   0.0      1   0.0   %CL-GLFW3:POLL-EVENTS [180]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     1   0.0      1   0.0   SB-C::CHECK-DS-LIST [181]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD FLARE:TARGET (TRIAL:TEXTURE)) [182]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW [38]
+     1   0.0      1   0.0   (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.|)) [183]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT :AROUND (FOR-ITERATOR:ITERATOR)) [178]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT (FLARE-QUEUE::QUEUE-ITERATOR)) [184]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     1   0.0      1   0.0   "foreign function XextFindDisplay" [185]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   "foreign function xcb_writev" [186]
+------------------------------------------------------------------------
+     1   0.0                   SLOT-VALUE [248]
+     1   0.0      1   0.0   SB-PCL::FIND-SLOT-CELL [187]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD HARMONY:PROCESS (HARMONY-ALSA:ALSA-DRAIN T)) [150]
+     1   0.0      1   0.0   HARMONY-ALSA-CFFI:PCM-WRITEI [188]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0      1   0.0   SB-KERNEL:HAIRY-DATA-VECTOR-REF/CHECK-BOUNDS [189]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   CL-GAMEPAD-CFFI:GAMEPAD-PROCESS-EVENTS [190]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function interrupt_handle_pending" [339]
+     1   0.0      1   0.0   "foreign function pthread_sigmask" [191]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     1   0.0      1   0.0   3D-MATRICES:MTRANSPOSE [192]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     1   0.0      1   0.0   SB-KERNEL:TWO-ARG-/ [193]
+------------------------------------------------------------------------
+     1   0.0                   TRIAL:MAP-EVENT [195]
+     1   0.0      1   0.0   (LAMBDA (#:EVENT0) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [194]
+------------------------------------------------------------------------
+     2   0.1                   (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [342]
+     1   0.0      2   0.1   TRIAL:MAP-EVENT [195]
+     1   0.0                   (LAMBDA (#:EVENT0) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [194]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::UPDATE-ACTION-STATE [37]
+     1   0.0      1   0.0   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T CFFI::FOREIGN-ENUM)) [196]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL-BINDINGS:USE-PROGRAM [329]
+     1   0.0      1   0.0   CL-OPENGL-BINDINGS:CHECK-ERROR [197]
+------------------------------------------------------------------------
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     1   0.0      1   0.0   SB-KERNEL:TWO-ARG-= [198]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     1   0.0      1   0.0   3D-MATRICES:MINV [199]
+------------------------------------------------------------------------
+     1   0.0                   TRIAL-VR::GET-LATEST-HMD-POSE [267]
+     1   0.0      1   0.0   LENGTH [200]
+------------------------------------------------------------------------
+     1   0.0                   CFFI::PARSE-TYPE [86]
+     1   0.0      1   0.0   (LAMBDA NIL :IN CFFI::NOTICE-FOREIGN-TYPE) [201]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PROCESS (TRIAL:EVENT-LOOP)) [234]
+     1   0.0      1   0.0   SB-KERNEL:HAIRY-DATA-VECTOR-SET/CHECK-BOUNDS [202]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     1   0.0      1   0.0   CFFI-SYS:%MEM-SET [203]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   "foreign function _XGetRequest" [204]
+------------------------------------------------------------------------
+     1   0.0      1   0.0   "foreign function vkGetQueryPoolResults" [205]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function pa_once_begin" [349]
+     1   0.0                   "foreign function __libc_malloc" [17]
+     1   0.0                   "foreign function recvmsg" [2]
+     1   0.0                   "foreign function write" [297]
+     1   0.0                   "foreign function __pthread_getspecific" [241]
+     2   0.1                   "foreign function __sched_yield" [279]
+     1   0.0                   "foreign function pa_stream_write_ext_free" [282]
+     4   0.2                   "foreign function pthread_mutex_lock" [7]
+     1   0.0                   "foreign function __pthread_mutex_unlock" [8]
+     4   0.2                   "foreign function cfree" [14]
+     1   0.0                   "foreign function pa_queue_push" [277]
+     2   0.1                   "foreign function getpid" [33]
+     1   0.0                   "foreign function __poll" [206]
+     0   0.0    393  17.0   "foreign function __poll" [206]
+     2   0.1                   "foreign function write" [297]
+     1   0.0                   "foreign function _ZNSs9_M_mutateEmmm" [76]
+     1   0.0                   "foreign function __pthread_mutex_unlock" [8]
+     1   0.0                   "foreign function _ZNSs15_M_replace_safeEmmPKcm" [79]
+     1   0.0                   "foreign function XGetWindowAttributes" [269]
+     1   0.0                   "foreign function _IO_vfprintf" [111]
+     3   0.1                   "foreign function __nanosleep" [4]
+     1   0.0                   "foreign function __sched_yield" [279]
+     1   0.0                   "foreign function pthread_cond_signal" [293]
+     2   0.1                   "foreign function pthread_mutex_lock" [7]
+     3   0.1                   "foreign function writev" [9]
+     3   0.1                   "foreign function ffi_call_unix64" [302]
+     1   0.0                   "foreign function pthread_cond_timedwait" [256]
+     5   0.2                   "foreign function getpid" [33]
+     4   0.2                   "foreign function __libc_malloc" [17]
+     5   0.2                   SXHASH [90]
+     1   0.0                   "foreign function _ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag" [89]
+    14   0.6                   "foreign function recvmsg" [2]
+     1   0.0                   CFFI::FIND-TYPE-PARSER [19]
+     3   0.1                   "foreign function cfree" [14]
+   165   7.1                   "foreign function new_thread_trampoline" [230]
+     1   0.0                   "foreign function __poll" [206]
+    51   2.2                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+  1049  45.3                   SB-INT:SIMPLE-EVAL-IN-LEXENV [208]
+     0   0.0   1049  45.3   TRIAL:LAUNCH [207]
+  1049  45.3                   TRIAL:LAUNCH-WITH-CONTEXT [22]
+------------------------------------------------------------------------
+  1049  45.3                   EVAL [209]
+     0   0.0   1049  45.3   SB-INT:SIMPLE-EVAL-IN-LEXENV [208]
+     1   0.0                   SWANK-REPL::REPL-EVAL [215]
+  1049  45.3                   TRIAL:LAUNCH [207]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK:EVAL-FOR-EMACS [216]
+  1049  45.3                   SWANK::EVAL-REGION [210]
+     0   0.0   1049  45.3   EVAL [209]
+  1049  45.3                   SB-INT:SIMPLE-EVAL-IN-LEXENV [208]
+------------------------------------------------------------------------
+  1049  45.3                   (LAMBDA NIL :IN SWANK-REPL::REPL-EVAL) [211]
+     0   0.0   1049  45.3   SWANK::EVAL-REGION [210]
+  1049  45.3                   EVAL [209]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK-REPL::TRACK-PACKAGE [212]
+     0   0.0   1049  45.3   (LAMBDA NIL :IN SWANK-REPL::REPL-EVAL) [211]
+  1049  45.3                   SWANK::EVAL-REGION [210]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK::CALL-WITH-RETRY-RESTART [213]
+     0   0.0   1049  45.3   SWANK-REPL::TRACK-PACKAGE [212]
+  1049  45.3                   (LAMBDA NIL :IN SWANK-REPL::REPL-EVAL) [211]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK::CALL-WITH-BUFFER-SYNTAX [214]
+     0   0.0   1049  45.3   SWANK::CALL-WITH-RETRY-RESTART [213]
+  1049  45.3                   SWANK-REPL::TRACK-PACKAGE [212]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK-REPL::REPL-EVAL [215]
+     0   0.0   1049  45.3   SWANK::CALL-WITH-BUFFER-SYNTAX [214]
+  1049  45.3                   SWANK::CALL-WITH-RETRY-RESTART [213]
+------------------------------------------------------------------------
+     1   0.0                   SB-INT:SIMPLE-EVAL-IN-LEXENV [208]
+     0   0.0   1049  45.3   SWANK-REPL::REPL-EVAL [215]
+  1049  45.3                   SWANK::CALL-WITH-BUFFER-SYNTAX [214]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK::PROCESS-REQUESTS [217]
+     0   0.0   1049  45.3   SWANK:EVAL-FOR-EMACS [216]
+  1049  45.3                   EVAL [209]
+------------------------------------------------------------------------
+  1049  45.3                   (LAMBDA NIL :IN SWANK::HANDLE-REQUESTS) [218]
+     0   0.0   1049  45.3   SWANK::PROCESS-REQUESTS [217]
+  1049  45.3                   SWANK:EVAL-FOR-EMACS [216]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK/SBCL::CALL-WITH-BREAK-HOOK [219]
+     1   0.0                   (LAMBDA NIL :IN SWANK::HANDLE-REQUESTS) [218]
+     0   0.0   1049  45.3   (LAMBDA NIL :IN SWANK::HANDLE-REQUESTS) [218]
+     1   0.0                   (LAMBDA NIL :IN SWANK::HANDLE-REQUESTS) [218]
+  1049  45.3                   SWANK::PROCESS-REQUESTS [217]
+------------------------------------------------------------------------
+  1049  45.3                   (FLET SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp") [220]
+     0   0.0   1049  45.3   SWANK/SBCL::CALL-WITH-BREAK-HOOK [219]
+  1049  45.3                   (LAMBDA NIL :IN SWANK::HANDLE-REQUESTS) [218]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK::CALL-WITH-BINDINGS [221]
+     0   0.0   1049  45.3   (FLET SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp") [220]
+  1049  45.3                   SWANK/SBCL::CALL-WITH-BREAK-HOOK [219]
+------------------------------------------------------------------------
+  1049  45.3                   SWANK::HANDLE-REQUESTS [222]
+     0   0.0   1049  45.3   SWANK::CALL-WITH-BINDINGS [221]
+  1049  45.3                   (FLET SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp") [220]
+------------------------------------------------------------------------
+  1049  45.3                   (FLET SB-UNIX::BODY :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [223]
+     0   0.0   1049  45.3   SWANK::HANDLE-REQUESTS [222]
+  1049  45.3                   SWANK::CALL-WITH-BINDINGS [221]
+------------------------------------------------------------------------
+  1529  66.0                   (FLET "WITHOUT-INTERRUPTS-BODY-4" :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [224]
+     0   0.0   1529  66.0   (FLET SB-UNIX::BODY :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [223]
+     2   0.1                   SWANK/BACKEND:AUTO-FLUSH-LOOP [291]
+   478  20.6                   (LAMBDA NIL :IN BORDEAUX-THREADS::BINDING-DEFAULT-SPECIALS) [237]
+  1049  45.3                   SWANK::HANDLE-REQUESTS [222]
+------------------------------------------------------------------------
+  1529  66.0                   (FLET SB-THREAD::WITH-MUTEX-THUNK :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [225]
+     0   0.0   1529  66.0   (FLET "WITHOUT-INTERRUPTS-BODY-4" :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [224]
+  1529  66.0                   (FLET SB-UNIX::BODY :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [223]
+------------------------------------------------------------------------
+  1529  66.0                   (FLET "WITHOUT-INTERRUPTS-BODY-1" :IN SB-THREAD::CALL-WITH-MUTEX) [226]
+     0   0.0   1529  66.0   (FLET SB-THREAD::WITH-MUTEX-THUNK :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [225]
+  1529  66.0                   (FLET "WITHOUT-INTERRUPTS-BODY-4" :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [224]
+------------------------------------------------------------------------
+  1529  66.0                   SB-THREAD::CALL-WITH-MUTEX [227]
+     0   0.0   1529  66.0   (FLET "WITHOUT-INTERRUPTS-BODY-1" :IN SB-THREAD::CALL-WITH-MUTEX) [226]
+  1529  66.0                   (FLET SB-THREAD::WITH-MUTEX-THUNK :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [225]
+------------------------------------------------------------------------
+  1529  66.0                   SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE [228]
+     0   0.0   1529  66.0   SB-THREAD::CALL-WITH-MUTEX [227]
+  1529  66.0                   (FLET "WITHOUT-INTERRUPTS-BODY-1" :IN SB-THREAD::CALL-WITH-MUTEX) [226]
+------------------------------------------------------------------------
+  1529  66.0                   "foreign function call_into_lisp" [229]
+     0   0.0   1529  66.0   SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE [228]
+  1529  66.0                   SB-THREAD::CALL-WITH-MUTEX [227]
+------------------------------------------------------------------------
+  1529  66.0                   "foreign function new_thread_trampoline" [230]
+     0   0.0   1529  66.0   "foreign function call_into_lisp" [229]
+  1529  66.0                   SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE [228]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function XFlush" [347]
+     1   0.0                   "foreign function snd_pcm_bytes_to_frames" [341]
+     1   0.0                   "foreign function pa_memblock_unref" [336]
+     2   0.1                   "foreign function pthread_cond_signal" [293]
+     1   0.0                   "foreign function pa_pstream_send_memblock" [317]
+     2   0.1                   "foreign function pthread_mutex_lock" [7]
+     1   0.0                   "foreign function pa_run_once" [320]
+     5   0.2                   "foreign function cfree" [14]
+     1   0.0                   "foreign function _XReply" [313]
+     6   0.3                   "foreign function getpid" [33]
+     1   0.0                   "foreign function __errno_location" [97]
+     1   0.0                   "foreign function pa_stream_get_state" [304]
+     6   0.3                   "foreign function write" [297]
+     1   0.0                   "foreign function xcb_poll_for_event" [296]
+    13   0.6                   "foreign function __libc_malloc" [17]
+     2   0.1                   "foreign function __pthread_mutex_unlock" [8]
+     7   0.3                   "foreign function __sched_yield" [279]
+     1   0.0                   "foreign function pa_context_get_state" [278]
+     1   0.0                   "foreign function pa_sample_spec_valid" [274]
+     2   0.1                   "foreign function XGetWindowAttributes" [269]
+     3   0.1                   "foreign function pthread_cond_timedwait" [256]
+   165   7.1                   "foreign function __poll" [206]
+     2   0.1                   "foreign function pa_frame_size" [247]
+     1   0.0                   "foreign function __pthread_getspecific" [241]
+     0   0.0   1529  66.0   "foreign function new_thread_trampoline" [230]
+  1529  66.0                   "foreign function call_into_lisp" [229]
+------------------------------------------------------------------------
+    18   0.8                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     0   0.0     18   0.8   TRIAL-VR::GET-EYE-PROJECTION [231]
+    18   0.8                   3B-OPENVR::%GET-PROJECTION-MATRIX [115]
+------------------------------------------------------------------------
+    26   1.1                   (SB-PCL::EMF FLARE:PAINT) [121]
+    28   1.2                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     0   0.0     54   2.3   (SB-PCL::EMF TRIAL:PROJECT-VIEW) [232]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW :BEFORE (TRIAL:CAMERA T)) [174]
+    53   2.3                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+------------------------------------------------------------------------
+   127   5.5                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:EVENT-LOOP)) [117]
+     0   0.0    127   5.5   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER)) [233]
+     1   0.0                   (LAMBDA (SB-PCL::.PV. SB-PCL::.NEXT-METHOD-CALL. SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-STD-READER-METHOD-FUNCTION) [98]
+     3   0.1                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [24]
+     7   0.3                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T TRIAL:HANDLER)) [273]
+   115   5.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+------------------------------------------------------------------------
+   137   5.9                   (SB-PCL::FAST-METHOD TRIAL:PROCESS :AROUND (TRIAL:SCENE)) [118]
+     0   0.0    137   5.9   (SB-PCL::FAST-METHOD TRIAL:PROCESS (TRIAL:EVENT-LOOP)) [234]
+     1   0.0                   SB-KERNEL:HAIRY-DATA-VECTOR-SET/CHECK-BOUNDS [202]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+   134   5.8                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+------------------------------------------------------------------------
+   413  17.8                   (LAMBDA NIL :IN TRIAL:MAKE-THREAD) [236]
+     0   0.0    413  17.8   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP :AROUND (TRIAL:DISPLAY)) [235]
+   413  17.8                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE)) [119]
+------------------------------------------------------------------------
+   413  17.8                   (LAMBDA NIL :IN BORDEAUX-THREADS::BINDING-DEFAULT-SPECIALS) [237]
+     0   0.0    413  17.8   (LAMBDA NIL :IN TRIAL:MAKE-THREAD) [236]
+   413  17.8                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP :AROUND (TRIAL:DISPLAY)) [235]
+------------------------------------------------------------------------
+   478  20.6                   (FLET SB-UNIX::BODY :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [223]
+     0   0.0    478  20.6   (LAMBDA NIL :IN BORDEAUX-THREADS::BINDING-DEFAULT-SPECIALS) [237]
+    65   2.8                   (LAMBDA NIL :IN HARMONY:START) [255]
+   413  17.8                   (LAMBDA NIL :IN TRIAL:MAKE-THREAD) [236]
+------------------------------------------------------------------------
+    54   2.3                   (SB-PCL::EMF FLARE:PAINT) [121]
+     0   0.0     63   2.7   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     1   0.0                   (SB-PCL::FAST-METHOD FOR-ITERATOR:MAKE-ITERATOR (FLARE-QUEUE:QUEUE)) [344]
+     1   0.0                   (FLET "CLEANUP-FUN-6" :IN FLARE:PAINT) [343]
+     1   0.0                   (SB-PCL::FAST-METHOD FOR-ITERATOR:HAS-MORE (FLARE-QUEUE::QUEUE-ITERATOR)) [179]
+     2   0.1                   (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT :AROUND (FOR-ITERATOR:ITERATOR)) [178]
+     1   0.0                   (SB-PCL::EMF FOR-ITERATOR:MAKE-ITERATOR) [162]
+     9   0.4                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     8   0.3                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+    38   1.6                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+------------------------------------------------------------------------
+    14   0.6                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T)) [122]
+     0   0.0    248  10.7   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     1   0.0                   "foreign function glViewport" [102]
+     2   0.1                   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::GET-ACCESSOR-FROM-SVUC-METHOD-FUNCTION) [29]
+     3   0.1                   (SB-PCL::FAST-METHOD SB-MOP:SLOT-VALUE-USING-CLASS (FLOW:STATIC-NODE-CLASS T FLOW::EFFECTIVE-PORT-DEFINITION)) [321]
+     5   0.2                   (SB-PCL::FAST-METHOD TRIAL::ACTIVATE (TRIAL:FRAMEBUFFER)) [310]
+     1   0.0                   (LAMBDA (SB-PCL::.PV. SB-PCL::.NEXT-METHOD-CALL. SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-STD-READER-METHOD-FUNCTION) [98]
+   235  10.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T)) [122]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+   256  11.1                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     0   0.0    256  11.1   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+     1   0.0                   CFFI:FOREIGN-ENUM-VALUE [160]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:WIDTH (TRIAL:DISPLAY)) [168]
+     1   0.0                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+     3   0.1                   CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER [305]
+   248  10.7                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T)) [122]
+------------------------------------------------------------------------
+     0   0.0      2   0.1   "foreign function __pthread_getspecific" [241]
+     1   0.0                   "foreign function __poll" [206]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::EMF TRIAL:HANDLE) [81]
+     0   0.0      2   0.1   (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (T)) [242]
+     2   0.1                   (SB-PCL::EMF FLARE:UPDATE) [124]
+------------------------------------------------------------------------
+     5   0.2                   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+     0   0.0      5   0.2   SB-ALIEN-INTERNALS:PARSE-ALIEN-TYPE [243]
+     5   0.2                   SB-IMPL::GET-INFO-VALUE [57]
+------------------------------------------------------------------------
+    15   0.6                   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+    12   0.5                   3B-OPENVR::%GET-PROJECTION-MATRIX [115]
+     0   0.0     27   1.2   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     1   0.0                   CFFI-SYS:%MEM-SET [203]
+     1   0.0                   SB-KERNEL:TWO-ARG-/ [193]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     4   0.2                   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+     8   0.3                   CFFI::MEM-SET [257]
+    11   0.5                   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+------------------------------------------------------------------------
+    59   2.5                   3B-OPENVR::SUBMIT [83]
+     0   0.0     59   2.5   3B-OPENVR::%SUBMIT [245]
+------------------------------------------------------------------------
+   143   6.2                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T)) [122]
+     0   0.0    143   6.2   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [24]
+     1   0.0                   FLOW::PORT-SLOT-VALUE [125]
+     2   0.1                   (SB-PCL::FAST-METHOD FLOW:PORT (FLOW:STATIC-NODE SYMBOL)) [314]
+    76   3.3                   TRIAL-VR::GET-LATEST-HMD-POSE [267]
+    63   2.7                   3B-OPENVR::SUBMIT [83]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __libc_malloc" [17]
+     0   0.0      3   0.1   "foreign function pa_frame_size" [247]
+     2   0.1                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     2   0.1                   FLOW::PORT-SLOT-VALUE [125]
+     0   0.0      2   0.1   SLOT-VALUE [248]
+     1   0.0                   SB-PCL::FIND-SLOT-CELL [187]
+     1   0.0                   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::GET-ACCESSOR-FROM-SVUC-METHOD-FUNCTION) [29]
+------------------------------------------------------------------------
+    10   0.4                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+     0   0.0     10   0.4   TRIAL:PREPARE-PASS-PROGRAM [249]
+     1   0.0                   SB-KERNEL:CLASSOID-TYPEP [12]
+     9   0.4                   (SB-PCL::FAST-METHOD FLOW:PORTS (FLOW:STATIC-NODE)) [126]
+------------------------------------------------------------------------
+     5   0.2                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     8   0.3                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     8   0.3                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:ROTATED-ENTITY T)) [127]
+     0   0.0     21   0.9   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+     3   0.1                   CL-OPENGL-BINDINGS:USE-PROGRAM [329]
+     6   0.3                   (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY)) [261]
+    10   0.4                   TRIAL:PREPARE-PASS-PROGRAM [249]
+------------------------------------------------------------------------
+    24   1.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     0   0.0     24   1.0   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:LOCATED-ENTITY T)) [251]
+     2   0.1                   3D-MATRICES:NMTRANSLATE [333]
+    22   0.9                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:ROTATED-ENTITY T)) [127]
+------------------------------------------------------------------------
+    44   1.9                   "foreign function callback_wrapper_trampoline" [131]
+     0   0.0     44   1.9   "foreign function funcall_alien_callback" [252]
+     2   0.1                   SB-ALIEN-INTERNALS:ENTER-ALIEN-CALLBACK [109]
+    42   1.8                   (LAMBDA (SB-ALIEN::ARGS-POINTER SB-ALIEN::RESULT-POINTER FUNCTION) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cl-mixed-20190710-git/segments/virtual.lisp") [84]
+------------------------------------------------------------------------
+    62   2.7                   (SB-PCL::FAST-METHOD HARMONY:RUN (HARMONY:SERVER)) [254]
+     0   0.0     62   2.7   CL-MIXED-CFFI:SEGMENT-SEQUENCE-MIX [253]
+    18   0.8                   "foreign function mixed_segment_sequence_mix" [60]
+------------------------------------------------------------------------
+    65   2.8                   (LAMBDA NIL :IN HARMONY:START) [255]
+     0   0.0     65   2.8   (SB-PCL::FAST-METHOD HARMONY:RUN (HARMONY:SERVER)) [254]
+     1   0.0                   "foreign function mixed_segment_sequence_mix" [60]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+    62   2.7                   CL-MIXED-CFFI:SEGMENT-SEQUENCE-MIX [253]
+------------------------------------------------------------------------
+    65   2.8                   (LAMBDA NIL :IN BORDEAUX-THREADS::BINDING-DEFAULT-SPECIALS) [237]
+     0   0.0     65   2.8   (LAMBDA NIL :IN HARMONY:START) [255]
+    65   2.8                   (SB-PCL::FAST-METHOD HARMONY:RUN (HARMONY:SERVER)) [254]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     0   0.0      5   0.2   "foreign function pthread_cond_timedwait" [256]
+     1   0.0                   "foreign function recvmsg" [2]
+     3   0.1                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     8   0.3                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T)) [244]
+     8   0.3                   CL-OPENGL:DELETE-TEXTURES [258]
+     0   0.0     16   0.7   CFFI::MEM-SET [257]
+     8   0.3                   CFFI::PARSE-TYPE [86]
+     5   0.2                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     3   0.1                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [24]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL:DELETE-TEXTURES [258]
+    25   1.1                   (SB-PCL::EMF TRIAL:DEALLOCATE) [134]
+     0   0.0     25   1.1   CL-OPENGL:DELETE-TEXTURES [258]
+     1   0.0                   CL-OPENGL:DELETE-TEXTURES [258]
+     1   0.0                   SB-VM:FLOATING-POINT-MODES [101]
+     2   0.1                   CFFI-SYS:%FOREIGN-TYPE-SIZE [82]
+    11   0.5                   (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T)) [132]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     8   0.3                   CFFI::MEM-SET [257]
+------------------------------------------------------------------------
+    30   1.3                   (LAMBDA (TRIAL-VR::CUBE TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial-vr/src/emacs-cube.lisp") [135]
+     0   0.0     30   1.3   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AROUND (TRIAL:RESOURCE)) [259]
+    30   1.3                   (SB-PCL::EMF TRIAL:DEALLOCATE) [134]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     0   0.0      2   0.1   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL-VR::POSED-ENTITY T)) [260]
+     1   0.0                   3D-MATRICES:MAT4 [325]
+     1   0.0                   TRIAL-VR::SB->3D [136]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     6   0.3                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+     0   0.0      7   0.3   (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY)) [261]
+     1   0.0                   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-OPTIMIZED-STD-READER-METHOD-FUNCTION) [71]
+     3   0.1                   (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::GET-ACCESSOR-FROM-SVUC-METHOD-FUNCTION) [29]
+     3   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     4   0.2                   FINALIZE [315]
+     2   0.1                   CANCEL-FINALIZATION [263]
+     0   0.0      6   0.3   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK [262]
+     6   0.3                   (FLET "CLEANUP-FUN-70" :IN SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK) [31]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AFTER (TRIAL:FOREIGN-RESOURCE)) [264]
+     0   0.0      2   0.1   CANCEL-FINALIZATION [263]
+     2   0.1                   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK [262]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::EMF TRIAL:DEALLOCATE) [134]
+     0   0.0      2   0.1   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AFTER (TRIAL:FOREIGN-RESOURCE)) [264]
+     2   0.1                   CANCEL-FINALIZATION [263]
+------------------------------------------------------------------------
+    70   3.0                   3B-OPENVR::WAIT-GET-POSES [266]
+     0   0.0     70   3.0   3B-OPENVR::%WAIT-GET-POSES [265]
+------------------------------------------------------------------------
+    75   3.2                   TRIAL-VR::GET-LATEST-HMD-POSE [267]
+     0   0.0     75   3.2   3B-OPENVR::WAIT-GET-POSES [266]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP") [13]
+     1   0.0                   CFFI::%FOREIGN-ENUM-KEYWORD [40]
+     3   0.1                   (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS)) [48]
+    70   3.0                   3B-OPENVR::%WAIT-GET-POSES [265]
+------------------------------------------------------------------------
+    76   3.3                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+     0   0.0     76   3.3   TRIAL-VR::GET-LATEST-HMD-POSE [267]
+     1   0.0                   LENGTH [200]
+    75   3.2                   3B-OPENVR::WAIT-GET-POSES [266]
+------------------------------------------------------------------------
+     9   0.4                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     0   0.0      9   0.4   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY)) [261]
+     1   0.0                   (FLET "CLEANUP-FUN-149" :IN CL-OPENGL-BINDINGS:DEPTH-MASK) [338]
+     1   0.0                   CL-OPENGL-BINDINGS:ACTIVE-TEXTURE [107]
+     1   0.0                   CL-OPENGL-BINDINGS:UNIFORM-MATRIX-4FV [93]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     1   0.0                   "foreign function pa_stream_writable_size" [139]
+     0   0.0      2   0.1   "foreign function XGetWindowAttributes" [269]
+     2   0.1                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_memblock_new_pool" [270]
+------------------------------------------------------------------------
+     0   0.0      5   0.2   "foreign function __libc_calloc" [271]
+     1   0.0                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     6   0.3                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T TRIAL:HANDLER)) [273]
+     0   0.0      6   0.3   TYPEP [272]
+     6   0.3                   SB-KERNEL:SPECIFIER-TYPE [140]
+------------------------------------------------------------------------
+     7   0.3                   (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER)) [233]
+     0   0.0      7   0.3   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T TRIAL:HANDLER)) [273]
+     1   0.0                   SB-KERNEL:CLASSOID-TYPEP [12]
+     6   0.3                   TYPEP [272]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_sample_spec_valid" [274]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     3   0.1                   SB-IMPL::GETHASH3 [45]
+     0   0.0      3   0.1   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING [275]
+     3   0.1                   (FLET "CLEANUP-FUN-92" :IN SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING) [63]
+------------------------------------------------------------------------
+    41   1.8                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AROUND (TRIAL:RESOURCE)) [141]
+     0   0.0     41   1.8   (SB-PCL::EMF TRIAL:ALLOCATE) [276]
+     4   0.2                   FINALIZE [315]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AFTER (TRIAL:RESOURCE)) [142]
+    36   1.6                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function getpid" [33]
+     0   0.0      1   0.0   "foreign function pa_queue_push" [277]
+     1   0.0                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_context_get_state" [278]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function write" [297]
+     1   0.0                   "foreign function __poll" [206]
+     0   0.0     17   0.7   "foreign function __sched_yield" [279]
+     1   0.0                   "foreign function write" [297]
+     2   0.1                   "foreign function __poll" [206]
+     2   0.1                   "foreign function recvmsg" [2]
+     7   0.3                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     2   0.1                   TRIAL-VR::GET-EYE-POSE [281]
+     0   0.0      2   0.1   3B-OPENVR::GET-EYE-TO-HEAD-TRANSFORM [280]
+     2   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+------------------------------------------------------------------------
+    22   0.9                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     0   0.0     22   0.9   TRIAL-VR::GET-EYE-POSE [281]
+    20   0.9                   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+     2   0.1                   3B-OPENVR::GET-EYE-TO-HEAD-TRANSFORM [280]
+------------------------------------------------------------------------
+     0   0.0      2   0.1   "foreign function pa_stream_write_ext_free" [282]
+     1   0.0                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_mutex_lock" [283]
+     1   0.0                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     1   0.0                   SB-THREAD::CALL-WITH-RECURSIVE-LOCK [285]
+     0   0.0      1   0.0   (FLET "WITHOUT-INTERRUPTS-BODY-29" :IN SB-THREAD::CALL-WITH-RECURSIVE-LOCK) [284]
+------------------------------------------------------------------------
+     1   0.0                   (FLET SWANK/BACKEND:CALL-WITH-LOCK-HELD :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp") [286]
+     0   0.0      1   0.0   SB-THREAD::CALL-WITH-RECURSIVE-LOCK [285]
+     1   0.0                   (FLET "WITHOUT-INTERRUPTS-BODY-29" :IN SB-THREAD::CALL-WITH-RECURSIVE-LOCK) [284]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD STREAM-FINISH-OUTPUT (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [287]
+     0   0.0      1   0.0   (FLET SWANK/BACKEND:CALL-WITH-LOCK-HELD :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp") [286]
+     1   0.0                   SB-THREAD::CALL-WITH-RECURSIVE-LOCK [285]
+------------------------------------------------------------------------
+     1   0.0                   (LABELS SB-IMPL::BIND-DEADLINE-AND-CALL :IN STREAM-FORCE-OUTPUT) [288]
+     0   0.0      1   0.0   (SB-PCL::FAST-METHOD STREAM-FINISH-OUTPUT (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [287]
+     1   0.0                   (FLET SWANK/BACKEND:CALL-WITH-LOCK-HELD :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp") [286]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD STREAM-FORCE-OUTPUT :AROUND (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [289]
+     0   0.0      1   0.0   (LABELS SB-IMPL::BIND-DEADLINE-AND-CALL :IN STREAM-FORCE-OUTPUT) [288]
+     1   0.0                   (SB-PCL::FAST-METHOD STREAM-FINISH-OUTPUT (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [287]
+------------------------------------------------------------------------
+     2   0.1                   FORCE-OUTPUT [290]
+     0   0.0      2   0.1   (SB-PCL::FAST-METHOD STREAM-FORCE-OUTPUT :AROUND (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [289]
+     1   0.0                   GET-INTERNAL-REAL-TIME [67]
+     1   0.0                   (LABELS SB-IMPL::BIND-DEADLINE-AND-CALL :IN STREAM-FORCE-OUTPUT) [288]
+------------------------------------------------------------------------
+     2   0.1                   SWANK/BACKEND:AUTO-FLUSH-LOOP [291]
+     0   0.0      2   0.1   FORCE-OUTPUT [290]
+     2   0.1                   (SB-PCL::FAST-METHOD STREAM-FORCE-OUTPUT :AROUND (SWANK/GRAY::SLIME-OUTPUT-STREAM)) [289]
+------------------------------------------------------------------------
+     2   0.1                   (FLET SB-UNIX::BODY :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE) [223]
+     0   0.0      2   0.1   SWANK/BACKEND:AUTO-FLUSH-LOOP [291]
+     2   0.1                   FORCE-OUTPUT [290]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function realloc" [292]
+     1   0.0                   "foreign function recvmsg" [2]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function __poll" [206]
+     0   0.0      5   0.2   "foreign function pthread_cond_signal" [293]
+     2   0.1                   "foreign function new_thread_trampoline" [230]
+     1   0.0                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     1   0.0                   (FLET "CLEANUP-FUN-21" :IN CL-OPENGL-BINDINGS:BIND-TEXTURE) [346]
+     1   0.0                   (FLET "CLEANUP-FUN-149" :IN CL-OPENGL-BINDINGS:DEPTH-MASK) [338]
+     1   0.0                   CL-OPENGL:GEN-TEXTURE [335]
+     1   0.0                   (FLET "CLEANUP-FUN-362" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I) [330]
+     1   0.0                   (FLET "CLEANUP-FUN-1") [328]
+     1   0.0                   (FLET "CLEANUP-FUN-250" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I) [322]
+     1   0.0                   (FLET "CLEANUP-FUN-108" :IN CL-OPENGL-BINDINGS:TEX-IMAGE-2D) [307]
+     1   0.0                   (FLET "CLEANUP-FUN-1") [306]
+     2   0.1                   CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER [305]
+     1   0.0                   (FLET "CLEANUP-FUN-1") [303]
+     1   0.0                   CL-OPENGL-BINDINGS:UNIFORM-MATRIX-4FV [93]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     0   0.0     13   0.6   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+    13   0.6                   "foreign function arch_set_fp_modes" [15]
+------------------------------------------------------------------------
+    10   0.4                   CFFI::PARSE-TYPE [86]
+     0   0.0     10   0.4   CFFI::CHECK-FOR-TYPEDEF-CYCLES [295]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+     1   0.0                   SB-KERNEL:%PUTHASH [332]
+     1   0.0                   SB-KERNEL:CLASSOID-TYPEP [12]
+     6   0.3                   MAKE-HASH-TABLE [51]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function xcb_poll_for_event" [296]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function pa_thread_is_running" [350]
+     2   0.1                   "foreign function __poll" [206]
+     1   0.0                   "foreign function __sched_yield" [279]
+     0   0.0     19   0.8   "foreign function write" [297]
+     1   0.0                   "foreign function pthread_self" [46]
+     2   0.1                   "foreign function ioctl" [1]
+     1   0.0                   "foreign function __poll" [206]
+     1   0.0                   "foreign function __sched_yield" [279]
+     1   0.0                   "foreign function _ZNSs9_M_mutateEmmm" [76]
+     2   0.1                   "foreign function recvmsg" [2]
+     6   0.3                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     1   0.0                   3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM [146]
+     2   0.1                   3B-OPENVR::%GET-PROJECTION-MATRIX [115]
+     0   0.0      3   0.1   CFFI::LIBFFI/CALL [298]
+     2   0.1                   "foreign function ffi_call" [70]
+------------------------------------------------------------------------
+     7   0.3                   (SB-PCL::EMF FLARE:PAINT) [121]
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     0   0.0      8   0.3   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS)) [299]
+     1   0.0                   SB-IMPL::GETHASH3 [45]
+     2   0.1                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     4   0.2                   CL-OPENGL-BINDINGS:UNIFORM-MATRIX-4FV [93]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:ROTATED-ENTITY T)) [127]
+     0   0.0      3   0.1   3D-MATRICES:NMROTATE [300]
+     1   0.0                   3D-VECTORS::2VEC-V= [161]
+     2   0.1                   3D-MATRICES::2MAT-NM* [35]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_detect_fork" [301]
+     1   0.0                   "foreign function ioctl" [1]
+------------------------------------------------------------------------
+     3   0.1                   "foreign function __poll" [206]
+     0   0.0      9   0.4   "foreign function ffi_call_unix64" [302]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL-BINDINGS:BLIT-FRAMEBUFFER [95]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-1") [303]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_stream_get_state" [304]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL::ACTIVATE (TRIAL:FRAMEBUFFER)) [310]
+     3   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN)) [240]
+     0   0.0      6   0.3   CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER [305]
+     3   0.1                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     1   0.0                   "foreign function arch_get_fp_modes" [73]
+     2   0.1                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     2   0.1                   CL-OPENGL-BINDINGS:UNIFORM-MATRIX-4FV [93]
+     0   0.0      2   0.1   (FLET "CLEANUP-FUN-1") [306]
+     1   0.0                   SB-VM:FLOATING-POINT-MODES [101]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     1   0.0                   (FLET TRIAL::THUNK :IN TRIAL:ALLOCATE-TEXTURE-STORAGE) [156]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-108" :IN CL-OPENGL-BINDINGS:TEX-IMAGE-2D) [307]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF FLARE:PAINT) [121]
+     0   0.0      1   0.0   CL-OPENGL-BINDINGS:UNIFORM-4F [308]
+     1   0.0                   SB-KERNEL:%UNARY-TRUNCATE [99]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     0   0.0      1   0.0   (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [309]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+------------------------------------------------------------------------
+     5   0.2                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     0   0.0      5   0.2   (SB-PCL::FAST-METHOD TRIAL::ACTIVATE (TRIAL:FRAMEBUFFER)) [310]
+     1   0.0                   SB-VM:FLOATING-POINT-MODES [101]
+     3   0.1                   CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER [305]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE (TRIAL:FOREIGN-RESOURCE)) [312]
+     0   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:DESTRUCTOR (TRIAL:TEXTURE)) [311]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::EMF TRIAL:DEALLOCATE) [134]
+     0   0.0      2   0.1   (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE (TRIAL:FOREIGN-RESOURCE)) [312]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:DESTRUCTOR (TRIAL:TEXTURE)) [311]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function _XReply" [313]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS)) [246]
+     0   0.0      2   0.1   (SB-PCL::FAST-METHOD FLOW:PORT (FLOW:STATIC-NODE SYMBOL)) [314]
+     2   0.1                   FIND [158]
+------------------------------------------------------------------------
+     4   0.2                   (SB-PCL::EMF TRIAL:ALLOCATE) [276]
+     0   0.0      4   0.2   FINALIZE [315]
+     4   0.2                   SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK [262]
+------------------------------------------------------------------------
+     5   0.2                   CFFI:FOREIGN-ENUM-VALUE [160]
+     0   0.0      5   0.2   CFFI::ENSURE-PARSED-BASE-TYPE [316]
+     5   0.2                   CFFI::PARSE-TYPE [86]
+------------------------------------------------------------------------
+     0   0.0      2   0.1   "foreign function pa_pstream_send_memblock" [317]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+     1   0.0                   "foreign function recvmsg" [2]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_thread_self" [318]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     0   0.0      2   0.1   TRIAL:ALLOCATE-TEXTURE-STORAGE [319]
+     1   0.0                   CFFI::%FOREIGN-ENUM-VALUE [30]
+     1   0.0                   CFFI:FOREIGN-ENUM-VALUE [160]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_run_once" [320]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T)) [239]
+     0   0.0      3   0.1   (SB-PCL::FAST-METHOD SB-MOP:SLOT-VALUE-USING-CLASS (FLOW:STATIC-NODE-CLASS T FLOW::EFFECTIVE-PORT-DEFINITION)) [321]
+     3   0.1                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL:TEX-PARAMETER [49]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-250" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I) [322]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     7   0.3                   SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT [324]
+     0   0.0      7   0.3   SB-KERNEL:%MAP [323]
+     7   0.3                   SB-KERNEL:%MAP-FOR-EFFECT-ARITY-1 [103]
+------------------------------------------------------------------------
+     7   0.3                   3D-MATRICES:MAT4 [325]
+     0   0.0      7   0.3   SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT [324]
+     7   0.3                   SB-KERNEL:%MAP [323]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL-VR::POSED-ENTITY T)) [260]
+     6   0.3                   (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T)) [116]
+     0   0.0      7   0.3   3D-MATRICES:MAT4 [325]
+     7   0.3                   SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT [324]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF FLARE:UPDATE) [124]
+     0   0.0      1   0.0   (SB-PCL::FAST-METHOD FLARE:UPDATE :BEFORE (FLARE:CLOCK)) [326]
+     1   0.0                   SB-KERNEL:%SINGLE-FLOAT [78]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function _ZNSs4_Rep9_S_createEmmRKSaIcE" [327]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL-BINDINGS:USE-PROGRAM [329]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-1") [328]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     3   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS)) [250]
+     0   0.0      3   0.1   CL-OPENGL-BINDINGS:USE-PROGRAM [329]
+     1   0.0                   CL-OPENGL-BINDINGS:CHECK-ERROR [197]
+     1   0.0                   (FLET "CLEANUP-FUN-1") [328]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL:TEX-PARAMETER [49]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-362" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I) [330]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     0   0.0      2   0.1   "foreign function _XVIDtoVisual" [331]
+------------------------------------------------------------------------
+     1   0.0                   CFFI::CHECK-FOR-TYPEDEF-CYCLES [295]
+     0   0.0      1   0.0   SB-KERNEL:%PUTHASH [332]
+     1   0.0                   (FLET "BODY-FUN-8" :IN SB-KERNEL:%PUTHASH) [172]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:LOCATED-ENTITY T)) [251]
+     0   0.0      2   0.1   3D-MATRICES:NMTRANSLATE [333]
+     1   0.0                   3D-MATRICES::2MAT-NM* [35]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE)) [119]
+     0   0.0      1   0.0   (SB-PCL::FAST-METHOD TRIAL:UPDATE (TRIAL:MAIN T T T)) [334]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [11]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE)) [87]
+     0   0.0      1   0.0   CL-OPENGL:GEN-TEXTURE [335]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_memblock_unref" [336]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     1   0.0                   CL-OPENGL:TEX-PARAMETER [49]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-70" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-F) [337]
+     1   0.0                   "foreign function arch_get_fp_modes" [73]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS)) [268]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-149" :IN CL-OPENGL-BINDINGS:DEPTH-MASK) [338]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function handle_trap" [340]
+     0   0.0      1   0.0   "foreign function interrupt_handle_pending" [339]
+     1   0.0                   "foreign function pthread_sigmask" [191]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function handle_trap" [340]
+     1   0.0                   "foreign function interrupt_handle_pending" [339]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function snd_pcm_bytes_to_frames" [341]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     2   0.1                   (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T)) [43]
+     0   0.0      2   0.1   (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp") [342]
+     2   0.1                   TRIAL:MAP-EVENT [195]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-6" :IN FLARE:PAINT) [343]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP") [5]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS)) [238]
+     0   0.0      1   0.0   (SB-PCL::FAST-METHOD FOR-ITERATOR:MAKE-ITERATOR (FLARE-QUEUE:QUEUE)) [344]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [56]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY)) [123]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-72" :IN TRIAL:RENDER) [345]
+     1   0.0                   SB-VM::ALLOC-TRAMP [28]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T)) [120]
+     0   0.0      1   0.0   (FLET "CLEANUP-FUN-21" :IN CL-OPENGL-BINDINGS:BIND-TEXTURE) [346]
+     1   0.0                   SB-VM::%FLOATING-POINT-MODES-SETTER [294]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function cfree" [14]
+     0   0.0      1   0.0   "foreign function XFlush" [347]
+     1   0.0                   "foreign function new_thread_trampoline" [230]
+------------------------------------------------------------------------
+     1   0.0                   (SB-PCL::EMF FLARE:PAINT) [121]
+     0   0.0      1   0.0   (SB-PCL::FAST-METHOD FLARE:PAINT :BEFORE (TRIAL:COLORED-ENTITY TRIAL:SHADER-PASS)) [348]
+     1   0.0                   (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP") [16]
+------------------------------------------------------------------------
+     0   0.0      1   0.0   "foreign function pa_once_begin" [349]
+     1   0.0                   "foreign function __poll" [206]
+------------------------------------------------------------------------
+     1   0.0                   "foreign function getpid" [33]
+     0   0.0      1   0.0   "foreign function pa_thread_is_running" [350]
+     1   0.0                   "foreign function write" [297]
+------------------------------------------------------------------------
+
+
+           Self        Total        Cumul
+  Nr  Count     %  Count     %  Count     %    Calls  Function
+------------------------------------------------------------------------
+   1    405  17.5    405  17.5    405  17.5        -  "foreign function ioctl"
+   2    128   5.5    129   5.6    533  23.0        -  "foreign function recvmsg"
+   3     69   3.0     69   3.0    602  26.0        -  "foreign function open64"
+   4     61   2.6     61   2.6    663  28.6        -  "foreign function __nanosleep"
+   5     47   2.0     47   2.0    710  30.7        -  (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;DLISP3.LISP")
+   6     43   1.9     43   1.9    753  32.5        -  "foreign function read"
+   7     41   1.8     49   2.1    794  34.3        -  "foreign function pthread_mutex_lock"
+   8     32   1.4     40   1.7    826  35.7        -  "foreign function __pthread_mutex_unlock"
+   9     28   1.2     28   1.2    854  36.9        -  "foreign function writev"
+  10     24   1.0     39   1.7    878  37.9        -  (FLET "BODY-FUN-0" :IN SB-IMPL::GETHASH3)
+  11     23   1.0     23   1.0    901  38.9        -  (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP")
+  12     16   0.7     16   0.7    917  39.6        -  SB-KERNEL:CLASSOID-TYPEP
+  13     14   0.6     14   0.6    931  40.2        -  (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP")
+  14     13   0.6     31   1.3    944  40.8        -  "foreign function cfree"
+  15     13   0.6     13   0.6    957  41.3        -  "foreign function arch_set_fp_modes"
+  16     12   0.5     37   1.6    969  41.8        -  "foreign function __libc_malloc"
+  17     12   0.5     12   0.5    981  42.4        -  (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP")
+  18     11   0.5    929  40.1    992  42.8        -  (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL-VR::VR-INPUT-HANDLER))
+  19     11   0.5     47   2.0   1003  43.3        -  CFFI::FIND-TYPE-PARSER
+  20     11   0.5     11   0.5   1014  43.8        -  "foreign function _ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base"
+  21     10   0.4     10   0.4   1024  44.2        -  "foreign function __tls_get_addr"
+  22      9   0.4   1049  45.3   1033  44.6        -  TRIAL:LAUNCH-WITH-CONTEXT
+  23      9   0.4     11   0.5   1042  45.0        -  "foreign function syscall"
+  24      8   0.3      8   0.3   1050  45.3        -  (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP")
+  25      8   0.3      8   0.3   1058  45.7        -  "foreign function mixed_to_float"
+  26      8   0.3      8   0.3   1066  46.0        -  (LABELS SB-IMPL::EQUAL-AUX :IN EQUAL)
+  27      7   0.3      9   0.4   1073  46.3        -  SB-VM::ALLOC-TRAMP
+  28      7   0.3      7   0.3   1080  46.6        -  (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1. SB-PCL::.ARG2.) :IN "SYS:SRC;PCL;DLISP3.LISP")
+  29      6   0.3     30   1.3   1086  46.9        -  "foreign function getpid"
+  30      6   0.3     18   0.8   1092  47.2        -  CFFI::%FOREIGN-ENUM-VALUE
+  31      6   0.3     12   0.5   1098  47.4        -  SB-UNIX:NANOSLEEP
+  32      6   0.3      6   0.3   1104  47.7        -  (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::GET-ACCESSOR-FROM-SVUC-METHOD-FUNCTION)
+  33      6   0.3      6   0.3   1110  47.9        -  (FLET "CLEANUP-FUN-70" :IN SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK)
+  34      6   0.3      6   0.3   1116  48.2        -  %CL-GLFW3:WINDOW-SHOULD-CLOSE-P
+  35      6   0.3      6   0.3   1122  48.4        -  3D-MATRICES::2MAT-NM*
+  36      6   0.3      6   0.3   1128  48.7        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-MATRIX-34-T-TCLASS))
+  37      5   0.2    763  32.9   1133  48.9        -  3B-OPENVR::UPDATE-ACTION-STATE
+  38      5   0.2    130   5.6   1138  49.1        -  3B-OPENVR::POSE-ACTION-DATA-RELATIVE-TO-NOW
+  39      5   0.2     12   0.5   1143  49.4        -  CFFI::%FOREIGN-ENUM-KEYWORD
+  40      5   0.2      6   0.3   1148  49.6        -  (LABELS SB-IMPL::SXHASH-RECURSE :IN SXHASH)
+  41      5   0.2      5   0.2   1153  49.8        -  (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP")
+  42      4   0.2    983  42.4   1157  50.0        -  (SB-PCL::EMF TRIAL:POLL-INPUT)
+  43      4   0.2    134   5.8   1161  50.1        -  (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T T))
+  44      4   0.2     50   2.2   1165  50.3        -  SB-IMPL::GETHASH3
+  45      4   0.2     26   1.1   1169  50.5        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::TRACKED-DEVICE-POSE-T-TCLASS))
+  46      4   0.2     13   0.6   1173  50.6        -  CL-OPENGL:TEX-PARAMETER
+  47      4   0.2     10   0.4   1177  50.8        -  SB-IMPL::EQUAL-HASH
+  48      4   0.2      6   0.3   1181  51.0        -  "foreign function pthread_self"
+  49      4   0.2      6   0.3   1185  51.2        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::HMD-VECTOR-3-T-TCLASS))
+  50      4   0.2      6   0.3   1189  51.3        -  MAKE-HASH-TABLE
+  51      4   0.2      4   0.2   1193  51.5        -  SB-PCL::%MAKE-STANDARD-INSTANCE
+  52      4   0.2      4   0.2   1197  51.7        -  (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;BRAID.LISP")
+  53      4   0.2      4   0.2   1201  51.9        -  "foreign function glfwWindowShouldClose"
+  54      4   0.2      4   0.2   1205  52.0        -  "foreign function _ZNSt10_HashtableImmSaImENSt8__detail9_IdentityESt8equal_toImESt4hashImENS1_18_Mod_range_hashingENS1_20_Default_ranged_hashENS1_20_Prime_rehash_policyENS1_17_Hashtable_traitsILb0ELb1ELb1EEEE9_M_assignIZNSC_C4ERKSC_EUlPKNS1_10_Hash_nodeImLb0EEEE_EEvSF_RKT_"
+  55      4   0.2      4   0.2   1209  52.2        -  ASH
+  56      3   0.1     77   3.3   1212  52.3        -  3B-OPENVR::%GET-POSE-ACTION-DATA-RELATIVE-TO-NOW
+  57      3   0.1     19   0.8   1215  52.5        -  "foreign function mixed_segment_sequence_mix"
+  58      3   0.1      6   0.3   1218  52.6        -  SB-IMPL::GET-INFO-VALUE
+  59      3   0.1      5   0.2   1221  52.7        -  (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.| SB-PCL::|.P3.| SB-PCL::|.P4.| SB-PCL::|.P5.|))
+  60      3   0.1      5   0.2   1224  52.8        -  GET-INTERNAL-REAL-TIME
+  61      3   0.1      5   0.2   1227  53.0        -  (LAMBDA (SB-PCL::|.P0.|))
+  62      3   0.1      4   0.2   1230  53.1        -  "foreign function _Znwm"
+  63      3   0.1      4   0.2   1233  53.2        -  "foreign function _ZNSs9_M_mutateEmmm"
+  64      3   0.1      3   0.1   1236  53.4        -  (LAMBDA (SB-PCL::.ARG0.) :IN "SYS:SRC;PCL;BRAID.LISP")
+  65      3   0.1      3   0.1   1239  53.5        -  SB-ALIEN::MAKE-ALIEN-SINGLE-FLOAT-TYPE
+  66      3   0.1      3   0.1   1242  53.6        -  "foreign function clock_gettime"
+  67      3   0.1      3   0.1   1245  53.8        -  (FLET "CLEANUP-FUN-92" :IN SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING)
+  68      3   0.1      3   0.1   1248  53.9        -  "foreign function _ZNKSt8__detail20_Prime_rehash_policy14_M_need_rehashEmmm"
+  69      3   0.1      3   0.1   1251  54.0        -  (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF T)
+  70      3   0.1      3   0.1   1254  54.1        -  CL-GLFW3:WINDOW-SHOULD-CLOSE-P
+  71      3   0.1      3   0.1   1257  54.3        -  "foreign function _ZdlPv"
+  72      3   0.1      3   0.1   1260  54.4        -  "foreign function ffi_call"
+  73      3   0.1      3   0.1   1263  54.5        -  (LAMBDA (SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-OPTIMIZED-STD-READER-METHOD-FUNCTION)
+  74      3   0.1      3   0.1   1266  54.7        -  SB-IMPL::PACKED-INFO-VALUE-INDEX
+  75      3   0.1      3   0.1   1269  54.8        -  "foreign function arch_get_fp_modes"
+  76      3   0.1      3   0.1   1272  54.9        -  "foreign function XPending"
+  77      3   0.1      3   0.1   1275  55.1        -  (LAMBDA (SB-KERNEL::CACHE SB-KERNEL::OBJECT) :IN SB-KERNEL::CACHED-TYPEP)
+  78      3   0.1      3   0.1   1278  55.2        -  SB-KERNEL:%SINGLE-FLOAT
+  79      3   0.1      3   0.1   1281  55.3        -  "foreign function _ZNSs15_M_replace_safeEmmPKcm"
+  80      3   0.1      3   0.1   1284  55.4        -  VALUES
+  81      2   0.1    133   5.7   1286  55.5        -  (SB-PCL::EMF TRIAL:HANDLE)
+  82      2   0.1     78   3.4   1288  55.6        -  CFFI::PARSE-TYPE
+  83      2   0.1     63   2.7   1290  55.7        -  3B-OPENVR::SUBMIT
+  84      2   0.1     42   1.8   1292  55.8        -  (LAMBDA (SB-ALIEN::ARGS-POINTER SB-ALIEN::RESULT-POINTER FUNCTION) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cl-mixed-20190710-git/segments/virtual.lisp")
+  85      2   0.1     42   1.8   1294  55.9        -  SXHASH
+  86      2   0.1     36   1.6   1296  56.0        -  (SB-PCL::FAST-METHOD TRIAL:ALLOCATE (TRIAL:TEXTURE))
+  87      2   0.1     31   1.3   1298  56.0        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T 3B-OPENVR::INPUT-POSE-ACTION-DATA-T-TCLASS))
+  88      2   0.1     13   0.6   1300  56.1        -  CFFI-SYS:%FOREIGN-TYPE-SIZE
+  89      2   0.1      7   0.3   1302  56.2        -  SB-KERNEL:%MAP-FOR-EFFECT-ARITY-1
+  90      2   0.1      5   0.2   1304  56.3        -  CL-OPENGL-BINDINGS:UNIFORM-MATRIX-4FV
+  91      2   0.1      4   0.2   1306  56.4        -  "foreign function __clock_gettime"
+  92      2   0.1      4   0.2   1308  56.5        -  "foreign function __errno_location"
+  93      2   0.1      3   0.1   1310  56.6        -  CL-OPENGL-BINDINGS:BLIT-FRAMEBUFFER
+  94      2   0.1      3   0.1   1312  56.6        -  SB-VM:FLOATING-POINT-MODES
+  95      2   0.1      3   0.1   1314  56.7        -  (FLET SB-IMPL::F :IN SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT)
+  96      2   0.1      2   0.1   1316  56.8        -  "foreign function _ZNKSt8__detail20_Prime_rehash_policy11_M_next_bktEm"
+  97      2   0.1      2   0.1   1318  56.9        -  "foreign function _ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag"
+  98      2   0.1      2   0.1   1320  57.0        -  TRIAL-VR::DUMMY
+  99      2   0.1      2   0.1   1322  57.1        -  (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT (TRIAL:DISPLAY))
+ 100      2   0.1      2   0.1   1324  57.2        -  SB-IMPL::%MAKE-HASH-TABLE
+ 101      2   0.1      2   0.1   1326  57.3        -  (LAMBDA (SB-PCL::.PV. SB-PCL::.NEXT-METHOD-CALL. SB-KERNEL:INSTANCE) :IN SB-PCL::MAKE-STD-READER-METHOD-FUNCTION)
+ 102      2   0.1      2   0.1   1328  57.3        -  SB-KERNEL:%UNARY-TRUNCATE
+ 103      2   0.1      2   0.1   1330  57.4        -  ALEXANDRIA.1.0.0:ENSURE-LIST
+ 104      2   0.1      2   0.1   1332  57.5        -  "foreign function glViewport"
+ 105      2   0.1      2   0.1   1334  57.6        -  SB-SYS:SAP+
+ 106      2   0.1      2   0.1   1336  57.7        -  CFFI-SYS::CONVERT-FOREIGN-TYPE
+ 107      2   0.1      2   0.1   1338  57.8        -  CL-OPENGL-BINDINGS:ACTIVE-TEXTURE
+ 108      2   0.1      2   0.1   1340  57.9        -  "foreign function sb_nanosleep"
+ 109      2   0.1      2   0.1   1342  57.9        -  SB-ALIEN-INTERNALS:ENTER-ALIEN-CALLBACK
+ 110      2   0.1      2   0.1   1344  58.0        -  SB-KERNEL:EXTENDED-SEQUENCE-P
+ 111      2   0.1      2   0.1   1346  58.1        -  "foreign function _IO_vfprintf"
+ 112      2   0.1      2   0.1   1348  58.2        -  "foreign function _ZNSs6assignEPKcm"
+ 113      2   0.1      2   0.1   1350  58.3        -  (SB-IMPL::OPTIMIZED-DATA-VECTOR-REF SINGLE-FLOAT)
+ 114      1   0.0    653  28.2   1351  58.3        -  3B-OPENVR::%UPDATE-ACTION-STATE
+ 115      1   0.0    413  17.8   1352  58.4        -  (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP (TRIAL:RENDERABLE))
+ 116      1   0.0    270  11.7   1353  58.4        -  (SB-PCL::FAST-METHOD TRIAL:RENDER :AROUND (T TRIAL:DISPLAY))
+ 117      1   0.0    248  10.7   1354  58.5        -  (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SCENE T))
+ 118      1   0.0    138   6.0   1355  58.5        -  (SB-PCL::FAST-METHOD TRIAL:PROCESS :AROUND (TRIAL:SCENE))
+ 119      1   0.0    128   5.5   1356  58.5        -  (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:EVENT-LOOP))
+ 120      1   0.0     91   3.9   1357  58.6        -  (SB-PCL::EMF FLARE:PAINT)
+ 121      1   0.0     68   2.9   1358  58.6        -  (SB-PCL::FAST-METHOD CFFI:FOREIGN-TYPE-SIZE (T))
+ 122      1   0.0     53   2.3   1359  58.7        -  (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW (TRIAL-VR::HEAD T))
+ 123      1   0.0     45   1.9   1360  58.7        -  "foreign function callback_wrapper_trampoline"
+ 124      1   0.0     42   1.8   1361  58.8        -  (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AROUND (TRIAL:RESOURCE))
+ 125      1   0.0     40   1.7   1362  58.8        -  (LAMBDA (HARMONY:SAMPLES HARMONY:SEGMENT) :IN "/home/selwyn/quicklisp/local-projects/harmony/drain.lisp")
+ 126      1   0.0     38   1.6   1363  58.9        -  (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:TEXTURED-ENTITY T))
+ 127      1   0.0     34   1.5   1364  58.9        -  (SB-PCL::FAST-METHOD HARMONY:PROCESS :AROUND (HARMONY:PACK-DRAIN T))
+ 128      1   0.0     33   1.4   1365  58.9        -  (LAMBDA (TRIAL-VR::CUBE TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial-vr/src/emacs-cube.lisp")
+ 129      1   0.0     30   1.3   1366  59.0        -  (SB-PCL::EMF TRIAL:DEALLOCATE)
+ 130      1   0.0     27   1.2   1367  59.0        -  "foreign function mixed_buffer_to_packed_audio"
+ 131      1   0.0     22   0.9   1368  59.1        -  (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:ROTATED-ENTITY T))
+ 132      1   0.0     20   0.9   1369  59.1        -  3B-OPENVR::%GET-EYE-TO-HEAD-TRANSFORM
+ 133      1   0.0     18   0.8   1370  59.2        -  3B-OPENVR::%GET-PROJECTION-MATRIX
+ 134      1   0.0     11   0.5   1371  59.2        -  (SB-PCL::FAST-METHOD TRIAL:POLL-INPUT :AFTER (TRIAL::GAMEPAD-INPUT-HANDLER))
+ 135      1   0.0     10   0.4   1372  59.2        -  (LAMBDA (CFFI::NAME) :IN "/home/selwyn/quicklisp/dists/quicklisp/software/cffi_0.20.1/src/types.lisp")
+ 136      1   0.0      9   0.4   1373  59.3        -  (SB-PCL::FAST-METHOD FLOW:PORTS (FLOW:STATIC-NODE))
+ 137      1   0.0      6   0.3   1374  59.3        -  SB-KERNEL:SPECIFIER-TYPE
+ 138      1   0.0      6   0.3   1375  59.4        -  (FLET TRIAL::THUNK :IN TRIAL:ALLOCATE-TEXTURE-STORAGE)
+ 139      1   0.0      6   0.3   1376  59.4        -  CFFI:FOREIGN-ENUM-VALUE
+ 140      1   0.0      5   0.2   1377  59.5        -  SB-KERNEL::SPECIFIER-TYPE-R
+ 141      1   0.0      4   0.2   1378  59.5        -  SB-KERNEL::VALUES-SPECIFIER-TYPE-R
+ 142      1   0.0      3   0.1   1379  59.5        -  FLOW::PORT-SLOT-VALUE
+ 143      1   0.0      3   0.1   1380  59.6        -  (SB-PCL::FAST-METHOD HARMONY:PROCESS (HARMONY-ALSA:ALSA-DRAIN T))
+ 144      1   0.0      3   0.1   1381  59.6        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T 3B-OPENVR::VR-ACTIVE-ACTION-SET-T-TCLASS T))
+ 145      1   0.0      3   0.1   1382  59.7        -  FIND
+ 146      1   0.0      2   0.1   1383  59.7        -  (SB-PCL::EMF FLARE:UPDATE)
+ 147      1   0.0      2   0.1   1384  59.8        -  "foreign function pa_stream_writable_size"
+ 148      1   0.0      2   0.1   1385  59.8        -  "foreign function __vdso_gettimeofday"
+ 149      1   0.0      2   0.1   1386  59.8        -  "foreign function _XSend"
+ 150      1   0.0      2   0.1   1387  59.9        -  (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:SUBJECT-HANDLER))
+ 151      1   0.0      2   0.1   1388  59.9        -  (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT :AROUND (FOR-ITERATOR:ITERATOR))
+ 152      1   0.0      2   0.1   1389  60.0        -  TRIAL:MAP-EVENT
+ 153      1   0.0      1   0.0   1390  60.0        -  "foreign function glfwSwapBuffers"
+ 154      1   0.0      1   0.0   1391  60.1        -  TRIAL-VR::SB->3D
+ 155      1   0.0      1   0.0   1392  60.1        -  SB-IMPL::EQ-HASH
+ 156      1   0.0      1   0.0   1393  60.1        -  (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (FLARE:CLOCK))
+ 157      1   0.0      1   0.0   1394  60.2        -  (SB-PCL::FAST-METHOD TRIAL:ALLOCATE :AFTER (TRIAL:RESOURCE))
+ 158      1   0.0      1   0.0   1395  60.2        -  "foreign function pa_stream_write"
+ 159      1   0.0      1   0.0   1396  60.3        -  (SB-PCL::FAST-METHOD TRIAL::ACQUIRE-CONTEXT (TRIAL:CONTEXT))
+ 160      1   0.0      1   0.0   1397  60.3        -  SB-KERNEL:VECTOR-FILL*
+ 161      1   0.0      1   0.0   1398  60.4        -  SB-ALIEN::ALIEN-SINGLE-FLOAT-TYPE-TRANSLATOR
+ 162      1   0.0      1   0.0   1399  60.4        -  (SB-PCL::FAST-METHOD TRIAL:ALLOCATED-P (TRIAL:FOREIGN-RESOURCE))
+ 163      1   0.0      1   0.0   1400  60.4        -  (SB-PCL::FAST-METHOD TRIAL:WIDTH (TRIAL:TEXTURE))
+ 164      1   0.0      1   0.0   1401  60.5        -  3D-VECTORS::2VEC-V=
+ 165      1   0.0      1   0.0   1402  60.5        -  (SB-PCL::EMF FOR-ITERATOR:MAKE-ITERATOR)
+ 166      1   0.0      1   0.0   1403  60.6        -  "foreign function glfwPollEvents"
+ 167      1   0.0      1   0.0   1404  60.6        -  (LAMBDA (SB-PCL::.ARG0. SB-PCL::.ARG1.) :IN "SYS:SRC;PCL;DLISP3.LISP")
+ 168      1   0.0      1   0.0   1405  60.7        -  (SB-PCL::FAST-METHOD TRIAL:HANDLE :BEFORE (FLARE:TICK TRIAL:SCENE))
+ 169      1   0.0      1   0.0   1406  60.7        -  3D-MATRICES::2MAT-M*
+ 170      1   0.0      1   0.0   1407  60.8        -  "foreign function _ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_"
+ 171      1   0.0      1   0.0   1408  60.8        -  (SB-PCL::FAST-METHOD TRIAL:WIDTH (TRIAL:DISPLAY))
+ 172      1   0.0      1   0.0   1409  60.8        -  "foreign function __glDispatchCheckMultithreaded"
+ 173      1   0.0      1   0.0   1410  60.9        -  (SB-PCL::EMF TRIAL::ACQUIRE-CONTEXT)
+ 174      1   0.0      1   0.0   1411  60.9        -  EQL
+ 175      1   0.0      1   0.0   1412  61.0        -  (FLET "BODY-FUN-8" :IN SB-KERNEL:%PUTHASH)
+ 176      1   0.0      1   0.0   1413  61.0        -  "foreign function _IO_default_xsputn"
+ 177      1   0.0      1   0.0   1414  61.1        -  (SB-PCL::FAST-METHOD TRIAL:PROJECT-VIEW :BEFORE (TRIAL:CAMERA T))
+ 178      1   0.0      1   0.0   1415  61.1        -  3D-VECTORS:VEC-P
+ 179      1   0.0      1   0.0   1416  61.1        -  SB-KERNEL:TWO-ARG-*
+ 180      1   0.0      1   0.0   1417  61.2        -  (SB-PCL::FAST-METHOD FOR-ITERATOR:HAS-MORE (FLARE-QUEUE::QUEUE-ITERATOR))
+ 181      1   0.0      1   0.0   1418  61.2        -  %CL-GLFW3:POLL-EVENTS
+ 182      1   0.0      1   0.0   1419  61.3        -  SB-C::CHECK-DS-LIST
+ 183      1   0.0      1   0.0   1420  61.3        -  (SB-PCL::FAST-METHOD FLARE:TARGET (TRIAL:TEXTURE))
+ 184      1   0.0      1   0.0   1421  61.4        -  (LAMBDA (SB-PCL::|.P0.| SB-PCL::|.P1.| SB-PCL::|.P2.|))
+ 185      1   0.0      1   0.0   1422  61.4        -  (SB-PCL::FAST-METHOD FOR-ITERATOR:NEXT (FLARE-QUEUE::QUEUE-ITERATOR))
+ 186      1   0.0      1   0.0   1423  61.4        -  "foreign function XextFindDisplay"
+ 187      1   0.0      1   0.0   1424  61.5        -  "foreign function xcb_writev"
+ 188      1   0.0      1   0.0   1425  61.5        -  SB-PCL::FIND-SLOT-CELL
+ 189      1   0.0      1   0.0   1426  61.6        -  HARMONY-ALSA-CFFI:PCM-WRITEI
+ 190      1   0.0      1   0.0   1427  61.6        -  SB-KERNEL:HAIRY-DATA-VECTOR-REF/CHECK-BOUNDS
+ 191      1   0.0      1   0.0   1428  61.7        -  CL-GAMEPAD-CFFI:GAMEPAD-PROCESS-EVENTS
+ 192      1   0.0      1   0.0   1429  61.7        -  "foreign function pthread_sigmask"
+ 193      1   0.0      1   0.0   1430  61.7        -  3D-MATRICES:MTRANSPOSE
+ 194      1   0.0      1   0.0   1431  61.8        -  SB-KERNEL:TWO-ARG-/
+ 195      1   0.0      1   0.0   1432  61.8        -  (LAMBDA (#:EVENT0) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp")
+ 196      1   0.0      1   0.0   1433  61.9        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-FROM-FOREIGN (T CFFI::FOREIGN-ENUM))
+ 197      1   0.0      1   0.0   1434  61.9        -  CL-OPENGL-BINDINGS:CHECK-ERROR
+ 198      1   0.0      1   0.0   1435  62.0        -  SB-KERNEL:TWO-ARG-=
+ 199      1   0.0      1   0.0   1436  62.0        -  3D-MATRICES:MINV
+ 200      1   0.0      1   0.0   1437  62.0        -  LENGTH
+ 201      1   0.0      1   0.0   1438  62.1        -  (LAMBDA NIL :IN CFFI::NOTICE-FOREIGN-TYPE)
+ 202      1   0.0      1   0.0   1439  62.1        -  SB-KERNEL:HAIRY-DATA-VECTOR-SET/CHECK-BOUNDS
+ 203      1   0.0      1   0.0   1440  62.2        -  CFFI-SYS:%MEM-SET
+ 204      1   0.0      1   0.0   1441  62.2        -  "foreign function _XGetRequest"
+ 205      1   0.0      1   0.0   1442  62.3        -  "foreign function vkGetQueryPoolResults"
+ 206      0   0.0   1529  66.0   1442  62.3        -  (FLET SB-UNIX::BODY :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE)
+ 207      0   0.0   1529  66.0   1442  62.3        -  (FLET "WITHOUT-INTERRUPTS-BODY-4" :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE)
+ 208      0   0.0   1529  66.0   1442  62.3        -  (FLET SB-THREAD::WITH-MUTEX-THUNK :IN SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE)
+ 209      0   0.0   1529  66.0   1442  62.3        -  (FLET "WITHOUT-INTERRUPTS-BODY-1" :IN SB-THREAD::CALL-WITH-MUTEX)
+ 210      0   0.0   1529  66.0   1442  62.3        -  SB-THREAD::CALL-WITH-MUTEX
+ 211      0   0.0   1529  66.0   1442  62.3        -  SB-THREAD::INITIAL-THREAD-FUNCTION-TRAMPOLINE
+ 212      0   0.0   1529  66.0   1442  62.3        -  "foreign function call_into_lisp"
+ 213      0   0.0   1529  66.0   1442  62.3        -  "foreign function new_thread_trampoline"
+ 214      0   0.0   1049  45.3   1442  62.3        -  TRIAL:LAUNCH
+ 215      0   0.0   1049  45.3   1442  62.3        -  SB-INT:SIMPLE-EVAL-IN-LEXENV
+ 216      0   0.0   1049  45.3   1442  62.3        -  EVAL
+ 217      0   0.0   1049  45.3   1442  62.3        -  SWANK::EVAL-REGION
+ 218      0   0.0   1049  45.3   1442  62.3        -  (LAMBDA NIL :IN SWANK-REPL::REPL-EVAL)
+ 219      0   0.0   1049  45.3   1442  62.3        -  SWANK-REPL::TRACK-PACKAGE
+ 220      0   0.0   1049  45.3   1442  62.3        -  SWANK::CALL-WITH-RETRY-RESTART
+ 221      0   0.0   1049  45.3   1442  62.3        -  SWANK::CALL-WITH-BUFFER-SYNTAX
+ 222      0   0.0   1049  45.3   1442  62.3        -  SWANK-REPL::REPL-EVAL
+ 223      0   0.0   1049  45.3   1442  62.3        -  SWANK:EVAL-FOR-EMACS
+ 224      0   0.0   1049  45.3   1442  62.3        -  SWANK::PROCESS-REQUESTS
+ 225      0   0.0   1049  45.3   1442  62.3        -  (LAMBDA NIL :IN SWANK::HANDLE-REQUESTS)
+ 226      0   0.0   1049  45.3   1442  62.3        -  SWANK/SBCL::CALL-WITH-BREAK-HOOK
+ 227      0   0.0   1049  45.3   1442  62.3        -  (FLET SWANK/BACKEND:CALL-WITH-DEBUGGER-HOOK :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp")
+ 228      0   0.0   1049  45.3   1442  62.3        -  SWANK::CALL-WITH-BINDINGS
+ 229      0   0.0   1049  45.3   1442  62.3        -  SWANK::HANDLE-REQUESTS
+ 230      0   0.0    478  20.6   1442  62.3        -  (LAMBDA NIL :IN BORDEAUX-THREADS::BINDING-DEFAULT-SPECIALS)
+ 231      0   0.0    413  17.8   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL::RENDER-LOOP :AROUND (TRIAL:DISPLAY))
+ 232      0   0.0    413  17.8   1442  62.3        -  (LAMBDA NIL :IN TRIAL:MAKE-THREAD)
+ 233      0   0.0    393  17.0   1442  62.3        -  "foreign function __poll"
+ 234      0   0.0    256  11.1   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:MAIN TRIAL:MAIN))
+ 235      0   0.0    248  10.7   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:PAINT-WITH (TRIAL:PIPELINE T))
+ 236      0   0.0    143   6.2   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL-VR::COMPOSITOR-RENDER-PASS))
+ 237      0   0.0    137   5.9   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:PROCESS (TRIAL:EVENT-LOOP))
+ 238      0   0.0    127   5.5   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:HANDLE (T TRIAL:HANDLER-CONTAINER))
+ 239      0   0.0     76   3.3   1442  62.3        -  TRIAL-VR::GET-LATEST-HMD-POSE
+ 240      0   0.0     75   3.2   1442  62.3        -  3B-OPENVR::WAIT-GET-POSES
+ 241      0   0.0     70   3.0   1442  62.3        -  3B-OPENVR::%WAIT-GET-POSES
+ 242      0   0.0     65   2.8   1442  62.3        -  (SB-PCL::FAST-METHOD HARMONY:RUN (HARMONY:SERVER))
+ 243      0   0.0     65   2.8   1442  62.3        -  (LAMBDA NIL :IN HARMONY:START)
+ 244      0   0.0     63   2.7   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:PIPELINED-SCENE TRIAL:SHADER-PASS))
+ 245      0   0.0     62   2.7   1442  62.3        -  CL-MIXED-CFFI:SEGMENT-SEQUENCE-MIX
+ 246      0   0.0     59   2.5   1442  62.3        -  3B-OPENVR::%SUBMIT
+ 247      0   0.0     54   2.3   1442  62.3        -  (SB-PCL::EMF TRIAL:PROJECT-VIEW)
+ 248      0   0.0     44   1.9   1442  62.3        -  "foreign function funcall_alien_callback"
+ 249      0   0.0     41   1.8   1442  62.3        -  (SB-PCL::EMF TRIAL:ALLOCATE)
+ 250      0   0.0     30   1.3   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AROUND (TRIAL:RESOURCE))
+ 251      0   0.0     27   1.2   1442  62.3        -  (SB-PCL::FAST-METHOD CFFI:TRANSLATE-INTO-FOREIGN-MEMORY (T CFFI::FOREIGN-BUILT-IN-TYPE T))
+ 252      0   0.0     25   1.1   1442  62.3        -  CL-OPENGL:DELETE-TEXTURES
+ 253      0   0.0     24   1.0   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:LOCATED-ENTITY T))
+ 254      0   0.0     22   0.9   1442  62.3        -  TRIAL-VR::GET-EYE-POSE
+ 255      0   0.0     21   0.9   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL:SHADER-ENTITY TRIAL:PER-OBJECT-PASS))
+ 256      0   0.0     19   0.8   1442  62.3        -  "foreign function write"
+ 257      0   0.0     18   0.8   1442  62.3        -  TRIAL-VR::GET-EYE-PROJECTION
+ 258      0   0.0     17   0.7   1442  62.3        -  "foreign function __sched_yield"
+ 259      0   0.0     16   0.7   1442  62.3        -  CFFI::MEM-SET
+ 260      0   0.0     13   0.6   1442  62.3        -  SB-VM::%FLOATING-POINT-MODES-SETTER
+ 261      0   0.0     10   0.4   1442  62.3        -  TRIAL:PREPARE-PASS-PROGRAM
+ 262      0   0.0     10   0.4   1442  62.3        -  CFFI::CHECK-FOR-TYPEDEF-CYCLES
+ 263      0   0.0      9   0.4   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:SKYBOX TRIAL:SHADER-PASS))
+ 264      0   0.0      9   0.4   1442  62.3        -  "foreign function ffi_call_unix64"
+ 265      0   0.0      8   0.3   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT (TRIAL:VERTEX-ENTITY TRIAL:SHADER-PASS))
+ 266      0   0.0      7   0.3   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:SHADER-PROGRAM-FOR-PASS (TRIAL:PER-OBJECT-PASS TRIAL:SHADER-ENTITY))
+ 267      0   0.0      7   0.3   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:HANDLE :AROUND (T TRIAL:HANDLER))
+ 268      0   0.0      7   0.3   1442  62.3        -  SB-KERNEL:%MAP
+ 269      0   0.0      7   0.3   1442  62.3        -  SB-IMPL::VECTOR-MAP-INTO/SIMPLE-ARRAY-SINGLE-FLOAT
+ 270      0   0.0      7   0.3   1442  62.3        -  3D-MATRICES:MAT4
+ 271      0   0.0      6   0.3   1442  62.3        -  SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK
+ 272      0   0.0      6   0.3   1442  62.3        -  TYPEP
+ 273      0   0.0      6   0.3   1442  62.3        -  CL-OPENGL-BINDINGS:BIND-FRAMEBUFFER
+ 274      0   0.0      5   0.2   1442  62.3        -  SB-ALIEN-INTERNALS:PARSE-ALIEN-TYPE
+ 275      0   0.0      5   0.2   1442  62.3        -  "foreign function pthread_cond_timedwait"
+ 276      0   0.0      5   0.2   1442  62.3        -  "foreign function __libc_calloc"
+ 277      0   0.0      5   0.2   1442  62.3        -  "foreign function pthread_cond_signal"
+ 278      0   0.0      5   0.2   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL::ACTIVATE (TRIAL:FRAMEBUFFER))
+ 279      0   0.0      5   0.2   1442  62.3        -  CFFI::ENSURE-PARSED-BASE-TYPE
+ 280      0   0.0      4   0.2   1442  62.3        -  FINALIZE
+ 281      0   0.0      3   0.1   1442  62.3        -  "foreign function pa_frame_size"
+ 282      0   0.0      3   0.1   1442  62.3        -  SB-THREAD::CALL-WITH-RECURSIVE-SYSTEM-LOCK/WITHOUT-GCING
+ 283      0   0.0      3   0.1   1442  62.3        -  CFFI::LIBFFI/CALL
+ 284      0   0.0      3   0.1   1442  62.3        -  3D-MATRICES:NMROTATE
+ 285      0   0.0      3   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD SB-MOP:SLOT-VALUE-USING-CLASS (FLOW:STATIC-NODE-CLASS T FLOW::EFFECTIVE-PORT-DEFINITION))
+ 286      0   0.0      3   0.1   1442  62.3        -  CL-OPENGL-BINDINGS:USE-PROGRAM
+ 287      0   0.0      2   0.1   1442  62.3        -  "foreign function __pthread_getspecific"
+ 288      0   0.0      2   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:UPDATE :AROUND (T))
+ 289      0   0.0      2   0.1   1442  62.3        -  SLOT-VALUE
+ 290      0   0.0      2   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT :AROUND (TRIAL-VR::POSED-ENTITY T))
+ 291      0   0.0      2   0.1   1442  62.3        -  CANCEL-FINALIZATION
+ 292      0   0.0      2   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE :AFTER (TRIAL:FOREIGN-RESOURCE))
+ 293      0   0.0      2   0.1   1442  62.3        -  "foreign function XGetWindowAttributes"
+ 294      0   0.0      2   0.1   1442  62.3        -  3B-OPENVR::GET-EYE-TO-HEAD-TRANSFORM
+ 295      0   0.0      2   0.1   1442  62.3        -  "foreign function pa_stream_write_ext_free"
+ 296      0   0.0      2   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD STREAM-FORCE-OUTPUT :AROUND (SWANK/GRAY::SLIME-OUTPUT-STREAM))
+ 297      0   0.0      2   0.1   1442  62.3        -  FORCE-OUTPUT
+ 298      0   0.0      2   0.1   1442  62.3        -  SWANK/BACKEND:AUTO-FLUSH-LOOP
+ 299      0   0.0      2   0.1   1442  62.3        -  (FLET "CLEANUP-FUN-1")
+ 300      0   0.0      2   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:DEALLOCATE (TRIAL:FOREIGN-RESOURCE))
+ 301      0   0.0      2   0.1   1442  62.3        -  (SB-PCL::FAST-METHOD FLOW:PORT (FLOW:STATIC-NODE SYMBOL))
+ 302      0   0.0      2   0.1   1442  62.3        -  "foreign function pa_pstream_send_memblock"
+ 303      0   0.0      2   0.1   1442  62.3        -  TRIAL:ALLOCATE-TEXTURE-STORAGE
+ 304      0   0.0      2   0.1   1442  62.3        -  "foreign function _XVIDtoVisual"
+ 305      0   0.0      2   0.1   1442  62.3        -  3D-MATRICES:NMTRANSLATE
+ 306      0   0.0      2   0.1   1442  62.3        -  (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp")
+ 307      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_memblock_new_pool"
+ 308      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_sample_spec_valid"
+ 309      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_queue_push"
+ 310      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_context_get_state"
+ 311      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_mutex_lock"
+ 312      0   0.0      1   0.0   1442  62.3        -  (FLET "WITHOUT-INTERRUPTS-BODY-29" :IN SB-THREAD::CALL-WITH-RECURSIVE-LOCK)
+ 313      0   0.0      1   0.0   1442  62.3        -  SB-THREAD::CALL-WITH-RECURSIVE-LOCK
+ 314      0   0.0      1   0.0   1442  62.3        -  (FLET SWANK/BACKEND:CALL-WITH-LOCK-HELD :IN "/home/selwyn/quicklisp/dists/quicklisp/software/slime-v2.24/swank/sbcl.lisp")
+ 315      0   0.0      1   0.0   1442  62.3        -  (SB-PCL::FAST-METHOD STREAM-FINISH-OUTPUT (SWANK/GRAY::SLIME-OUTPUT-STREAM))
+ 316      0   0.0      1   0.0   1442  62.3        -  (LABELS SB-IMPL::BIND-DEADLINE-AND-CALL :IN STREAM-FORCE-OUTPUT)
+ 317      0   0.0      1   0.0   1442  62.3        -  "foreign function realloc"
+ 318      0   0.0      1   0.0   1442  62.3        -  "foreign function xcb_poll_for_event"
+ 319      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_detect_fork"
+ 320      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-1")
+ 321      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_stream_get_state"
+ 322      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-108" :IN CL-OPENGL-BINDINGS:TEX-IMAGE-2D)
+ 323      0   0.0      1   0.0   1442  62.3        -  CL-OPENGL-BINDINGS:UNIFORM-4F
+ 324      0   0.0      1   0.0   1442  62.3        -  (LAMBDA (TRIAL:CONTROLLER TRIAL::EV) :IN "/home/selwyn/quicklisp/local-projects/trial/controller.lisp")
+ 325      0   0.0      1   0.0   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:DESTRUCTOR (TRIAL:TEXTURE))
+ 326      0   0.0      1   0.0   1442  62.3        -  "foreign function _XReply"
+ 327      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_thread_self"
+ 328      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_run_once"
+ 329      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-250" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I)
+ 330      0   0.0      1   0.0   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:UPDATE :BEFORE (FLARE:CLOCK))
+ 331      0   0.0      1   0.0   1442  62.3        -  "foreign function _ZNSs4_Rep9_S_createEmmRKSaIcE"
+ 332      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-1")
+ 333      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-362" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-I)
+ 334      0   0.0      1   0.0   1442  62.3        -  SB-KERNEL:%PUTHASH
+ 335      0   0.0      1   0.0   1442  62.3        -  (SB-PCL::FAST-METHOD TRIAL:UPDATE (TRIAL:MAIN T T T))
+ 336      0   0.0      1   0.0   1442  62.3        -  CL-OPENGL:GEN-TEXTURE
+ 337      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_memblock_unref"
+ 338      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-70" :IN CL-OPENGL-BINDINGS:TEX-PARAMETER-F)
+ 339      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-149" :IN CL-OPENGL-BINDINGS:DEPTH-MASK)
+ 340      0   0.0      1   0.0   1442  62.3        -  "foreign function interrupt_handle_pending"
+ 341      0   0.0      1   0.0   1442  62.3        -  "foreign function handle_trap"
+ 342      0   0.0      1   0.0   1442  62.3        -  "foreign function snd_pcm_bytes_to_frames"
+ 343      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-6" :IN FLARE:PAINT)
+ 344      0   0.0      1   0.0   1442  62.3        -  (SB-PCL::FAST-METHOD FOR-ITERATOR:MAKE-ITERATOR (FLARE-QUEUE:QUEUE))
+ 345      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-72" :IN TRIAL:RENDER)
+ 346      0   0.0      1   0.0   1442  62.3        -  (FLET "CLEANUP-FUN-21" :IN CL-OPENGL-BINDINGS:BIND-TEXTURE)
+ 347      0   0.0      1   0.0   1442  62.3        -  "foreign function XFlush"
+ 348      0   0.0      1   0.0   1442  62.3        -  (SB-PCL::FAST-METHOD FLARE:PAINT :BEFORE (TRIAL:COLORED-ENTITY TRIAL:SHADER-PASS))
+ 349      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_once_begin"
+ 350      0   0.0      1   0.0   1442  62.3        -  "foreign function pa_thread_is_running"
+------------------------------------------------------------------------
+        875  37.8                                     elsewhere

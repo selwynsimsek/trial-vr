@@ -38,8 +38,6 @@
         (right-eye-pose (get-eye-pose :right))
         (current-eye-pose (get-eye-pose (current-eye camera)))
         (hmd-pose (hmd-pose camera)))
-    (3d-matrices:nm* trial:*projection-matrix*
-                     (get-eye-projection (current-eye camera)))
     (setf (trial:projection-matrix)
           (3d-matrices:mtranspose (get-eye-projection (current-eye camera)))
           (trial:view-matrix)
