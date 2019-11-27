@@ -22,7 +22,6 @@
   (defun wait-get-poses ()
     (vr::wait-get-poses poses nil))
   (defun get-latest-hmd-pose ()
-    (vr::wait-get-poses poses nil)
     (if (aref poses vr::+tracked-device-index-hmd+)
         (sb->3d (vr::device-to-absolute-tracking (aref poses vr::+tracked-device-index-hmd+)))
         (3d-matrices:meye 4))))
