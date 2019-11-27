@@ -1,5 +1,5 @@
 steamvr registers 67hz frame rate but trial at 44hz! what's going on?
-
+steamvr could be using reprojection and locking trial at that rate.
 
 Number of samples:   2316
 Sample interval:     0.01 seconds
