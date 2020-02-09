@@ -4,12 +4,14 @@
 (in-package :trial-vr)
 
 (trial:define-asset (workbench controller-body-mesh) trial::mesh
-    (gethash
-     "<dummy_root>"
-     (trial:meshes
-      (trial:read-geometry
-       (asdf:system-relative-pathname :trial-vr #p"assets/vr_controller_vive_1_5/controller.obj")
-       :wavefront))))
+    (let ((mesh (gethash
+                 "controller.obj"
+                 (trial:meshes
+                  (trial:read-geometry
+                   (asdf:system-relative-pathname :trial-vr #p"assets/vr_controller_vive_1_5/controller.obj")
+                   :wavefront)))))
+      (setf (trial:face-length mesh) 3)
+      mesh))
 
 (trial:define-asset (workbench controller-body-diffuse) trial::image
     (asdf:system-relative-pathname

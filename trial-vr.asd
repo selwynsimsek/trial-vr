@@ -21,6 +21,7 @@
                  (:file "rendering")
                  (:file "event-handling")
                  (:file "physics")
+                 (:file "particle")
                  (:file "debug")
                  (:file "render-models"))))
   :description ""

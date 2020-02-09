@@ -24,5 +24,6 @@
                  scene)
     (trial:enter (make-instance 'cube) scene)
     (trial:enter (make-instance 'actor) scene)
-    (trial:enter (make-instance 'controller-body) scene))
+    (trial:enter (make-instance 'controller-body) scene)
+    (trial:enter (make-instance 'fireworks) scene))
   (trial:maybe-reload-scene))
