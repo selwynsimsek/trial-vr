@@ -7,7 +7,8 @@
   ((action-set :initarg :action-set :initform nil :accessor action-set)
    (pose-action :initarg :pose-action :initform nil :accessor pose-action)
    (button-action :initarg :button-action :initform nil :accessor button-action)
-   (pose :initarg :pose :initform nil :accessor pose)))
+   (pose :initarg :pose :initform nil :accessor pose)
+   (button :initarg :button :initform nil :accessor button)))
 
 (defvar *action-manifest-path* "/home/selwyn/openvr/samples/bin/hellovr_actions.json")
 
@@ -35,5 +36,8 @@
       (setf (pose handler)
             (dummy (vr::device-to-absolute-tracking
                     (vr::pose
-                     (vr::pose-action-data-relative-to-now (pose-action handler) :standing 0.0)))))
+                     (vr::pose-action-data-relative-to-now (pose-action handler) :standing 0.0))))
+            (button handler)
+            (vr::digital-action-data (button-action handler)))
+    
     (t () (progn ))))

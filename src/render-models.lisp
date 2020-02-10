@@ -10,7 +10,7 @@
                   (trial:read-geometry
                    (asdf:system-relative-pathname :trial-vr #p"assets/vr_controller_vive_1_5/controller.obj")
                    :wavefront)))))
-      (setf (trial:face-length mesh) 3)
+    ;  (setf (trial:face-length mesh) 3)
       mesh))
 
 (trial:define-asset (workbench controller-body-diffuse) trial::image
@@ -31,6 +31,8 @@
     (setf (pose controller-body) matrix)))
 
 (defmethod trial:paint :around ((obj posed-entity) target)
-  (when (pose obj)
-    (3d-matrices:nm* trial:*model-matrix* (3d-matrices:mtranspose (sb->3d (pose obj)))))
-  (call-next-method))
+  (if (pose obj)
+      (let ((trial:*model-matrix* (3d-matrices:m* trial:*model-matrix* (3d-matrices:mtranspose (sb->3d (pose obj))))))
+        (call-next-method))
+      (call-next-method)))
+; do this better!
