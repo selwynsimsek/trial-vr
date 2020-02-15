@@ -31,11 +31,13 @@
 
 (defun controller-pose ()
   "Convenience method to return the pose of either connected controller. Not good to use this in production."
-  (let ((left-pose (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Left"
-                                                           (trial:handler trial:*context*)))))
-        (right-pose (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Right"
-                                                            (trial:handler trial:*context*))))))
-    (if (eq :running-ok (vr::tracking-result left-pose))
-        (vr::device-to-absolute-tracking left-pose)
-        (when (eq :running-ok (vr::tracking-result right-pose))
-          (vr::device-to-absolute-tracking right-pose)))))
+  (handler-case
+      (let ((left-pose (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Left"
+                                                               (trial:handler trial:*context*)))))
+            (right-pose (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Right"
+                                                                (trial:handler trial:*context*))))))
+        (if (eq :running-ok (vr::tracking-result left-pose))
+            (vr::device-to-absolute-tracking left-pose)
+            (when (eq :running-ok (vr::tracking-result right-pose))
+              (vr::device-to-absolute-tracking right-pose))))
+    (t () (progn ))))
