@@ -1,0 +1,138 @@
+{
+   "bindings" : {
+      "/actions/trial_vr" : {
+         "poses" : [
+            {
+               "output" : "/actions/trial_vr/in/hand_left",
+               "path" : "/user/hand/left/pose/raw"
+            },
+            {
+               "output" : "/actions/trial_vr/in/hand_right",
+               "path" : "/user/hand/right/pose/raw"
+            }
+         ],
+         "haptics" : [
+            {
+               "output" : "/actions/trial_vr/out/haptic_right",
+               "path" : "/user/hand/right/output/haptic"
+            },
+            {
+               "output" : "/actions/trial_vr/out/haptic_left",
+               "path" : "/user/hand/left/output/haptic"
+            }
+         ],
+          "skeleton" : [
+              {
+               "output" : "/actions/trial_vr/in/skeleton_left",
+               "path" : "/user/hand/left/input/skeleton/left"
+            },
+            {
+               "output" : "/actions/trial_vr/in/skeleton_right",
+               "path" : "/user/hand/right/input/skeleton/right"
+            }
+         ],
+         "sources" : [
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/trigger_right"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/trigger_left"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/grip_left"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/grip"
+            },
+             {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/grip_right"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/application_button_right"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/application_button_left"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/application_menu"
+            },
+             {
+                 "inputs" : {
+                     "click" : {
+                     "output" : "/actions/trial_vr/in/system_button_left"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/system"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/system_button_right"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/system"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/touchpad_click_left"
+                  },
+                  "position" : {
+                     "output" : "/actions/trial_vr/in/touchpad_left"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/trial_vr/in/touchpad_click_right"
+                  },
+                  "position" : {
+                     "output" : "/actions/trial_vr/in/touchpad_right"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            }
+
+         ]
+      }
+   },
+   "controller_type" : "vive_controller",
+   "description" : "Bindings for the trial-vr engine for a generic controller",
+   "name" : "Bindings for a generic controller"
+}

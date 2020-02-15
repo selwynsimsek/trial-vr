@@ -1,0 +1,107 @@
+{
+      "default_bindings": [
+         {
+            "controller_type" : "vive_controller",
+            "binding_url" : "bindings_vive_controller.json"
+         }
+      ], 
+  "actions": [
+    {
+      "name": "/actions/trial_vr/in/trigger_left",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/trigger_right",
+      "type": "boolean"
+    },
+      {
+      "name": "/actions/trial_vr/in/application_button_left",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/application_button_right",
+      "type": "boolean"
+    },
+      {
+      "name": "/actions/trial_vr/in/system_button_left",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/system_button_right",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/grip_left",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/grip_right",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/touchpad_click_left",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/touchpad_click_right",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/trial_vr/in/touchpad_left",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/trial_vr/in/touchpad_right",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/trial_vr/in/Hand_Right",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/trial_vr/in/Hand_Left",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/trial_vr/out/haptic_left",
+      "type": "vibration"
+    },
+      {
+          "name": "/actions/trial_vr/out/haptic_right",
+          "type": "vibration"
+      },
+      {
+          "name": "/actions/trial_vr/in/skeleton_left",
+          "type": "skeleton",
+          "skeleton": "/skeleton/hand/left"
+      },
+      {
+          "name": "/actions/trial_vr/in/skeleton_right",
+          "type": "skeleton",
+          "skeleton": "/skeleton/hand/right"
+      }
+  ],
+    "localization" : [
+        {
+            "language_tag": "en_US",
+            "/actions/trial_vr/in/trigger_left" : "Trigger Left",
+            "/actions/trial_vr/in/trigger_right" : "Trigger Right",
+            "/actions/trial_vr/in/application_button_left" : "Application Button Left",
+            "/actions/trial_vr/in/application_button_right" : "Application Button Right",
+            "/actions/trial_vr/in/system_button_left" : "System Button Left",
+            "/actions/trial_vr/in/system_button_right" : "System Button Right",
+            "/actions/trial_vr/in/grip_left" : "Grip Left",
+            "/actions/trial_vr/in/grip_right" : "Grip Right",
+            "/actions/trial_vr/in/touchpad_left" : "Touchpad Left",
+            "/actions/trial_vr/in/touchpad_right" : "Touchpad Right",
+            "/actions/trial_vr/in/touchpad_click_left" : "Touchpad Click Left",
+            "/actions/trial_vr/in/touchpad_click_right" : "Touchpad Click Right",
+            "/actions/trial_vr/in/Hand_Right" : "Right Hand Pose",
+            "/actions/trial_vr/in/Hand_Left" : "Left Hand Pose",
+            "/actions/trial_vr/out/haptic_left" : "Left Haptic Feedback",
+            "/actions/trial_vr/out/haptic_right" : "Right Haptic Feedback",
+            "/actions/trial_vr/in/skeleton_left" : "Left Skeletal Input",
+            "/actions/trial_vr/in/skeleton_right" : "Right Skeletal Input"
+        }
+    ]
+}

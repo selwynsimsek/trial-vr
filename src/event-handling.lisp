@@ -10,13 +10,14 @@
    (pose :initarg :pose :initform nil :accessor pose)
    (button :initarg :button :initform nil :accessor button)))
 
-(defvar *action-manifest-path* "/home/selwyn/openvr/samples/bin/hellovr_actions.json")
+(defvar *action-manifest-path*
+  (namestring (truename (asdf:system-relative-pathname :trial-vr #p"assets/actions.json"))))
 
 (defmethod trial:start :after ((handler vr-input-handler))
   (vr::set-action-manifest-path *action-manifest-path*)
-  (setf (action-set handler) (vr::action-set "/actions/demo")
-        (button-action handler) (vr::action "/actions/demo/in/HideCubes")
-        (pose-action handler) (vr::action "/actions/demo/in/Hand_Right")))
+  (setf (action-set handler) (vr::action-set "/actions/trial_vr")
+        (button-action handler) (vr::action "/actions/trial_vr/in/trigger_right")
+        (pose-action handler) (vr::action "/actions/trial_vr/in/Hand_Right")))
 
 (defmethod trial:stop :after ((handler vr-input-handler))) ; nothing for now...
 
