@@ -24,12 +24,9 @@
   (:default-initargs :texture (trial:asset 'workbench 'controller-body-diffuse)
                      :vertex-array (trial:asset 'workbench 'controller-body-mesh)))
 
-(trial:define-handler (controller-body trial:tick) (trial::ev)
-  (alexandria:when-let ((matrix (pose (trial:handler trial:*context*))))
-    (setf (pose controller-body) matrix)))
-
 (defmethod trial:paint :around ((obj posed-entity) target)
   (if (pose obj)
-      (let ((trial:*model-matrix* (3d-matrices:m* trial:*model-matrix* (3d-matrices:mtranspose (sb->3d (pose obj))))))
+      (let ((trial:*model-matrix* (3d-matrices:m* trial:*model-matrix* (3d-matrices:mtranspose
+                                                                        (sb->3d (controller-pose))))))
         (call-next-method))
       (call-next-method)))  ; do this better!

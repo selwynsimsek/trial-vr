@@ -17,7 +17,7 @@
     (let ((factor 0.01))
       (setf (trial::velocity particle) (trial::vec (* factor (trial::vx dir)) (* factor (+ 2.5 (mod (sxhash (trial::fc tick)) 2))) (* factor (trial::vy dir))))))
   (setf (trial::lifetime particle) (trial::vec 0 (* 0.3 (+ 3.0 (random 1.0)))))
-  (alexandria:when-let ((matrix (pose (trial:handler trial:*context*))))
+  (alexandria:when-let ((matrix (controller-pose)))
     (let ((factor -0.01))
       (setf (trial::location particle) (trial::vec3
                                         (aref matrix 12) (aref matrix 13) (aref matrix 14)))
@@ -34,9 +34,7 @@
     (setf (trial::velocity output) vel)))
 
 (defmethod trial::new-particle-count ((water-jet water-jet) tick)
-  (if (and
-       (button (trial:handler trial:*context*))
-       (vr::state-p (button (trial:handler trial:*context*)))) 10 0))
+  10)
 
 (trial:define-class-shader (water-jet :vertex-shader 1)
   "layout (location = 1) in vec2 in_lifetime;
