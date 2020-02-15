@@ -4,14 +4,12 @@
 (in-package :trial-vr)
 
 (trial:define-asset (workbench controller-body-mesh) trial::mesh
-    (let ((mesh (gethash
-                 "controller.obj"
-                 (trial:meshes
-                  (trial:read-geometry
-                   (asdf:system-relative-pathname :trial-vr #p"assets/vr_controller_vive_1_5/controller.obj")
-                   :wavefront)))))
-    ;  (setf (trial:face-length mesh) 3)
-      mesh))
+  (gethash
+   "controller.obj"
+   (trial:meshes
+    (trial:read-geometry
+     (asdf:system-relative-pathname :trial-vr #p"assets/vr_controller_vive_1_5/controller.obj")
+     :wavefront))))
 
 (trial:define-asset (workbench controller-body-diffuse) trial::image
     (asdf:system-relative-pathname
@@ -34,5 +32,4 @@
   (if (pose obj)
       (let ((trial:*model-matrix* (3d-matrices:m* trial:*model-matrix* (3d-matrices:mtranspose (sb->3d (pose obj))))))
         (call-next-method))
-      (call-next-method)))
-; do this better!
+      (call-next-method)))  ; do this better!
