@@ -21,7 +21,6 @@
   (:default-initargs :texture (trial:asset 'workbench 'controller-body-diffuse)
                      :vertex-array (trial:asset 'workbench 'controller-body-mesh)))
 
-
 (defmethod trial:paint :around ((obj controller-body) target)
   (let ((pose (controller-pose-for-parity (handedness obj))))
     (when (eq :running-ok (vr::tracking-result pose))

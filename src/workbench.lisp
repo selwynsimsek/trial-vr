@@ -20,6 +20,7 @@
 
 (progn
   (defmethod trial:setup-scene ((workbench workbench) scene)
+
     (trial:enter (make-instance 'trial::skybox :texture (trial:asset 'workbench 'trial::skybox))
                  scene)
     (trial:enter (make-instance 'cube) scene)
@@ -28,3 +29,4 @@
     (trial:enter (make-instance 'controller-body :handedness :right) scene)
     (trial:enter (make-instance 'water-jet) scene)
   (trial:maybe-reload-scene)))
+
