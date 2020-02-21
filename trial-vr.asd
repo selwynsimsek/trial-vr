@@ -23,7 +23,7 @@
                  (:file "physics")
                  (:file "particle")
                  (:file "debug")
-                 (:file "render-models"))))
+                 (:file "controllers"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 

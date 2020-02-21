@@ -22,12 +22,11 @@
                      :vertex-array (trial:asset 'workbench 'controller-body-mesh)))
 
 (defmethod trial:paint :around ((obj controller-body) target)
-  (let ((pose (controller-pose-for-parity (handedness obj))))
-    (when (eq :running-ok (vr::tracking-result pose))
+  (let ((pose (controller-pose-for-handedness (handedness obj))))
+    (when (and pose (eq :running-ok (vr::tracking-result pose)))
       (let ((trial:*model-matrix*
               (3d-matrices:m* trial:*model-matrix*
                               (3d-matrices:mtranspose (sb->3d
                                                        (vr::device-to-absolute-tracking pose))))))
-        (call-next-method)))))  ; do this better!
-
+        (call-next-method)))))
 
