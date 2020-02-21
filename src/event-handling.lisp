@@ -41,3 +41,12 @@
             (when (eq :running-ok (vr::tracking-result right-pose))
               (vr::device-to-absolute-tracking right-pose))))
     (t () (progn ))))
+
+(defun controller-pose-for-parity (parity)
+  (cond
+    ((eq parity :left)
+     (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Left"
+                                             (trial:handler trial:*context*)))))
+    ((eq parity :right)
+     (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Right"
+                                             (trial:handler trial:*context*)))))))
