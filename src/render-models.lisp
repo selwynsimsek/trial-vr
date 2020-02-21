@@ -25,8 +25,29 @@
                      :vertex-array (trial:asset 'workbench 'controller-body-mesh)))
 
 (defmethod trial:paint :around ((obj posed-entity) target)
-  (if (pose obj)
-      (let ((trial:*model-matrix* (3d-matrices:m* trial:*model-matrix* (3d-matrices:mtranspose
-                                                                        (sb->3d (controller-pose))))))
-        (call-next-method))
-      (call-next-method)))  ; do this better!
+
+      (call-next-method))  ; do this better!
+
+(defclass controller-container (trial::array-container)
+  ((parity :accessor parity :initarg :parity :initform :left)
+   (action :accessor action :initarg :action :initform (error "need an action"))))
+
+(defun parity->action (parity)
+  (if (eq parity :left)
+      (find-action "/actions/trial_vr/in/Hand_Left"
+                   (trial:handler trial:*context*))
+      (find-action "/actions/trial_vr/in/Hand_Right"
+                   (trial:handler trial:*context*))))
+
+(defun controller-container (parity)
+  (make-instance 'controller-container :parity parity
+                                       :action (parity->action parity)))
+
+(defmethod trial:paint :around ((obj controller-container) target)
+  (with-slots (parity action) obj
+    (unless action (setf action (parity->action parity)))
+    (when (and action (vr::action-data action) (slot-boundp (vr::action-data action) 'vr::active-p))
+      (let ((pose (vr::device-to-absolute-tracking (vr::pose (vr::action-data action)))))
+        (let ((trial:*model-matrix* (3d-matrices:m* trial:*model-matrix*
+                                                    (3d-matrices:mtranspose (sb->3d pose)))))
+          (dummy (call-next-method)))))))
