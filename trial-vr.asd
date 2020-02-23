@@ -5,6 +5,7 @@
   :depends-on ("trial-glfw"
                "3b-openvr"
                "sb-cga"
+               "cl-steamworks"
                "cl-ode"
                "bordeaux-threads"
                "cl-xwd"

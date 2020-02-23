@@ -3,8 +3,12 @@
 
 (in-package :trial-vr)
 
+(defvar *running-water* (asdf:system-relative-pathname :trial-vr #p"assets/sounds/running-water.wav"))
+
 (trial:define-asset (workbench water-jet-particles) trial::vertex-struct-buffer
     'trial::simple-particle :struct-count 1024)
+
+()
 
 (trial:define-shader-subject water-jet (trial::simple-particle-emitter)
   ()

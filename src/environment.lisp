@@ -3,8 +3,11 @@
 
 (in-package :trial-vr)
 
+(defvar *app-id* 480 "Steamworks App ID - for now using the App ID of the example game.")
+(defvar *steamworks-client* nil)
+
 (defmethod trial:start :before ((main workbench))
-  "Set up OpenVR environment."
+  "Set up OpenVR, sound, Steamworks."
   (setf vr::*%init* (vr::vr-init :scene))
   (vr::clear)
   (vr::vr-system)
@@ -26,12 +29,16 @@
   (vr::vr-debug)
   (vr::vr-notifications)
   (harmony-simple:initialize)
-  (vr::set-action-manifest-path "/home/selwyn/openvr/samples/bin/hellovr_actions.json"))
+  (unless *steamworks-client*
+    (setf *steamworks-client* (make-instance 'cl-steamworks:steamworks-client :app-id *app-id*))))
 
 (defmethod trial:finalize :after ((main workbench))
   "Shut down OpenVR environment."
   (vr::clear)
-  (vr::vr-shutdown-internal))
+  (vr::vr-shutdown-internal)
+  (when *steamworks-client*
+    (cl-steamworks:free (cl-steamworks:steamworks))
+    (setf *steamworks-client* nil)))
 
 (defun launch (&key (own-thread nil))
   "Launch the trial VR workbench."
