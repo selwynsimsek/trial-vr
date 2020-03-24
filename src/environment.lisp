@@ -29,6 +29,7 @@
   (vr::vr-debug)
   (vr::vr-notifications)
   (harmony-simple:initialize)
+  (3b-openvr::create-overlay "abc" "def")
   (unless *steamworks-client*
     (setf *steamworks-client* (make-instance 'cl-steamworks:steamworks-client :app-id *app-id*))))
 

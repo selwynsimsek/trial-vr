@@ -3,6 +3,7 @@
   :author "Selwyn Simsek"
   :license ""
   :depends-on ("trial-glfw"
+               "trial-alloy"
                "3b-openvr"
                "sb-cga"
                "cl-steamworks"

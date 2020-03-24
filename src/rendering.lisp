@@ -32,6 +32,10 @@
    (left-pass-depth :port-type trial:input)
    (right-pass-depth :port-type trial:input)))
 
+(trial:define-shader-pass ui-render-pass (trial:render-pass)
+  ((trial:color :port-type trial:output :attachment :color-attachment0
+                :texspec (:target :texture-2d :width 640 :height 480))))
+
 (defmethod trial:project-view ((camera head) ev)
   (let ((eye (current-eye camera))
         (left-eye-pose (get-eye-pose :left))
@@ -53,6 +57,23 @@
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass right-eye-render-pass))
   (setf (current-eye (trial::unit :head subject)) :right)
   (trial:project-view (trial::unit :head subject) nil))
+
+(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass ui-render-pass))
+  ; set up projection here
+  (trial:project-view (make-instance 'trial:2d-camera) nil)) ; does this work?
+
+(defmethod trial:paint :after ((subject trial:pipelined-scene) (pass ui-render-pass))
+  (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color)))))
+    (3b-openvr:set-overlay-texture (3b-openvr:find-overlay "abc") texture-id)
+    (3b-openvr:show-overlay (3b-openvr:find-overlay "abc"))))
+
+(defmethod trial:paint-with ((pass ui-render-pass) thing)
+  (when (or (typep thing 'trial:pipelined-scene)
+            (typep thing 'dui))
+    (call-next-method)))
+
+(defmethod trial:paint-with ((pass eye-render-pass) thing)
+  (unless (typep thing 'dui) (call-next-method)))
 
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   (wait-get-poses)

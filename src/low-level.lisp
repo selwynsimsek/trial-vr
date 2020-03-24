@@ -12,7 +12,7 @@
 
 (defun get-eye-pose (side)
   "Head to eye transform. Taken from 3b-openvr-hello."
-  (sb->3d (sb-cga:inverse-matrix (vr::get-eye-to-head-transform side))))
+  (sb->3d (sb-cga:inverse-matrix (vr::eye-to-head-transform side))))
 
 (defun get-eye-projection (side &key (near 0.1f0) (far 10000000.0f0))
   "Returns the per eye projection matrix."
