@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Handles launching the workbench as well as starting and closing the OpenVR environment.
 
-(in-package :trial-vr)
+(in-package #:org.shirakumo.trial.vr)
 
 (defvar *app-id* 480 "Steamworks App ID - for now using the App ID of the example game.")
 (defvar *steamworks-client* nil)
@@ -29,7 +29,7 @@
   (vr::vr-debug)
   (vr::vr-notifications)
   (harmony-simple:initialize)
-  (3b-openvr::create-overlay "abc" "def")
+  (vr:create-overlay "abc" "def")
   (unless *steamworks-client*
     (setf *steamworks-client* (make-instance 'cl-steamworks:steamworks-client :app-id *app-id*))))
 

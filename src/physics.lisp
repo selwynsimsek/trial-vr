@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Physics in Trial using cl-ode.
 
-(in-package :trial-vr)
+(in-package #:org.shirakumo.trial.vr)
 
 (defclass ode-physics-handler ()
   ((world :initarg :world :initform nil :accessor world)

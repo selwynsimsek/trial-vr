@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; A cube which has emacs on the side.
 
-(in-package :trial-vr)
+(in-package #:org.shirakumo.trial.vr)
 
 (defparameter *emacs-width* 1024)
 (defparameter *emacs-height* 1024)

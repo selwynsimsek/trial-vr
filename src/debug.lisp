@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Debug routines that can be carried out while the trial-vr scene is up and running.
 
-(in-package :trial-vr)
+(in-package #:org.shirakumo.trial.vr)
 
 (defmacro trace-for-one-second (&rest specs)
   `(progn

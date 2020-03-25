@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Handles the multiple render passes and submission to the OpenVR compositor.
 
-(in-package :trial-vr)
+(in-package #:org.shirakumo.trial.vr)
 
 (trial:define-subject head (trial:camera)
   ((hmd-pose :initarg :hmd-pose :accessor hmd-pose)
@@ -64,8 +64,8 @@
 
 (defmethod trial:paint :after ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color)))))
-    (3b-openvr:set-overlay-texture (3b-openvr:find-overlay "abc") texture-id)
-    (3b-openvr:show-overlay (3b-openvr:find-overlay "abc"))))
+    (vr:set-overlay-texture (vr:find-overlay "abc") texture-id)
+    (vr:show-overlay (vr:find-overlay "abc"))))
 
 (defmethod trial:paint-with ((pass ui-render-pass) thing)
   (when (or (typep thing 'trial:pipelined-scene)

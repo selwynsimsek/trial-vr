@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Hooks controller input into the trial event handling system.
 
-(in-package :trial-vr)
+(in-package #:org.shirakumo.trial.vr)
 
 (defclass vr-input-handler ()
   ((action-set :initarg :action-set :initform nil :accessor action-set)
