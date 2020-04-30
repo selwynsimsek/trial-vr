@@ -1,4 +1,4 @@
-(defpackage :org.shirakumo.trial.vr
+(defpackage :org.shirakumo.fraf.trial.vr
   (:use :cl)
   (:local-nicknames (#:vr #:3b-openvr)
 		    (#:trial #:org.shirakumo.fraf.trial)
