@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Handles the multiple render passes and submission to the OpenVR compositor.
 
-(in-package #:org.shirakumo.trial.vr)
+(in-package #:org.shirakumo.fraf.trial.vr)
 
 (trial:define-subject head (trial:camera)
   ((hmd-pose :initarg :hmd-pose :accessor hmd-pose)
@@ -62,16 +62,17 @@
   ; set up projection here
   (trial:project-view (make-instance 'trial:2d-camera) nil)) ; does this work?
 
+#-win32
 (defmethod trial:paint :after ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color)))))
     (vr:set-overlay-texture (vr:find-overlay "abc") texture-id)
     (vr:show-overlay (vr:find-overlay "abc"))))
-
+#-win32
 (defmethod trial:paint-with ((pass ui-render-pass) thing)
   (when (or (typep thing 'trial:pipelined-scene)
             (typep thing 'dui))
     (call-next-method)))
-
+#-win32
 (defmethod trial:paint-with ((pass eye-render-pass) thing)
   (unless (typep thing 'dui) (call-next-method)))
 

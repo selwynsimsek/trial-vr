@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Defines a basic particle system for show in trial-vr.
 
-(in-package #:org.shirakumo.trial.vr)
+(in-package #:org.shirakumo.fraf.trial.vr)
 
 (defvar *running-water* (asdf:system-relative-pathname :trial-vr #p"assets/sounds/running-water.wav"))
 

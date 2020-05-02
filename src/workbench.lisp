@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; The trial workbench for VR experimentation
 
-(in-package #:org.shirakumo.trial.vr)
+(in-package #:org.shirakumo.fraf.trial.vr)
 
 (defclass workbench (trial:main vr-input-handler ode-physics-handler) ()
   (:default-initargs :clear-color (trial::vec 0.3 0.3 0.3 0)))

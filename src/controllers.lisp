@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Load render models (controller, HMD etc.) for display in VR.
 
-(in-package #:org.shirakumo.trial.vr)
+(in-package #:org.shirakumo.fraf.trial.vr)
 
 (trial:define-asset (workbench controller-body-mesh) trial::mesh
   (gethash

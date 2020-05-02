@@ -1,11 +1,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; A cube which has emacs on the side.
 
-(in-package #:org.shirakumo.trial.vr)
+(in-package #:org.shirakumo.fraf.trial.vr)
 
 (defparameter *emacs-width* 1024)
 (defparameter *emacs-height* 1024)
 
+#-win32
 (defun emacs-cube-texture ()
   "Returns a pointer to raw bitmap data representing an Emacs window."
   (cl-xwd:shared-memory-raw-pointer
@@ -25,7 +26,7 @@
                      :texture (make-instance 'trial:texture
                                              :width *emacs-width*
                                              :height *emacs-height*
-                                             :pixel-data (emacs-cube-texture)
+                                             #-win32 :pixel-data #-win32 (emacs-cube-texture)
                                              :pixel-type :unsigned-short-5-6-5
                                              :internal-format :rgb
                                              :levels 0)
@@ -33,7 +34,7 @@
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
                      :location (trial::vec3 0 1 -1.55)))
-
+#-win32
 (trial:define-handler (cube trial:tick) (trial::ev)
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
   (trial:allocate (trial:texture cube)))

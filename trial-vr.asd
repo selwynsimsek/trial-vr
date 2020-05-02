@@ -3,15 +3,21 @@
   :author "Selwyn Simsek"
   :license ""
   :depends-on ("trial-glfw"
-               "trial-alloy"
+               #-win32 "trial-alloy"
                "3b-openvr"
                "sb-cga"
-               "cl-steamworks"
-               "cl-ode"
+               #-win32 "cl-steamworks"
+               #-win32 "cl-ode"
                "bordeaux-threads"
-               "cl-xwd"
+               #-win32 "cl-xwd"
                "trial-assimp"
                "harmony-simple")
+  :defsystem-depends-on (:deploy)
+  :build-operation "deploy-op"
+  :build-pathname "trial-vr"
+  :entry-point "org.shirakumo.fraf.trial.vr:launch"
+  :depends-on ("trial-vr"
+               "rove")
   :components ((:module "src"
                 :components
                 ((:file "package")
@@ -32,8 +38,6 @@
 (defsystem "trial-vr/tests"
   :author "Selwyn Simsek"
   :license ""
-  :depends-on ("trial-vr"
-               "rove")
   :components ((:module "tests"
                 :components
                 ((:file "main"))))
