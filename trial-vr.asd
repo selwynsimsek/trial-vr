@@ -12,6 +12,7 @@
                #-win32 "cl-xwd"
                "ldx.dxgi"
                "ldx.common"
+               "com-on"
                "trial-assimp"
                "harmony-simple")
   :defsystem-depends-on (:deploy)
