@@ -10,6 +10,8 @@
                #-win32 "cl-ode"
                "bordeaux-threads"
                #-win32 "cl-xwd"
+               "ldx.dxgi"
+               "ldx.common"
                "trial-assimp"
                "harmony-simple")
   :defsystem-depends-on (:deploy)
@@ -24,6 +26,7 @@
                  (:file "actor")
                  (:file "environment" :depends-on ("workbench"))
                  (:file "emacs-cube")
+                 #+win32 (:file "window-capture")
                  (:file "workbench")
                  (:file "low-level")
                  (:file "rendering")
