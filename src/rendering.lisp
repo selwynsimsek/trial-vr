@@ -51,6 +51,8 @@
   (setf (trial:projection-matrix) (get-eye-projection :left)))
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
+  ;; right place for it?
+  (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
   (setf (current-eye (trial::unit :head subject)) :left)
   (trial:project-view (trial::unit :head subject) nil))
 
@@ -76,10 +78,8 @@
 (defmethod trial:paint-with ((pass eye-render-pass) thing)
   (unless (typep thing 'dui) (call-next-method)))
 
-(defvar *result*)
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   (wait-get-poses)
-  (setf *result* (when (interop-extension-present-p) (interop-foreign-function-table)))
   (let ((left-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
         (right-texture-id
@@ -87,9 +87,5 @@
     (vr::submit :left left-texture-id :compositor vr::*compositor*)
     (vr::submit :right right-texture-id :compositor vr::*compositor*))
   (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
-    (setf (hmd-pose (trial::unit :head subject)) latest-pose)))
-
-(defun load-interop-extension ()
-  (let* ((n (gl:get-integer :num-extensions))
-         (extension-list (loop for i from 0 below n collect (gl:Get-string-i :Extensions i))))
-    (%glfw::extension-supported-p "WGL_NV_DX_interop2")))
+    (setf (hmd-pose (trial::unit :head subject)) latest-pose))
+  (org.shirakumo.fraf.trial.vr.windows::interop-post-frame))

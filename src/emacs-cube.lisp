@@ -23,13 +23,15 @@
   ((vel :initform 0
         :accessor vel))
   (:default-initargs :vertex-array (trial:asset 'workbench 'cube)
-                     :texture (make-instance 'trial:texture
-                                             :width *emacs-width*
-                                             :height *emacs-height*
+                     :texture  (make-instance 'trial:texture
+                                           ;  :width 1920
+                                             ;:height 1080
+                                             :data-pointer org.shirakumo.fraf.trial.vr.windows::*gl-texture-int*
                                              #-win32 :pixel-data #-win32 (emacs-cube-texture)
-                                             :pixel-type :unsigned-short-5-6-5
-                                             :internal-format :rgb
-                                             :levels 0)
+                                            ; :pixel-type :unsigned-short-5-6-5
+                                            ; :internal-format :rgb
+                                            ; :levels 0
+                                             )
                      :name :cube
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)

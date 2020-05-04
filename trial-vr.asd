@@ -27,6 +27,7 @@
                  (:file "actor")
                  (:file "environment" :depends-on ("workbench"))
                  (:file "emacs-cube")
+                 #+win32 (:file "com-structs")
                  #+win32 (:file "window-capture")
                  (:file "workbench")
                  (:file "low-level")
