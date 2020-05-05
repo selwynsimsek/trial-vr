@@ -7,8 +7,9 @@
 (com-on::define-guid IID-IDXGIResource #x035f3ab4 #x482e #x4e50 #xb4 #x1f #x8a #x7f #x8b #xd8 #x96 #x0b)
 (com-on::define-guid IID-ID3D11Texture2D #x6f15aaf2 #xd208 #x4e89 #x9a #xb4 #x48 #x95 #x35 #xd3 #x4f #x9c)
 (com-on::define-guid IID-ID3D11DeviceContext #xc0bfa96c #xe089 #x44fb #x8e #xaf #x26 #xf8 #x79 #x61 #x90 #xda)
+(com-on::define-guid IID-IDXGIDevice #x54ec77fa #x1377 #x44e6 #x8c #x32 #x88 #xfd #x5f #x44 #xc8 #x4c)
 
-(com-on::define-comstruct output
+(com-on::define-comstruct dxgi-output
   (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
   (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
   (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
@@ -26,7 +27,7 @@
   (display-surface-data com-on::hresult (destination :pointer))
   (frame-statistics com-on::hresult (statistics :pointer)))
 
-(com-on::define-comstruct output-1
+(com-on::define-comstruct dxgi-output-1
   (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
   (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
   (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
@@ -54,7 +55,7 @@
   (:error-wait-timeout #x887a0027)
   (:error-invalid-call #x887a0001))
 
-(com-on::define-comstruct output-duplication
+(com-on::define-comstruct dxgi-output-duplication 
   (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
   (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
   (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
@@ -77,7 +78,7 @@
     (com-on::check-return (%create-dxgi-factory-1 foreign-guid foreign-pointer))
     (cffi:mem-ref foreign-pointer :pointer))) ; works
 
-(com-on::define-comstruct factory-1
+(com-on::define-comstruct dxgi-factory-1
   (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
   (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
   (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
@@ -90,7 +91,16 @@
   (enum-adapters-1 com-on::hresult (adapter-index :uint) (adapter :pointer))
   (current-p :bool))
 
-(com-on::define-comstruct adapter-1
+(com-on::define-comstruct dxgi-adapter
+  (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
+  (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
+  (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
+  (parent com-on::hresult (riid :pointer) (parent :pointer))
+  (enum-outputs com-on::hresult (output-index :uint) (output :pointer))
+  (description com-on::hresult (description :pointer))
+  (check-interface-support com-on::hresult (interface-name :pointer) (umd-version :pointer)))
+
+(com-on::define-comstruct dxgi-adapter-1
   (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
   (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
   (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
@@ -100,7 +110,7 @@
   (check-interface-support com-on::hresult (interface-name :pointer) (umd-version :pointer))
   (description-1 com-on::hresult (description :pointer)))
 
-(com-on::define-comstruct device-context
+(com-on::define-comstruct d3d-11-device-context
 ;;;;;;;;;;;;;
   (device :void (device :pointer))
   (private-data com-on::hresult (guid :pointer) (data-size :pointer) (data :pointer))
@@ -765,7 +775,7 @@
   (d3d11-device :pointer)
   (feature-level-pointer :pointer)
   (device-context-pointer :pointer))
-(com-on::define-comstruct resource
+(com-on::define-comstruct dxgi-resource
   (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
   (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
   (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
@@ -808,7 +818,7 @@
   (misc-flags :uint))
 
 
-(com-on::define-comstruct d3d11-device
+(com-on::define-comstruct d3d-11-device
   (create-buffer com-on::hresult (desc :pointer) (initial-data :pointer) (buffer :pointer))
   (create-texture-1d com-on::hresult (desc :pointer) (initial-data :pointer) (texture-1d :pointer))
   (create-texture-2d com-on::hresult (desc :pointer) (initial-data :pointer) (texture-2d :pointer)))
@@ -1134,3 +1144,15 @@
 
 ;; END_INTERFACE
 ;; } ID3D11DeviceVtbl;
+
+
+(com-on::define-comstruct dxgi-device
+  (set-private-data com-on::hresult (name :pointer) (data-size :uint) (data :pointer))
+  (set-private-data-interface com-on::hresult (name :pointer) (unknown :pointer))
+  (private-data com-on::hresult (name :pointer) (data-size :pointer) (data :pointer))
+  (parent com-on::hresult (riid :pointer) (parent :pointer))
+  (adapter com-on::hresult (adapter :pointer))
+  (create-surface com-on::hresult (desc :pointer) (shared-resource :pointer) (surface :pointer))
+  (query-resource-residency com-on::hresult (resources :pointer) (residency-status :pointer))
+  (set-gpu-thread-priority com-on::hresult (priority :int))
+  (gpu-thread-priority com-on::hresult (priority :pointer)))
