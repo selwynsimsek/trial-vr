@@ -29,6 +29,7 @@
                  (:file "emacs-cube")
                  #+win32 (:file "com-structs")
                  #+win32 (:file "window-capture")
+                 #+win32 (:file "nv-dx-interop")
                  (:file "workbench")
                  (:file "low-level")
                  (:file "rendering")

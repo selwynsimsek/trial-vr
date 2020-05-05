@@ -52,7 +52,7 @@
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
   ;; right place for it?
-  (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
+  #+win32 (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
   (setf (current-eye (trial::unit :head subject)) :left)
   (trial:project-view (trial::unit :head subject) nil))
 
@@ -87,5 +87,4 @@
     (vr::submit :left left-texture-id :compositor vr::*compositor*)
     (vr::submit :right right-texture-id :compositor vr::*compositor*))
   (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
-    (setf (hmd-pose (trial::unit :head subject)) latest-pose))
-  (org.shirakumo.fraf.trial.vr.windows::interop-post-frame))
+    (setf (hmd-pose (trial::unit :head subject)) latest-pose)))
