@@ -15,6 +15,7 @@ Windows is recommended for performance reasons.
 
 ### Prerequisites
 + A VR-ready PC with [SteamVR](https://store.steampowered.com/app/250820/SteamVR/) installed.
++ Any SteamVR compatible headset. The HTC Vive, Valve Index and Oculus Rift are all compatible, as well as many others.
 + A development environment that allows for use of the CFFI groveller. MinGW-w64 and its MSYS2 shell are recommended for Windows.
 + SBCL is highly recommended, though other implementations ought to work.
 
