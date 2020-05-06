@@ -10,6 +10,7 @@
                #-win32 "cl-ode"
                "bordeaux-threads"
                #-win32 "cl-xwd"
+               #+win32
                "com-on"
                "trial-assimp"
                "harmony-simple")

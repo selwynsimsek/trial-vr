@@ -5,7 +5,7 @@
 		    #-win32 (#:alloy #:org.shirakumo.alloy)
 		    #-win32 (#:trial-alloy #:org.shirakumo.fraf.trial.alloy)))
 
-
+#+win32
 (defpackage :org.shirakumo.fraf.trial.vr.windows
   (:use #:cl)
   (:local-nicknames (#:com-on #:org.shirakumo.com-on)

@@ -21,7 +21,7 @@ Windows is recommended for performance reasons.
 
 Clone the following to `quicklisp/local-projects`
 + TrialVR
-+ Trial, [https://github.com/shirakumo/trial]
++ fork of Trial, [https://github.com/selwynsimsek/trial]
 + fork of 3b-openvr, [https://github.com/selwynsimsek/3b-openvr]
 + upstream CFFI, [https://github.com/cffi/cffi]
 
@@ -38,7 +38,7 @@ Additionally clone to `quicklisp/local-projects`
 
 Install VNC Viewer, Xvfb, Portacle, x11vnc and Fluxbox. These are used to capture the screen output of Emacs to VR.
 
-Clone [vrx-utils](https://github.com/selwynsimsek/vrx-utils) to any location on your computer.
+Clone [vrx-utils](https://github.com/selwynsimsek/vrx-utils) to the home directory.
 In a shell, navigate to `vrx-utils` and execute `./vr-system`.
 An Emacs windows should appear. Connect to Swank on port 4005 and use the REPL to start TrialVR.
 

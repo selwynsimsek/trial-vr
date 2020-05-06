@@ -60,19 +60,6 @@
   (setf (current-eye (trial::unit :head subject)) :right)
   (trial:project-view (trial::unit :head subject) nil))
 
-(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass ui-render-pass))
-  ; set up projection here
-  (trial:project-view (make-instance 'trial:2d-camera) nil)) ; does this work?
-
-
-(defmethod trial:paint-with ((pass ui-render-pass) thing)
-  (when (or (typep thing 'trial:pipelined-scene)
-            (typep thing 'dui))
-    (call-next-method)))
-#-win32
-(defmethod trial:paint-with ((pass eye-render-pass) thing)
-  (unless (typep thing 'dui) (call-next-method)))
-
 (defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
   (wait-get-poses)
   (let ((left-texture-id

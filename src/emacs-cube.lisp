@@ -24,8 +24,8 @@
         :accessor vel))
   (:default-initargs :vertex-array (trial:asset 'workbench 'cube)
                      :texture  (make-instance 'trial:texture
-                                             :width 1920
-                                             :height 1080
+                                             :width #+win32 1920 #+linux *emacs-width*
+                                             :height #+win32 1080 #+linux *emacs-height*
                                               ;; :data-pointer org.shirakumo.fraf.trial.vr.windows::*gl-texture-int*
                                              ;:data-pointer 1
                                              #-win32 :pixel-data #-win32 (emacs-cube-texture)
