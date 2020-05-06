@@ -10,12 +10,12 @@
   :base 'trial:trial)
 
 (trial:define-asset (workbench trial::skybox) trial::image
-    '(#p"nissi-beach/posx.jpg"
-      #p"nissi-beach/negx.jpg"
-      #p"nissi-beach/posy.jpg"
-      #p"nissi-beach/negy.jpg"
-      #p"nissi-beach/posz.jpg"
-      #p"nissi-beach/negz.jpg")
+    '(#p"heart-in-the-sand/posx.jpg"
+      #p"heart-in-the-sand/negx.jpg"
+      #p"heart-in-the-sand/posy.jpg"
+      #p"heart-in-the-sand/negy.jpg"
+      #p"heart-in-the-sand/posz.jpg"
+      #p"heart-in-the-sand/negz.jpg")
   :target :texture-cube-map)
 
 (progn
@@ -26,6 +26,8 @@
     (trial:enter (make-instance 'actor) scene)
     (trial:enter (make-instance 'controller-body :handedness :left) scene)
     (trial:enter (make-instance 'controller-body :handedness :right) scene)
-    (trial:enter (make-instance 'water-jet) scene)
-  (trial:maybe-reload-scene)))
+    (trial:enter (make-instance 'fireworks
+                  ) scene
+     ))
+  (trial:maybe-reload-scene))
 
