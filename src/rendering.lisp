@@ -64,8 +64,8 @@
 
 (defmethod trial:paint :after ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color)))))
-    (vr:set-overlay-texture (vr:find-overlay "abc") texture-id)
-    (vr:show-overlay (vr:find-overlay "abc"))))
+    ;(vr:show-overlay (vr:find-overlay "abc"))
+    ))
 
 (defmethod trial:paint-with ((pass ui-render-pass) thing)
   (when (or (typep thing 'trial:pipelined-scene)
