@@ -3,14 +3,14 @@
   :author "Selwyn Simsek"
   :license ""
   :depends-on ("trial-glfw"
-               #+linux "trial-alloy"
+               (:feature :linux "trial-alloy")
                "3b-openvr"
                "sb-cga"
-               #+linux "cl-steamworks"
-               #+linux "cl-ode"
+               (:feature :linux "cl-steamworks")
+               (:feature :linux "cl-ode")
                "bordeaux-threads"
-               #+linux "cl-xwd"
-               #+windows "com-on"
+               (:feature :linux "cl-xwd")
+               (:feature :windows "com-on")
                "trial-assimp"
                "harmony-simple")
   :defsystem-depends-on ("trivial-features"
@@ -26,9 +26,9 @@
                  (:file "actor")
                  (:file "environment" :depends-on ("workbench"))
                  (:file "emacs-cube")
-                 #+windows (:file "com-structs")
-                 #+windows (:file "window-capture")
-                 #+windows (:file "nv-dx-interop")
+                 (:file "com-structs" :if-feature :windows)
+                 (:file "window-capture" :if-feature :windows)
+                 (:file "nv-dx-interop" :if-feature :windows)
                  (:file "workbench")
                  (:file "low-level")
                  (:file "rendering")
