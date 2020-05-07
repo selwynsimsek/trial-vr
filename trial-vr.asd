@@ -3,18 +3,18 @@
   :author "Selwyn Simsek"
   :license ""
   :depends-on ("trial-glfw"
-               #-win32 "trial-alloy"
+               #+linux "trial-alloy"
                "3b-openvr"
                "sb-cga"
-               #-win32 "cl-steamworks"
-               #-win32 "cl-ode"
+               #+linux "cl-steamworks"
+               #+linux "cl-ode"
                "bordeaux-threads"
-               #-win32 "cl-xwd"
-               #+win32
-               "com-on"
+               #+linux "cl-xwd"
+               #+windows "com-on"
                "trial-assimp"
                "harmony-simple")
-  :defsystem-depends-on (:deploy)
+  :defsystem-depends-on ("trivial-features"
+                         "deploy")
   :build-operation "deploy-op"
   :build-pathname "trial-vr"
   :entry-point "org.shirakumo.fraf.trial.vr:launch"
@@ -26,9 +26,9 @@
                  (:file "actor")
                  (:file "environment" :depends-on ("workbench"))
                  (:file "emacs-cube")
-                 #+win32 (:file "com-structs")
-                 #+win32 (:file "window-capture")
-                 #+win32 (:file "nv-dx-interop")
+                 #+windows (:file "com-structs")
+                 #+windows (:file "window-capture")
+                 #+windows (:file "nv-dx-interop")
                  (:file "workbench")
                  (:file "low-level")
                  (:file "rendering")

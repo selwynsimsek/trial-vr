@@ -26,8 +26,6 @@
     (trial:enter (make-instance 'actor) scene)
     (trial:enter (make-instance 'controller-body :handedness :left) scene)
     (trial:enter (make-instance 'controller-body :handedness :right) scene)
-    (trial:enter (make-instance 'fireworks
-                  ) scene
-     ))
+    (trial:enter (make-instance 'fireworks) scene))
   (trial:maybe-reload-scene))
 

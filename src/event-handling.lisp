@@ -22,7 +22,7 @@
 (defclass pose-event (trial:event)
   ((data :initarg :data :accessor data)))
 
-(defmethod trial:poll-input :after ((handler vr-input-handler)) ; from 3b-openvr-hello
+(defmethod trial:poll-input :after ((handler vr-input-handler))
   (vr::update-action-set (action-set handler))
   (map nil #'vr::update-data (actions handler)))
 

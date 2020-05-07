@@ -52,7 +52,7 @@
 
 (defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
   ;; right place for it?
-  #+win32 (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
+  #+windows (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
   (setf (current-eye (trial::unit :head subject)) :left)
   (trial:project-view (trial::unit :head subject) nil))
 
