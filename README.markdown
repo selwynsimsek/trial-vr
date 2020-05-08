@@ -27,7 +27,7 @@ Clone the following to `quicklisp/local-projects`
 
 ### Windows
 Additionally clone to `quicklisp/local-projects`
-+ com-on, commit af046064 [https://github.com/Shinmera/com-on]
++ com-on [https://github.com/Shinmera/com-on]
 
 
 ### Linux

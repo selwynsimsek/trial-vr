@@ -8,14 +8,13 @@
 
 (defun enumerate-outputs (adapter &optional (index 0))
   (cffi:with-foreign-objects ((foreign-pointer :pointer)
-                              (foreign-pointer-2 :pointer)
-                              (foreign-guid '(:struct com-on::guid)))
-    (com-on::check-return (dxgi-adapter-enum-outputs adapter index foreign-pointer))
+                              (foreign-pointer-2 :pointer))
+    (com-on:check-hresult (dxgi-adapter-enum-outputs adapter index foreign-pointer))
     (cffi:mem-ref foreign-pointer :pointer))) ;works
 
 (defun duplicate-output (output-1 device)
   (cffi:with-foreign-object (foreign-pointer :pointer)
-    (com-on::check-return (dxgi-output-1-duplicate-output output-1 device foreign-pointer))
+    (com-on:check-hresult (dxgi-output-1-duplicate-output output-1 device foreign-pointer))
     (cffi:mem-ref foreign-pointer :pointer)))
 
 (defun acquire-next-frame (output-duplication &key (timeout 0))
@@ -29,10 +28,10 @@
         (return-from acquire-next-frame nil))
       (unless (eq ret-val :ok)
         (error "acquire-next-frame ~a" ret-val)))
-    (cffi:with-foreign-objects ((foreign-guid '(:struct com-on::guid))
+    (cffi:with-foreign-objects ((foreign-guid :uint8 16)
                                 (out-pointer :pointer))
-      (setf (cffi:mem-ref foreign-guid '(:struct com-on::guid)) iid-id3d11texture2d)
-      (com-on::check-return
+      (cffi:translate-into-foreign-memory iid-id3d11texture2d 'com-on:guid foreign-guid)
+      (com-on:check-hresult
        (dxgi-resource-query-interface (cffi:mem-ref resource-pointer :pointer) foreign-guid out-pointer))
       (values (cffi:mem-ref out-pointer :pointer)
               (cffi:mem-ref resource-pointer :pointer)
@@ -70,7 +69,7 @@
 (defun d3d-11-create-device (dxgi-adapter &key (driver-type :hardware) (flags '(:bgra-support)) (sdk-version 7))
   (cffi:with-foreign-objects ((device-pointer-pointer :pointer)
                               (device-context-pointer-pointer :pointer))
-    (com-on::check-return
+    (com-on:check-hresult
      (%d3d11-create-device dxgi-adapter driver-type (cffi:null-pointer) flags (cffi:null-pointer) 0 sdk-version 
                                         ; this will return a 11.0 device on a 11.1 machine
                            device-pointer-pointer (cffi:null-pointer) device-context-pointer-pointer))
@@ -80,15 +79,17 @@
 
 (defun output-1-from-output (output)
   (cffi:with-foreign-objects ((foreign-pointer :pointer)
-                              (foreign-guid '(:struct com-on::guid)))
-    (setf (cffi:mem-ref foreign-guid '(:struct com-on::guid)) iid-idxgioutput1)
+                             ; (foreign-guid '(:struct com-on::guid))
+                              (foreign-guid :uint8 16))
+                                        ;(setf (cffi:mem-ref foreign-guid '(:struct com-on::guid)) iid-idxgioutput1)
+    (cffi:translate-into-foreign-memory iid-idxgioutput1 'com-on.cffi:guid foreign-guid)
     (dxgi-output-query-interface output foreign-guid foreign-pointer)
     (cffi:mem-ref foreign-pointer :pointer)))
 
 (defun dxgi-device-from-d3d-11-device (output)
   (cffi:with-foreign-objects ((foreign-pointer :pointer)
-                              (foreign-guid '(:struct com-on::guid)))
-    (setf (cffi:mem-ref foreign-guid '(:struct com-on::guid)) iid-idxgidevice)
+                              (foreign-guid :uint8 16))
+    (cffi:translate-into-foreign-memory iid-idxgidevice 'com-on.cffi:guid foreign-guid)
     (d3d-11-device-query-interface output foreign-guid foreign-pointer)
     (cffi:mem-ref foreign-pointer :pointer)))
 
@@ -149,7 +150,7 @@
                 sample foreign-sample
                 usage 0 )))
       (cffi:with-foreign-object (foreign-pointer :pointer)
-        (com-on::check-return 
+        (com-on:check-hresult 
                 (d3d-11-device-create-texture-2d device foreign-desc (cffi:null-pointer)
                                                 foreign-pointer))
         (cffi:mem-ref foreign-pointer :pointer)))))

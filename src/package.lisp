@@ -9,4 +9,5 @@
 (defpackage :org.shirakumo.fraf.trial.vr.windows
   (:use #:cl)
   (:local-nicknames (#:com-on #:org.shirakumo.com-on)
+                    (#:com-on.cffi #:org.shirakumo.com-on.cffi)
                     (#:trial-vr #:org.shirakumo.fraf.trial.vr)))
