@@ -70,3 +70,5 @@
     (setf (cffi:mem-ref object-handle-pointer :pointer) object-handle)
     (cffi:foreign-funcall-pointer (aref (interop-foreign-function-table) 7) nil
                                   :pointer device-handle :int 1 :pointer object-handle-pointer :bool)))
+
+

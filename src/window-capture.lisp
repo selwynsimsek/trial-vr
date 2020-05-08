@@ -103,6 +103,7 @@
            (d3d-11-texture (make-d3d-11-texture device))
            (dx-device (open-device device))
            (opengl-texture (car (gl:gen-textures 1)))
+           (opengl-destination-texture (car (gl:gen-textures 1)))
            (dx-texture (register-texture-for-interop dx-device opengl-texture d3d-11-texture)))
       (lock-object dx-device dx-texture)
       (dxgi-output-1-release output-1)
@@ -110,7 +111,11 @@
       (dxgi-adapter-release adapter)
       (dxgi-device-release dxgi-device)
       (d3d-11-device-release device)
-      (values opengl-texture d3d-11-texture dx-texture dx-device d3d-11-context dxgi-duplication))))
+      (gl:bind-texture :texture-2d opengl-destination-texture)
+      (gl:tex-parameter :texture-2d :texture-base-level 0)
+      (gl:tex-parameter :texture-2d :texture-max-level 0)
+      (gl:tex-image-2d :texture-2d 0 :rgb 1920 1080 0 :bgr :unsigned-short (cffi:null-pointer))
+      (values opengl-texture opengl-destination-texture d3d-11-texture dx-texture dx-device d3d-11-context dxgi-duplication))))
 
 (defun capture-desktop-frame (dxgi-duplication context dx-device dx-texture d3d-11-texture)
   (multiple-value-bind (resource-texture resource)
@@ -150,26 +155,29 @@
         (cffi:mem-ref foreign-pointer :pointer)))))
 
 (let ((opengl-texture)
+      (opengl-destination-texture)
       (d3d-11-texture)
       (dx-texture)
       (dx-device)
       (d3d-11-context)
       (dxgi-duplication))
   (defun interop-setup ()
-    (multiple-value-bind (opengl-texture* d3d-11-texture* dx-texture*
+    (multiple-value-bind (opengl-texture* opengl-destination-texture* d3d-11-texture* dx-texture*
                           dx-device* d3d-11-context* dxgi-duplication*)
         (create-desktop-capture)
       (setf opengl-texture opengl-texture*
+            opengl-destination-texture opengl-destination-texture*
             d3d-11-texture d3d-11-texture*
             dx-texture dx-texture*
             dx-device dx-device*
             d3d-11-context d3d-11-context*
             dxgi-duplication dxgi-duplication*)))
   (defun interop-pre-frame ()
-    (capture-desktop-frame  dxgi-duplication d3d-11-context dx-device dx-texture d3d-11-texture))
+    (capture-desktop-frame  dxgi-duplication d3d-11-context dx-device dx-texture d3d-11-texture)
+    (copy-gl-textures opengl-texture opengl-destination-texture))
   (defun interop-post-frame ())
   (defun gl-texture-name ()
-    opengl-texture))
+    opengl-destination-texture))
 
 (defmethod trial:create-context :after ((context trial:context)) (interop-setup))
 
@@ -177,9 +185,31 @@
   (let ((tex (trial::texture obj)))
     (when tex
       (gl:active-texture :texture0)
-      (gl:bind-texture (trial::target tex) 1;(gl-name tex)
-                       )
+      (gl:bind-texture (trial::target tex) (gl-texture-name))
       (call-next-method)
       (gl:bind-texture (trial::target tex) 0))))
 
 ;;; come up with a better way of doing this.
+
+(let ((pointer))
+  (defun copy-gl-textures (source destination)
+    (unless pointer (setf pointer (%glfw::get-proc-address "glCopyImageSubData")))
+    (cffi:foreign-funcall-pointer pointer nil
+                                  :uint source ;srcName
+                                  %gl::enum :texture-2d ;srcTarget
+                                  :int 0 ;srcLevel
+                                  :int 0 ;srcX
+                                  :int 0 ;srcY
+                                  :int 0 ;srcZ
+                                  :uint destination ;destination
+                                  %gl::enum :texture-2d ;destinationTarget
+                                  :int 0 ;dstLevel
+                                  :int 0 ;dstX
+                                  :int 0 ;dstY
+                                  :int 0 ;dstZ
+                                  :uint 1920 ;srcWidth
+                                  :uint 1080 ;srcHeight
+                                  :uint 1 ;srcDepth
+                                  :void))
+  (defun copy-image-sub-data ()
+    pointer))
