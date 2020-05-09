@@ -52,3 +52,8 @@
          (vr::pose (vr::action-data (find-action "/actions/trial_vr/in/Hand_Right"
                                                  (trial:handler trial:*context*))))))
     (t () nil)))
+
+(defun trigger-changed-p ()
+  (vr::active-p (vr::action-data (find-action "/actions/trial_vr/in/trigger_right"
+                                               (trial:handler trial:*context*)))))
+
