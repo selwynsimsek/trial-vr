@@ -40,7 +40,7 @@ Install VNC Viewer, Xvfb, Portacle, x11vnc and Fluxbox. These are used to captur
 
 Clone [vrx-utils](https://github.com/selwynsimsek/vrx-utils) to the home directory.
 In a shell, navigate to `vrx-utils` and execute `./vr-system`.
-An Emacs windows should appear. Connect to Swank on port 4005 and use the REPL to start TrialVR.
+An Emacs window should appear. Connect to Swank on port 4005 and use the REPL to start TrialVR.
 
 ## Author
 
