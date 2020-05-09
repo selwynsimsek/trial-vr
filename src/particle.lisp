@@ -23,14 +23,15 @@
                      :particle-buffer (trial:asset 'workbench 'jab-particles)))
 
 (defmethod trial::initial-particle-state ((jab jab) tick particle)
-  (alexandria:when-let ((matrix (vr::device-to-absolute-tracking (controller-pose-for-handedness :right))))
-    (let ((controller-origin (trial::vec3 (aref matrix 12) (aref matrix 13) (aref matrix 14)))
-          (controller-direction
-            (trial::v* -0.03 (trial::vec3  (aref matrix 8) (aref matrix 9) (aref matrix 10)
-                                          ))))
-      (setf (trial::location particle) controller-origin
-            (trial::velocity particle) controller-direction
-            (trial::lifetime particle) (trial::vec2 0 3)))))
+  (alexandria:when-let ((pose (controller-pose-for-handedness :right)))
+    (alexandria:when-let ((matrix (vr::device-to-absolute-tracking pose)))
+      (let ((controller-origin (trial::vec3 (aref matrix 12) (aref matrix 13) (aref matrix 14)))
+            (controller-direction
+              (trial::v* -0.03 (trial::vec3  (aref matrix 8) (aref matrix 9) (aref matrix 10)
+                                             ))))
+        (setf (trial::location particle) controller-origin
+              (trial::velocity particle) controller-direction
+              (trial::lifetime particle) (trial::vec2 0 (+ 3 (random 1.0))))))))
 
 (defmethod trial::update-particle-state :before ((jab jab) tick particle output)
   (let ((vel (trial::velocity particle)))
@@ -41,7 +42,7 @@
                               (trial::v- 1.0 (trial::vec3 (random 2.0) (random 2.0) (random 2.0))))))))
 
 (defmethod trial::new-particle-count ((jab jab) tick)
-  10)
+  (if (trigger-active-p) 100 0))
 
 (trial:define-class-shader (jab :vertex-shader 1)
   "layout (location = 1) in vec2 in_lifetime;
@@ -57,16 +58,16 @@ void main(){
   "out vec4 color;
 
 in vec2 lifetime;
-
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
 void main(){
-if(lifetime.x <= 1.0){
+if(lifetime.x <= lifetime.y-2.0){
   color=vec4(1);
 }
-else if(lifetime.y <= 2.0){
-color=vec4(0.0,1.0,0.0,1.0);
-}
 else{
-color=vec4(0.0,lifetime.y-2.0,0.0,lifetime.y-2.0);
+float lt = (lifetime.y-lifetime.x)/(lifetime.y-2.0);
+color=vec4(0.5*lt,lt,1.0-lt*lt,lt);
 }
 }")
 
