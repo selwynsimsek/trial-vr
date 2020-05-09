@@ -6,14 +6,6 @@
 (defparameter *emacs-width* 1024)
 (defparameter *emacs-height* 1024)
 
-#+linux
-(defun emacs-cube-texture ()
-  "Returns a pointer to raw bitmap data representing an Emacs window."
-  (cl-xwd:shared-memory-raw-pointer
-   (parse-integer
-    (alexandria:read-file-into-string
-     (merge-pathnames #p"vrx-utils/shared-memory-id" (user-homedir-pathname))))))
-
 (trial:define-asset (workbench cube) trial:mesh
     (trial:make-cube 1.3))
 
@@ -24,18 +16,28 @@
         :accessor vel))
   (:default-initargs :vertex-array (trial:asset 'workbench 'cube)
                      :texture  (make-instance 'trial:texture
-                                             :width #+windows 1920 #+linux *emacs-width*
-                                             :height #+windows 1080 #+linux *emacs-height*
-                                             #+linux :pixel-data #+linux (emacs-cube-texture)
-                                             :pixel-type :unsigned-short-5-6-5
-                                             :internal-format :rgb
-                                             :levels 0)
+                                              :width #+windows 1920 #+linux *emacs-width*
+                                              :height #+windows 1080 #+linux *emacs-height*
+                                              #+linux :pixel-data #+linux (emacs-cube-texture)
+                                              #+windows :data-pointer
+                                              (org.shirakumo.fraf.trial.vr.windows::gl-texture-name)
+                                              :pixel-type :unsigned-short-5-6-5
+                                              :internal-format :rgb
+                                              :levels 0)
                      :name :cube
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
                      :location (trial::vec3 0 1 -1.55)))
+
+#+linux
+(defun emacs-cube-texture ()
+  "Returns a pointer to raw bitmap data representing an Emacs window."
+  (cl-xwd:shared-memory-raw-pointer
+   (parse-integer
+    (alexandria:read-file-into-string
+     (merge-pathnames #p"vrx-utils/shared-memory-id" (user-homedir-pathname))))))
+
 #+linux
 (trial:define-handler (cube trial:tick) (trial::ev)
   (when (trial:allocated-p (trial:texture cube)) (trial:deallocate (trial:texture cube)))
   (trial:allocate (trial:texture cube)))
-

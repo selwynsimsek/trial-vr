@@ -18,7 +18,8 @@
     (cffi:mem-ref foreign-pointer :pointer)))
 
 (defun acquire-next-frame (output-duplication &key (timeout 0))
-  "Returns the next frame as a d3d11 texture 2d. Returns NIL in case of timeout. Signals in case of other error."
+  "Returns the next frame as a d3d11 texture 2d. Returns NIL in case of timeout. Signals in case of
+   other error."
   (cffi:with-foreign-objects ((info-pointer :pointer)
                               (resource-pointer :pointer))
     (let ((ret-val
@@ -32,7 +33,8 @@
                                 (out-pointer :pointer))
       (setf (cffi:mem-ref foreign-guid 'com-on:guid) iid-id3d11texture2d)
       (com-on:check-hresult
-       (dxgi-resource-query-interface (cffi:mem-ref resource-pointer :pointer) foreign-guid out-pointer))
+       (dxgi-resource-query-interface (cffi:mem-ref resource-pointer :pointer)
+                                      foreign-guid out-pointer))
       (values (cffi:mem-ref out-pointer :pointer)
               (cffi:mem-ref resource-pointer :pointer)
               (cffi:mem-ref info-pointer :pointer)))))
@@ -44,8 +46,6 @@
   (cffi:with-foreign-object (description-pointer '(:struct d3d-11-texture-2d-description))
     (d3d-11-texture-2d-description texture description-pointer)
     (cffi:mem-ref description-pointer '(:struct d3d-11-texture-2d-description)))) ; works
-
-
 
 (defun register-texture-for-interop (interop-handle gl-texture-name texture)
   (let ((handle
@@ -66,22 +66,21 @@
     (dxgi-device-adapter dxgi-device foreign-pointer)
     (cffi:mem-ref foreign-pointer :pointer)))
 
-(defun d3d-11-create-device (dxgi-adapter &key (driver-type :hardware) (flags '(:bgra-support)) (sdk-version 7))
+(defun d3d-11-create-device
+    (dxgi-adapter &key (driver-type :hardware) (flags '(:bgra-support)) (sdk-version 7))
   (cffi:with-foreign-objects ((device-pointer-pointer :pointer)
                               (device-context-pointer-pointer :pointer))
     (com-on:check-hresult
-     (%d3d11-create-device dxgi-adapter driver-type (cffi:null-pointer) flags (cffi:null-pointer) 0 sdk-version 
-                                        ; this will return a 11.0 device on a 11.1 machine
-                           device-pointer-pointer (cffi:null-pointer) device-context-pointer-pointer))
+     (%d3d11-create-device dxgi-adapter driver-type (cffi:null-pointer) flags (cffi:null-pointer) 0
+                           sdk-version device-pointer-pointer (cffi:null-pointer)
+                           device-context-pointer-pointer))
     (values 
      (cffi:mem-ref device-pointer-pointer :pointer)
      (cffi:mem-ref device-context-pointer-pointer :pointer))))
 
 (defun output-1-from-output (output)
   (cffi:with-foreign-objects ((foreign-pointer :pointer)
-                             ; (foreign-guid '(:struct com-on::guid))
                               (foreign-guid 'com-on:guid))
-                                        ;(setf (cffi:mem-ref foreign-guid '(:struct com-on::guid)) iid-idxgioutput1)
     (setf (cffi:mem-ref foreign-guid 'com-on:guid) iid-idxgioutput1)
     (dxgi-output-query-interface output foreign-guid foreign-pointer)
     (cffi:mem-ref foreign-pointer :pointer)))
@@ -116,7 +115,8 @@
       (gl:tex-parameter :texture-2d :texture-base-level 0)
       (gl:tex-parameter :texture-2d :texture-max-level 0)
       (gl:tex-image-2d :texture-2d 0 :rgb 1920 1080 0 :bgr :unsigned-short (cffi:null-pointer))
-      (values opengl-texture opengl-destination-texture d3d-11-texture dx-texture dx-device d3d-11-context dxgi-duplication))))
+      (values opengl-texture opengl-destination-texture d3d-11-texture dx-texture dx-device
+              d3d-11-context dxgi-duplication))))
 
 (defun capture-desktop-frame (dxgi-duplication context dx-device dx-texture d3d-11-texture)
   (multiple-value-bind (resource-texture resource)
@@ -151,8 +151,7 @@
                 usage 0 )))
       (cffi:with-foreign-object (foreign-pointer :pointer)
         (com-on:check-hresult 
-                (d3d-11-device-create-texture-2d device foreign-desc (cffi:null-pointer)
-                                                foreign-pointer))
+         (d3d-11-device-create-texture-2d device foreign-desc (cffi:null-pointer) foreign-pointer))
         (cffi:mem-ref foreign-pointer :pointer)))))
 
 (let ((opengl-texture)
@@ -174,43 +173,17 @@
             d3d-11-context d3d-11-context*
             dxgi-duplication dxgi-duplication*)))
   (defun interop-pre-frame ()
-    (capture-desktop-frame  dxgi-duplication d3d-11-context dx-device dx-texture d3d-11-texture)
+    (capture-desktop-frame dxgi-duplication d3d-11-context dx-device dx-texture d3d-11-texture)
     (copy-gl-textures opengl-texture opengl-destination-texture))
   (defun interop-post-frame ())
-  (defun gl-texture-name ()
-    opengl-destination-texture))
+  (defun gl-texture-name () opengl-destination-texture))
 
 (defmethod trial:create-context :after ((context trial:context)) (interop-setup))
-
-(defmethod trial:paint :around ((obj trial::textured-entity) target)
-  (let ((tex (trial::texture obj)))
-    (when tex
-      (gl:active-texture :texture0)
-      (gl:bind-texture (trial::target tex) (gl-texture-name))
-      (call-next-method)
-      (gl:bind-texture (trial::target tex) 0))))
-
-;;; come up with a better way of doing this.
 
 (let ((pointer))
   (defun copy-gl-textures (source destination)
     (unless pointer (setf pointer (%glfw::get-proc-address "glCopyImageSubData")))
-    (cffi:foreign-funcall-pointer pointer nil
-                                  :uint source ;srcName
-                                  %gl::enum :texture-2d ;srcTarget
-                                  :int 0 ;srcLevel
-                                  :int 0 ;srcX
-                                  :int 0 ;srcY
-                                  :int 0 ;srcZ
-                                  :uint destination ;destination
-                                  %gl::enum :texture-2d ;destinationTarget
-                                  :int 0 ;dstLevel
-                                  :int 0 ;dstX
-                                  :int 0 ;dstY
-                                  :int 0 ;dstZ
-                                  :uint 1920 ;srcWidth
-                                  :uint 1080 ;srcHeight
-                                  :uint 1 ;srcDepth
-                                  :void))
-  (defun copy-image-sub-data ()
-    pointer))
+    (cffi:foreign-funcall-pointer pointer nil :uint source  %gl::enum :texture-2d :int 0 :int 0
+                                              :int 0 :int 0 :uint destination %gl::enum :texture-2d
+                                              :int 0 :int 0 :int 0 :int 0 :uint 1920 :uint 1080
+                                              :uint 1 :void)))
