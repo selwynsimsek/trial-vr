@@ -37,7 +37,7 @@
   "Shut down OpenVR environment."
   (vr::clear)
   (vr::vr-shutdown-internal)
-  #-win32
+  #-windows
   (when *steamworks-client*
     (cl-steamworks:free (cl-steamworks:steamworks))
     (setf *steamworks-client* nil)))
