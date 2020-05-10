@@ -14,7 +14,7 @@
   (trial:enter (make-instance 'jab) (trial:scene (trial:handler trial:*context*))))
 
 (trial:define-asset (workbench jab-particles) trial::vertex-struct-buffer
-    'trial::simple-particle :struct-count 1024)
+    'trial::simple-particle :struct-count 102400)
 
 (trial:define-shader-subject jab (trial::simple-particle-emitter)
   ()
@@ -27,22 +27,27 @@
     (alexandria:when-let ((matrix (vr::device-to-absolute-tracking pose)))
       (let ((controller-origin (trial::vec3 (aref matrix 12) (aref matrix 13) (aref matrix 14)))
             (controller-direction
-              (trial::v* -0.03 (trial::vec3  (aref matrix 8) (aref matrix 9) (aref matrix 10)
-                                             ))))
+              (trial::v* -0.1 (trial::vec3  (aref matrix 8) (aref matrix 9) (aref matrix 10)))))
         (setf (trial::location particle) controller-origin
               (trial::velocity particle) controller-direction
-              (trial::lifetime particle) (trial::vec2 0 (+ 3 (random 1.0))))))))
+              (trial::lifetime particle) (trial::vec2 0 (+ 3 (random 2.0))))))))
 
 (defmethod trial::update-particle-state :before ((jab jab) tick particle output)
   (let ((vel (trial::velocity particle)))
     (setf (trial::velocity output) vel)
     (when (< (abs (- (trial::vx (trial::lifetime particle)) 1)) 0.05)
       (trial::setf (trial::velocity output)
-                   (trial::vc (trial::velocity output)
-                              (trial::v- 1.0 (trial::vec3 (random 2.0) (random 2.0) (random 2.0))))))))
+                   (trial::v* 0.8
+                              (trial::vc (trial::velocity output)
+                                         (trial::v- 1.0 (trial::vec3 (random 2.0) (random 2.0) (random 2.0)))))))))
 
-(defmethod trial::new-particle-count ((jab jab) tick)
-  (if (trigger-active-p) 100 0))
+(let (trigger-already-pressed-p)
+  (defmethod trial::new-particle-count ((jab jab) tick)
+    (when (and (trigger-active-p) (not trigger-already-pressed-p))
+      (setf trigger-already-pressed-p t)
+      (return-from trial::new-particle-count 1000))
+    (unless (trigger-active-p) (setf trigger-already-pressed-p nil))
+    0))
 
 (trial:define-class-shader (jab :vertex-shader 1)
   "layout (location = 1) in vec2 in_lifetime;
@@ -67,9 +72,10 @@ if(lifetime.x <= lifetime.y-2.0){
 }
 else{
 float lt = (lifetime.y-lifetime.x)/(lifetime.y-2.0);
-color=vec4(0.5*lt,lt,1.0-lt*lt,lt);
+color=vec4(0.5*lt,1.0-0.5*lt*lt,0.5*lt,lt);
 }
 }")
+
 
 
 (trial:define-asset (workbench fireworks-particles) trial::vertex-struct-buffer

@@ -7,7 +7,7 @@
 (defparameter *emacs-height* 1024)
 
 (trial:define-asset (workbench cube) trial:mesh
-    (trial:make-cube 1.3))
+    (trial:make-cube 3))
 
 (trial:define-shader-subject cube (trial:vertex-entity trial:colored-entity trial:textured-entity
                                                        trial:located-entity trial:rotated-entity
@@ -27,7 +27,7 @@
                      :name :cube
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
-                     :location (trial::vec3 0 1 -1.55)))
+                     :location (trial::vec3 0 1 -2.75)))
 
 #+linux
 (defun emacs-cube-texture ()
