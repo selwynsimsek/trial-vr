@@ -6,9 +6,9 @@
 (defclass workbench (trial:main vr-input-handler ode-physics-handler) ()
   (:default-initargs :clear-color (trial::vec 0.3 0.3 0.3 0)))
 
-(trial:define-pool workbench :base 'trial:trial)
+;(trial:define-pool workbench :base 'trial:trial)
 
-(trial:define-asset (workbench trial::skybox) trial::image
+(trial:define-asset (trial-assets:workbench trial::skybox) trial::image
     '(#p"heart-in-the-sand/posx.jpg"
       #p"heart-in-the-sand/negx.jpg"
       #p"heart-in-the-sand/posy.jpg"
@@ -19,7 +19,7 @@
 
 (progn
   (defmethod trial:setup-scene ((workbench workbench) scene)
-    (trial:enter (make-instance 'trial::skybox :texture (trial:asset 'workbench 'trial::skybox))
+    (trial:enter (make-instance 'trial::skybox :texture (trial:asset 'trial-assets:workbench 'trial::skybox))
                  scene)
     (trial:enter (make-instance 'cube) scene)
     (trial:enter (make-instance 'actor) scene)

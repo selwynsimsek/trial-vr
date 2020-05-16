@@ -23,6 +23,7 @@ Clone the following to `quicklisp/local-projects`
 + TrialVR
 + fork of Trial, [https://github.com/selwynsimsek/trial]
 + fork of 3b-openvr, [https://github.com/selwynsimsek/3b-openvr]
++ Trial assets, [https://github.com/Shirakumo/trial-assets]
 + upstream CFFI, [https://github.com/cffi/cffi]
 
 ### Windows

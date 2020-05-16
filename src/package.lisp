@@ -2,9 +2,9 @@
   (:use :cl)
   (:local-nicknames (#:vr #:3b-openvr)
 		    (#:trial #:org.shirakumo.fraf.trial)
+                    (#:trial-assets #:org.shirakumo.fraf.trial.assets)
 		    #-windows (#:alloy #:org.shirakumo.alloy)
-		    #-windows (#:trial-alloy #:org.shirakumo.fraf.trial.alloy)
-                    ))
+		    #-windows (#:trial-alloy #:org.shirakumo.fraf.trial.alloy)))
 
 #+windows
 (defpackage :org.shirakumo.fraf.trial.vr.windows

@@ -4,7 +4,7 @@
 (in-package #:org.shirakumo.fraf.trial.vr)
 
 (defvar *running-water* (asdf:system-relative-pathname :trial-vr #p"assets/sounds/running-water.wav"))
-
+; no.
 (defvar *last-controller-location* nil)
 (defvar *fired-p*)
 
@@ -13,14 +13,14 @@
         *last-controller-location* (controller-pose-for-handedness :right))
   (trial:enter (make-instance 'jab) (trial:scene (trial:handler trial:*context*))))
 
-(trial:define-asset (workbench jab-particles) trial::vertex-struct-buffer
+(trial:define-asset (trial-assets:workbench jab-particles) trial::vertex-struct-buffer
     'trial::simple-particle :struct-count 102400)
 
 (trial:define-shader-subject jab (trial::simple-particle-emitter)
   ()
   (:default-initargs :particle-mesh (change-class (trial:make-sphere 0.003) 'trial:vertex-array
                                                   :vertex-attributes '(trial:location))
-                     :particle-buffer (trial:asset 'workbench 'jab-particles)))
+                     :particle-buffer (trial:asset 'trial-assets:workbench 'jab-particles)))
 
 (defmethod trial::initial-particle-state ((jab jab) tick particle)
   (alexandria:when-let ((pose (controller-pose-for-handedness :right)))
@@ -78,14 +78,14 @@ color=vec4(0.5*lt,1.0-0.5*lt*lt,0.5*lt,lt);
 
 
 
-(trial:define-asset (workbench fireworks-particles) trial::vertex-struct-buffer
+(trial:define-asset (trial-assets:workbench fireworks-particles) trial::vertex-struct-buffer
     'trial::simple-particle
   :struct-count 1024)
 
 (trial:define-shader-subject fireworks (trial::simple-particle-emitter)
   ()
   (:default-initargs :particle-mesh (change-class (trial:make-sphere 1) 'trial:vertex-array :vertex-attributes '(trial:location))
-                     :particle-buffer (trial:asset 'workbench 'fireworks-particles)))
+                     :particle-buffer (trial:asset 'trial-assets:workbench 'fireworks-particles)))
 
 (defmethod trial::initial-particle-state ((fireworks fireworks) tick particle)
   (let ((dir (trial::polar->cartesian (trial::vec2 (/ (sxhash (trial::fc tick)) (ash 2 60)) (mod (sxhash (trial::fc tick)) 100)))))
