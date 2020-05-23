@@ -25,6 +25,9 @@ Clone the following to `quicklisp/local-projects`
 + fork of 3b-openvr, [https://github.com/selwynsimsek/3b-openvr]
 + Trial assets, [https://github.com/Shirakumo/trial-assets]
 + upstream CFFI, [https://github.com/cffi/cffi]
++ Alloy, [https://github.com/shirakumo/alloy]
++ colored, [https://github.com/shinmera/colored]
++ sdf, branch msdf, [https://github.com/shinmera/sdf]
 
 ### Windows
 Additionally clone to `quicklisp/local-projects`

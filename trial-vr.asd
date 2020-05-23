@@ -4,7 +4,7 @@
   :license ""
   :depends-on ("trial-glfw"
                "trial-assets"
-               (:feature :linux "trial-alloy")
+               "trial-alloy"
                "3b-openvr"
                "sb-cga"
                (:feature :linux "cl-steamworks")
@@ -37,7 +37,8 @@
                  (:file "physics")
                  (:file "particle")
                  (:file "debug")
-                 (:file "controllers"))))
+                 (:file "controllers")
+                 (:file "ui"))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 
