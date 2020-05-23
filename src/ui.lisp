@@ -37,14 +37,6 @@
     (vr:set-overlay-texture overlay-key texture-id)
     (dummy texture-id)))
 
-;; (defmethod trial:paint-with ((pass ui-render-pass) thing)
-;;   (when (or (typep thing 'trial:pipelined-scene)
-;;             (typep thing 'dui))
-;;     (call-next-method)))
-
-;; (defmethod trial:paint-with ((pass eye-render-pass) thing)
-;;   (unless (typep thing 'dui) (call-next-method)))
-
 (defmethod trial:paint-with :around ((pass eye-render-pass) (thing dui))
   (declare (ignore pass thing)))
 
@@ -55,10 +47,13 @@
   (when (eq (dui pass) thing)
     (call-next-method)))
 
-;; (defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:pipelined-scene))
-;;   (call-next-method))
-
 (defun set-overlay-visibility (visible-p key)
   (if visible-p
       (vr:show-overlay (vr:find-overlay key))
       (vr:hide-overlay (vr:find-overlay key))))
+
+(defun set-overlay-displacement (key x y z)
+  (vr:set-overlay-transform-absolute
+   (vr:find-overlay key) :standing (vector 1.0 0.0 0.0 x
+                                           0.0 1.0 0.0 y
+                                           0.0 0.0 1.0 z)))
