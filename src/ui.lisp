@@ -8,7 +8,6 @@
                simple-presentations::default-look-and-feel)
   ())
 
-
 (trial:define-shader-pass ui-render-pass (trial:render-pass)
   ((trial:color :port-type trial:output :attachment :color-attachment0
                 :texspec (:target :texture-2d :width 640 :height 480))
@@ -18,27 +17,18 @@
                           :accessor overlay-friendly-name)
    (dui :initarg :dui :initform nil :accessor dui)))
 
-(trial:define-shader-pass ui-compositor-render-pass (trial:render-pass)
-  ((ui-pass-1 :port-type trial:input)
-   (ui-pass-2 :port-type trial:input)))
-
 (defmethod initialize-instance :after ((instance ui-render-pass) &key)
   (unless (overlay-friendly-name instance)
     (setf (overlay-friendly-name instance)
           (format nil "TrialVR overlay <~a>" (overlay-key instance))))
   (vr:create-overlay (overlay-key instance) (overlay-friendly-name instance)))
-  
-(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass ui-render-pass))
-  (trial:project-view (make-instance 'trial:2d-camera) nil)) ; does this work?
 
-(defmethod trial:paint :after ((subject trial:pipelined-scene) (pass ui-render-pass))
+(defmethod trial:paint :after
+    ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color))))
         (overlay-key (vr:find-overlay (overlay-key pass))))
-    (vr:set-overlay-texture overlay-key texture-id)
-    (dummy texture-id)))
-
-(defmethod trial:paint-with :around ((pass eye-render-pass) (thing dui))
-  (declare (ignore pass thing)))
+    (loop for key in '("First overlay" "Second overlay" "Third overlay" "Fourth overlay") do
+          (vr:set-overlay-texture (vr:find-overlay key) texture-id))))
 
 (defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:shader-entity))
   (declare (ignore pass thing)))

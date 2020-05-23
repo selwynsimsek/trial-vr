@@ -37,8 +37,8 @@
                  (:file "particle" :depends-on ("package"))
                  (:file "debug" :depends-on ("package"))
                  (:file "controllers" :depends-on ("package"))
-                 (:file "rendering" :depends-on ("package"))
-                 (:file "ui" :depends-on ("package" "rendering")))))
+                 (:file "ui" :depends-on ("package"))
+                 (:file "rendering" :depends-on ("package" "ui")))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 

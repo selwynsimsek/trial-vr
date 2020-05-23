@@ -30,8 +30,8 @@
   ((left-pass-color :port-type trial:input)
    (right-pass-color :port-type trial:input)
    (left-pass-depth :port-type trial:input)
-   (right-pass-depth :port-type trial:input)))
-
+   (right-pass-depth :port-type trial:input)
+   (ui-pass :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head) ev)
   (let ((eye (current-eye camera))
@@ -67,3 +67,6 @@
     (vr::submit :right right-texture-id :compositor vr::*compositor*))
   (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
     (setf (hmd-pose (trial::unit :head subject)) latest-pose)))
+
+(defmethod trial:paint-with :around ((pass eye-render-pass) (thing dui))
+  (declare (ignore pass thing)))
