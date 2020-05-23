@@ -8,6 +8,12 @@
 
 (defmethod trial:start :before ((main workbench))
   "Set up OpenVR, sound, Steamworks."
+  
+  #+linux
+  (unless *steamworks-client*
+    (setf *steamworks-client* (make-instance 'cl-steamworks:steamworks-client :app-id *app-id*))))
+
+(defun do-start ()
   (setf vr::*%init* (vr::vr-init :scene))
   (vr::clear)
   (vr::vr-system)
@@ -28,10 +34,7 @@
   (vr::vr-spatial-anchors)
   (vr::vr-debug)
   (vr::vr-notifications)
-  (harmony-simple:initialize)
-  #+linux
-  (unless *steamworks-client*
-    (setf *steamworks-client* (make-instance 'cl-steamworks:steamworks-client :app-id *app-id*))))
+  (harmony-simple:initialize))
 
 (defmethod trial:finalize :after ((main workbench))
   "Shut down OpenVR environment."
@@ -45,6 +48,7 @@
 (defun launch (&key (own-thread nil))
   "Launch the trial VR workbench."
   (let ((call-lambda (lambda ()
+                       (do-start)
                        (trial:launch 'workbench :width 160 :height 120))))
     (if own-thread
         (bt:make-thread call-lambda)

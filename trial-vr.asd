@@ -32,13 +32,13 @@
                  (:file "nv-dx-interop" :depends-on ("package") :if-feature :windows)
                  (:file "workbench" :depends-on ("package"))
                  (:file "low-level" :depends-on ("package"))
-                 (:file "rendering" :depends-on ("package"))
                  (:file "event-handling" :depends-on ("package"))
                  (:file "physics" :depends-on ("package"))
                  (:file "particle" :depends-on ("package"))
                  (:file "debug" :depends-on ("package"))
                  (:file "controllers" :depends-on ("package"))
-                 (:file "ui" :depends-on ("package")))))
+                 (:file "rendering" :depends-on ("package"))
+                 (:file "ui" :depends-on ("package" "rendering")))))
   :description ""
   :in-order-to ((test-op (test-op "trial-vr/tests"))))
 

@@ -5,17 +5,28 @@
 
 (defclass actor ()
   ((name :initarg :actor)))
-
-
+ 
 (defmethod trial:enter ((unit actor) scene)
   (let* ((head (make-instance 'head))
          (left-render-pass (make-instance 'left-eye-render-pass))
          (right-render-pass (make-instance 'right-eye-render-pass))
-         (compositor-render-pass (make-instance 'compositor-render-pass)))
+         (compositor-render-pass (make-instance 'compositor-render-pass))
+         (ui-render-pass (make-instance 'ui-render-pass :overlay-key "First overlay"))
+         (ui (make-instance 'dui :target-resolution (alloy:px-size 800 600)))
+         (focus (make-instance 'alloy:focus-list :focus-parent (alloy:focus-tree ui)))
+         (layout (make-instance 'alloy:vertical-linear-layout
+                                :layout-parent (org.shirakumo.alloy:layout-tree ui))))
+    (let* ((data (3d-vectors:vec2 0 1))
+           (vec (org.shirakumo.alloy:represent data 'trial-alloy::vec2
+                                               :focus-parent focus :layout-parent layout)))
+      (alloy:on (setf alloy:value) (value vec)
+        (print value)))
     (trial:enter head scene)
     (trial:enter left-render-pass scene)
     (trial:enter right-render-pass scene)
     (trial:enter compositor-render-pass scene)
+    (trial:enter ui-render-pass scene)
+    (trial:enter ui scene)
     (trial:connect (trial:port left-render-pass 'trial:color)
                    (trial:port compositor-render-pass 'left-pass-color)
                    scene)
@@ -28,4 +39,3 @@
     (trial:connect (trial:port right-render-pass 'trial:depth)
                    (trial:port compositor-render-pass 'right-pass-depth)
                    scene)))
- 

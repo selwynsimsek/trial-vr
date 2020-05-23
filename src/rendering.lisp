@@ -32,9 +32,6 @@
    (left-pass-depth :port-type trial:input)
    (right-pass-depth :port-type trial:input)))
 
-(trial:define-shader-pass ui-render-pass (trial:render-pass)
-  ((trial:color :port-type trial:output :attachment :color-attachment0
-                :texspec (:target :texture-2d :width 640 :height 480))))
 
 (defmethod trial:project-view ((camera head) ev)
   (let ((eye (current-eye camera))

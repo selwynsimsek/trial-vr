@@ -19,6 +19,7 @@
 
 (progn
   (defmethod trial:setup-scene ((workbench workbench) scene)
+
     (trial:enter (make-instance 'trial::skybox :texture (trial:asset 'trial-assets:workbench 'trial::skybox))
                  scene)
     (trial:enter (make-instance 'cube) scene)

@@ -4,7 +4,8 @@
 		    (#:trial #:org.shirakumo.fraf.trial)
                     (#:trial-assets #:org.shirakumo.fraf.trial.assets)
 		    (#:alloy #:org.shirakumo.alloy)
-		    (#:trial-alloy #:org.shirakumo.fraf.trial.alloy)))
+		    (#:trial-alloy #:org.shirakumo.fraf.trial.alloy)
+                    (#:simple-presentations #:org.shirakumo.alloy.renderers.simple.presentations)))
 
 #+windows
 (defpackage #:org.shirakumo.fraf.trial.vr.windows
@@ -20,6 +21,7 @@
                     (#:com-on.cffi #:org.shirakumo.com-on.cffi)
                     (#:vr #:3b-openvr)
 		    (#:trial #:org.shirakumo.fraf.trial)
+                    (#:trial-vr #:org.shirakumo.fraf.trial.vr)
                     (#:trial-assets #:org.shirakumo.fraf.trial.assets)
 		    (#:alloy #:org.shirakumo.alloy)
 		    (#:trial-alloy #:org.shirakumo.fraf.trial.alloy))
