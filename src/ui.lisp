@@ -15,7 +15,12 @@
    (overlay-key :initarg :overlay-key :initform (error "Need to have an overlay name!")
                 :accessor overlay-key)
    (overlay-friendly-name :initarg :overlay-friendly-name :initform nil
-                          :accessor overlay-friendly-name)))
+                          :accessor overlay-friendly-name)
+   (dui :initarg :dui :initform nil :accessor dui)))
+
+(trial:define-shader-pass ui-compositor-render-pass (trial:render-pass)
+  ((ui-pass-1 :port-type trial:input)
+   (ui-pass-2 :port-type trial:input)))
 
 (defmethod initialize-instance :after ((instance ui-render-pass) &key)
   (unless (overlay-friendly-name instance)
@@ -29,8 +34,8 @@
 (defmethod trial:paint :after ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color))))
         (overlay-key (vr:find-overlay (overlay-key pass))))
-    (3b-openvr:set-overlay-texture overlay-key texture-id)
-    (3b-openvr:show-overlay overlay-key)))
+    (vr:set-overlay-texture overlay-key texture-id)
+    (dummy texture-id)))
 
 ;; (defmethod trial:paint-with ((pass ui-render-pass) thing)
 ;;   (when (or (typep thing 'trial:pipelined-scene)
@@ -46,5 +51,14 @@
 (defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:shader-entity))
   (declare (ignore pass thing)))
 
+(defmethod trial:paint-with :around ((pass ui-render-pass) (thing dui))
+  (when (eq (dui pass) thing)
+    (call-next-method)))
+
 ;; (defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:pipelined-scene))
 ;;   (call-next-method))
+
+(defun set-overlay-visibility (visible-p key)
+  (if visible-p
+      (vr:show-overlay (vr:find-overlay key))
+      (vr:hide-overlay (vr:find-overlay key))))
