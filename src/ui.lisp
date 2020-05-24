@@ -11,24 +11,24 @@
 (trial:define-shader-pass ui-render-pass (trial:render-pass)
   ((trial:color :port-type trial:output :attachment :color-attachment0
                 :texspec (:target :texture-2d :width 640 :height 480))
-   (overlay-key :initarg :overlay-key :initform (error "Need to have an overlay name!")
-                :accessor overlay-key)
-   (overlay-friendly-name :initarg :overlay-friendly-name :initform nil
-                          :accessor overlay-friendly-name)
-   (dui :initarg :dui :initform nil :accessor dui)))
+   (overlays :initarg :overlays :initform #() :accessor overlays)
+   (debug-overlay :initform (make-instance 'vr:overlay) :accessor debug-overlay)
+   (dui :initarg :dui :initform nil :accessor dui))
+  (:default-initargs :name :ui-render-pass))
 
 (defmethod initialize-instance :after ((instance ui-render-pass) &key)
-  (unless (overlay-friendly-name instance)
-    (setf (overlay-friendly-name instance)
-          (format nil "TrialVR overlay <~a>" (overlay-key instance))))
-  (vr:create-overlay (overlay-key instance) (overlay-friendly-name instance)))
+  (vr:show (debug-overlay instance)))
 
 (defmethod trial:paint :after
     ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color))))
-        (overlay-key (vr:find-overlay (overlay-key pass))))
-    (loop for key in '("First overlay" "Second overlay" "Third overlay" "Fourth overlay") do
-          (vr:set-overlay-texture (vr:find-overlay key) texture-id))))
+        (overlays (overlays pass)))
+    (map nil (lambda (overlay) (setf (vr:texture overlay) texture-id)) overlays)
+    (setf (vr:texture (debug-overlay pass)) texture-id)
+    (setf (vr:transform (debug-overlay pass) :absolute)
+          #(0.0 0.0 1.0 -1.0
+            0.0 1.0 0.0 1.0
+            -1.0 0.0 0.0 0.0))))
 
 (defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:shader-entity))
   (declare (ignore pass thing)))
