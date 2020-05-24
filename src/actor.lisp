@@ -12,15 +12,7 @@
          (right-render-pass (make-instance 'right-eye-render-pass))
          (compositor-render-pass (make-instance 'compositor-render-pass))
          (ui (make-instance 'dui :target-resolution (alloy:px-size 800 600)))
-         (ui-render-pass (make-instance 'ui-render-pass :dui ui))
-         (focus-1 (make-instance 'alloy:focus-list :focus-parent (alloy:focus-tree ui)))
-         (layout-1 (make-instance 'alloy:vertical-linear-layout
-                                  :layout-parent (org.shirakumo.alloy:layout-tree ui))))
-    (let* ((data (3d-vectors:vec2 0 1))
-           (vec (org.shirakumo.alloy:represent data 'trial-alloy::vec2
-                                               :focus-parent focus-1 :layout-parent layout-1)))
-      (alloy:on (setf alloy:value) (value vec)
-        (print value)))
+         (ui-render-pass (make-instance 'ui-render-pass :dui ui)))
     (trial:enter head scene)
     (trial:enter left-render-pass scene)
     (trial:enter right-render-pass scene)

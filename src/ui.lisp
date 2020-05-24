@@ -11,19 +11,46 @@
 (trial:define-shader-pass ui-render-pass (trial:render-pass)
   ((trial:color :port-type trial:output :attachment :color-attachment0
                 :texspec (:target :texture-2d :width 640 :height 480))
-   (overlays :initarg :overlays :initform #() :accessor overlays)
+   (overlays :initarg :overlays :initform #()  :accessor overlays)
+   (number-of-overlays :initarg :number-of-overlays :accessor number-of-overlays :initform 16)
    (debug-overlay :initform (make-instance 'vr:overlay) :accessor debug-overlay)
    (dui :initarg :dui :initform nil :accessor dui))
   (:default-initargs :name :ui-render-pass))
 
 (defmethod initialize-instance :after ((instance ui-render-pass) &key)
-  (vr:show (debug-overlay instance)))
+  (vr:show (debug-overlay instance))
+  (let* ((overlay-side (1+ (isqrt (1- (number-of-overlays instance)))))
+         (ui (dui instance))
+         (focus-1 (make-instance 'alloy:focus-list :focus-parent (alloy:focus-tree ui)))
+         (layout-1 (make-instance 'alloy:vertical-linear-layout
+                                  :layout-parent (org.shirakumo.alloy:layout-tree ui))))
+    (let* ((data (3d-vectors:vec2 0 overlay-side))
+           (vec (org.shirakumo.alloy:represent data 'trial-alloy::vec2
+                                               :focus-parent focus-1 :layout-parent layout-1)))
+      (alloy:on (setf alloy:value) (value vec)
+        (print value)))
+    (setf (overlays instance)
+          (coerce (loop repeat (number-of-overlays instance)
+                        collect (make-instance 'vr:overlay))
+                  'vector))
+    (loop for i from 0 below overlay-side do
+          (loop for j from 0 below overlay-side do
+                (let ((index (+ i (* overlay-side j))))
+                  (when (< index (length (overlays instance)))
+                    (progn
+                      (setf (vr:texture-bounds (aref (overlays instance) index))
+                            (vector (* i (/ overlay-side)) (* j (/ overlay-side))
+                                    (* (1+ i) (/ overlay-side)) (* (1+ j) (/ overlay-side))))
+                      (setf (vr:location (aref (overlays instance) index))
+                            (vector (* i 0.1) (* i 0.1) (* i 0.1))))))))
+    (map nil #'vr:show (overlays instance))))
 
 (defmethod trial:paint :after
     ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color))))
         (overlays (overlays pass)))
     (map nil (lambda (overlay) (setf (vr:texture overlay) texture-id)) overlays)
+    ; change this to render only when the underlying texture is changed; very wasteful at the moment.
     (setf (vr:texture (debug-overlay pass)) texture-id)
     (setf (vr:transform (debug-overlay pass) :absolute)
           #(0.0 0.0 1.0 -1.0
