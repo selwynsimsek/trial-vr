@@ -52,10 +52,10 @@
     (map nil (lambda (overlay) (setf (vr:texture overlay) texture-id)) overlays)
     ; change this to render only when the underlying texture is changed; very wasteful at the moment.
     (setf (vr:texture (debug-overlay pass)) texture-id)
-    (setf (vr:transform (debug-overlay pass) :absolute)
-          #(0.0 0.0 1.0 -1.0
-            0.0 1.0 0.0 1.0
-            -1.0 0.0 0.0 0.0))))
+    (setf (vr:transform (debug-overlay pass))
+          (make-instance 'vr::absolute-transform :origin :standing :matrix #(0.0 0.0 1.0 -1.0
+                                                                             0.0 1.0 0.0 1.0
+                                                                             -1.0 0.0 0.0 0.0)))))
 
 (defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:shader-entity))
   (declare (ignore pass thing)))
