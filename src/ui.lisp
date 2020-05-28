@@ -17,18 +17,29 @@
    (dui :initarg :dui :initform nil :accessor dui))
   (:default-initargs :name :ui-render-pass))
 
+(defun make-layout (focus dui n)
+  (let* ((layout-1 (make-instance 'alloy:grid-layout  
+                                  :layout-parent (org.shirakumo.alloy:layout-tree dui)
+                                  :col-sizes (make-array (list n) :initial-element t)
+                                  :row-sizes (make-array (list n) :initial-element t)))
+         (data (3d-vectors:vec2 0 n))
+         ;(vec (org.shirakumo.alloy:represent data 'trial-alloy::vec2   :focus-parent focus :layout-parent layout-1))
+         )
+   ; (alloy::adjust-grid layout-1 n n)
+    (loop for i below (* n n) do
+          (let ((vec (org.shirakumo.alloy:represent (3d-vectors:vec2 i n) 'trial-alloy::vec2   :focus-parent focus :layout-parent layout-1)))
+            
+            (alloy:on (setf alloy:value) (value vec)
+              (print value))))
+    layout-1))
+
 (defmethod initialize-instance :after ((instance ui-render-pass) &key)
   (vr:show (debug-overlay instance))
   (let* ((overlay-side (1+ (isqrt (1- (number-of-overlays instance)))))
          (ui (dui instance))
          (focus-1 (make-instance 'alloy:focus-list :focus-parent (alloy:focus-tree ui)))
-         (layout-1 (make-instance 'alloy:vertical-linear-layout
-                                  :layout-parent (org.shirakumo.alloy:layout-tree ui))))
-    (let* ((data (3d-vectors:vec2 0 overlay-side))
-           (vec (org.shirakumo.alloy:represent data 'trial-alloy::vec2
-                                               :focus-parent focus-1 :layout-parent layout-1)))
-      (alloy:on (setf alloy:value) (value vec)
-        (print value)))
+         (layout-1 (make-layout focus-1 ui overlay-side)))
+    
     (setf (overlays instance)
           (coerce (loop repeat (number-of-overlays instance)
                         collect (make-instance 'vr:overlay))
