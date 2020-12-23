@@ -13,7 +13,8 @@
                (:feature :linux "cl-xwd")
                (:feature :windows "com-on")
                "trial-assimp"
-               "harmony-simple")
+               ;"harmony-simple"
+               )
   :defsystem-depends-on ("trivial-features"
                          "deploy")
   :build-operation "deploy-op"
@@ -30,11 +31,11 @@
                  (:file "com-structs"  :depends-on ("package") :if-feature :windows)
                  (:file "window-capture" :depends-on ("package") :if-feature :windows)
                  (:file "nv-dx-interop" :depends-on ("package") :if-feature :windows)
-                 (:file "workbench" :depends-on ("package"))
+                 (:file "workbench" :depends-on ("package" "emacs-cube"))
                  (:file "low-level" :depends-on ("package"))
                  (:file "event-handling" :depends-on ("package"))
                  (:file "physics" :depends-on ("package"))
-                 (:file "particle" :depends-on ("package"))
+                 ;(:file "particle" :depends-on ("package"))
                  (:file "debug" :depends-on ("package"))
                  (:file "controllers" :depends-on ("package"))
                  (:file "ui" :depends-on ("package"))

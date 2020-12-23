@@ -3,7 +3,7 @@
 
 (in-package #:org.shirakumo.fraf.trial.vr)
 
-(trial:define-subject head (trial:camera)
+(defclass head (trial:camera)
   ((hmd-pose :initarg :hmd-pose :accessor hmd-pose)
    (current-eye :initarg :current-eye :accessor current-eye))
   (:default-initargs
@@ -31,9 +31,10 @@
    (right-pass-color :port-type trial:input)
    (left-pass-depth :port-type trial:input)
    (right-pass-depth :port-type trial:input)
-   (ui-pass :port-type trial:input)))
+   ;(ui-pass :port-type trial:input)
+   ))
 
-(defmethod trial:project-view ((camera head) ev)
+(defmethod trial:project-view ((camera head))
   (let ((eye (current-eye camera))
         (left-eye-pose (get-eye-pose :left))
         (right-eye-pose (get-eye-pose :right))
@@ -44,20 +45,22 @@
           (trial:view-matrix)
           (3d-matrices:mtranspose (3d-matrices:m* (3d-matrices:minv hmd-pose) current-eye-pose)))))
 
-(defmethod trial:setup-perspective ((camera head) ev)
+(defmethod trial:setup-perspective ((camera head) width height)
   (setf (trial:projection-matrix) (get-eye-projection :left)))
 
-(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass left-eye-render-pass))
+(defmethod trial:render :before ( (pass left-eye-render-pass) arg)
   ;; right place for it?
-  #+windows (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
-  (setf (current-eye (trial::unit :head subject)) :left)
-  (trial:project-view (trial::unit :head subject) nil))
+  (let ((subject (trial:container pass)))
+    #+windows (org.shirakumo.fraf.trial.vr.windows::interop-pre-frame)
+    (setf (current-eye (trial::unit :head subject)) :left)
+    (trial:project-view (trial::unit :head subject))))
 
-(defmethod trial:paint :before ((subject trial:pipelined-scene) (pass right-eye-render-pass))
-  (setf (current-eye (trial::unit :head subject)) :right)
-  (trial:project-view (trial::unit :head subject) nil))
+(defmethod trial:render :before ( (pass right-eye-render-pass) arg)
+  (let ((subject (trial:container pass)))
+    (setf (current-eye (trial::unit :head subject)) :right)
+    (trial:project-view (trial::unit :head subject))))
 
-(defmethod trial:paint ((subject trial:pipelined-scene) (pass compositor-render-pass))
+(defmethod trial:render ((pass compositor-render-pass) arg)
   (wait-get-poses)
   (let ((left-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
@@ -65,8 +68,8 @@
           (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color)))))
     (vr::submit :left left-texture-id :compositor vr::*compositor*)
     (vr::submit :right right-texture-id :compositor vr::*compositor*))
-  (alexandria:when-let ((latest-pose (get-latest-hmd-pose)))
-    (setf (hmd-pose (trial::unit :head subject)) latest-pose)))
+  (alexandria:when-let ((latest-pose (get-latest-hmd-pose))) (setf (hmd-pose (trial::unit :head (trial:container pass))) latest-pose))
+  )
 
-(defmethod trial:paint-with :around ((pass eye-render-pass) (thing dui))
+(defmethod trial:render :around ((pass eye-render-pass) (thing dui))
   (declare (ignore pass thing)))

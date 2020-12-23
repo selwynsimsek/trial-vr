@@ -34,7 +34,8 @@
   (vr::vr-spatial-anchors)
   (vr::vr-debug)
   (vr::vr-notifications)
-  (harmony-simple:initialize))
+  ;(harmony-simple:initialize)
+  )
 
 (defmethod trial:finalize :after ((main workbench))
   "Shut down OpenVR environment."
@@ -49,7 +50,7 @@
   "Launch the trial VR workbench."
   (let ((call-lambda (lambda ()
                        (do-start)
-                       (trial:launch 'workbench :width 160 :height 120))))
+                       (trial:launch 'workbench :width 640 :height 480))))
     (if own-thread
         (bt:make-thread call-lambda)
         (funcall call-lambda))))

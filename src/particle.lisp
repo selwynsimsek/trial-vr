@@ -13,10 +13,10 @@
         *last-controller-location* (controller-pose-for-handedness :right))
   (trial:enter (make-instance 'jab) (trial:scene (trial:handler trial:*context*))))
 
-(trial:define-asset (trial-assets:workbench jab-particles) trial::vertex-struct-buffer
-    'trial::simple-particle :struct-count 102400)
+;; (trial:define-asset (trial-assets:workbench jab-particles) trial::vertex-struct-buffer
+;;     'trial::simple-particle :struct-count 102400)
 
-(trial:define-shader-subject jab (trial::simple-particle-emitter)
+(trial:define-shader-entity jab (trial::simple-particle-emitter)
   ()
   (:default-initargs :particle-mesh (change-class (trial:make-sphere 0.003) 'trial:vertex-array
                                                   :vertex-attributes '(trial:location))
@@ -78,11 +78,11 @@ color=vec4(0.5*lt,1.0-0.5*lt*lt,0.5*lt,lt);
 
 
 
-(trial:define-asset (trial-assets:workbench fireworks-particles) trial::vertex-struct-buffer
-    'trial::simple-particle
-  :struct-count 1024)
+;; (trial:define-asset (trial-assets:workbench fireworks-particles) trial::vertex-struct-buffer
+;;     'trial::simple-particle
+;;   :struct-count 1024)
 
-(trial:define-shader-subject fireworks (trial::simple-particle-emitter)
+(trial:define-shader-entity fireworks (trial::simple-particle-emitter)
   ()
   (:default-initargs :particle-mesh (change-class (trial:make-sphere 1) 'trial:vertex-array :vertex-attributes '(trial:location))
                      :particle-buffer (trial:asset 'trial-assets:workbench 'fireworks-particles)))

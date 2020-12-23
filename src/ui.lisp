@@ -29,7 +29,7 @@
     (loop for i below (* n n) do
           (let ((vec (org.shirakumo.alloy:represent (3d-vectors:vec2 i n) 'trial-alloy::vec2   :focus-parent focus :layout-parent layout-1)))
             
-            (alloy:on (setf alloy:value) (value vec)
+            (alloy:on alloy:value (value vec)
               (print value))))
     layout-1))
 
@@ -56,7 +56,7 @@
                             (vector (* i 0.1) (* i 0.1) (* i 0.1))))))))
     (map nil #'vr:show (overlays instance))))
 
-(defmethod trial:paint :after
+(defmethod trial:render :after
     ((subject trial:pipelined-scene) (pass ui-render-pass))
   (let ((texture-id (trial:data-pointer (trial:texture (flow:port pass 'trial:color))))
         (overlays (overlays pass)))
@@ -68,12 +68,12 @@
                                                                              0.0 1.0 0.0 1.0
                                                                              -1.0 0.0 0.0 0.0)))))
 
-(defmethod trial:paint-with :around ((pass ui-render-pass) (thing trial:shader-entity))
+(defmethod trial:render :around ((pass ui-render-pass) (thing trial:shader-entity))
   (declare (ignore pass thing)))
 
-(defmethod trial:paint-with :around ((pass ui-render-pass) (thing dui))
-  (when (eq (dui pass) thing)
-    (call-next-method)))
+(defmethod trial:render :around ((pass ui-render-pass) (thing dui))
+  (when (eq (dui pass) thing) (call-next-method))
+  )
 
 (defun set-overlay-visibility (visible-p key)
   (if visible-p
