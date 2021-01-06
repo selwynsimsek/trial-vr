@@ -28,7 +28,7 @@
                      :name :cube
                      :rotation (trial::vec (/ PI -2) 0 0)
                      :color (trial::vec3-random 0.2 0.8)
-                     :location (trial::vec3 0 1 -2.75)))
+                     :location (trial::vec3 0.0 3.0 0.0)))
 
 #+linux
 (defun emacs-cube-texture ()

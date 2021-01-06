@@ -17,8 +17,8 @@
 (trial:define-shader-entity controller-body
     (trial:vertex-entity trial:textured-entity)
   ((handedness :initarg :handedness :accessor handedness))
-  (:default-initargs :texture (trial:asset 'trial-assets:workbench 'controller-body-diffuse)
-                     :vertex-array (trial:asset 'trial-assets:workbench 'controller-body-mesh)))
+  (:default-initargs :texture (trial:// 'trial-assets:workbench 'controller-body-diffuse) 
+                     :vertex-array  (trial:// 'trial-assets:workbench 'controller-body-mesh)))
 
 (defmethod trial:render :around ((obj controller-body) target)
   (let ((pose (controller-pose-for-handedness (handedness obj))))

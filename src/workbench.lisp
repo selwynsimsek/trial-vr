@@ -25,8 +25,9 @@
                                         (trial:enter (make-instance 'cube) scene)
     (trial:enter (make-instance 'actor) scene)
     (trial:stage workbench (make-instance 'trial:staging-area))
-   ; (trial:enter (make-instance 'controller-body :handedness :left) scene)
-   ; (trial:enter (make-instance 'controller-body :handedness :right) scene)
+    (trial:enter (make-instance 'controller-body :handedness :left) scene)
+    (trial:enter (make-instance 'controller-body :handedness :right) scene)
+    (trial:enter (make-instance 'helicopter-seats) scene)
                                         ;(trial:enter (make-instance 'jab) scene)
                                         ; (trial:enter (make-instance 'fireworks) scene)
     )
@@ -34,5 +35,9 @@
 
 (defmethod trial:stage :after ((workbench workbench) (area trial:staging-area))
   (trial:stage (trial:// 'trial-assets:workbench 'cube-mesh) area)
+  (trial:stage (trial:// 'trial-assets:workbench 'controller-body-diffuse) area)
+  (trial:stage (trial:// 'trial-assets:workbench 'helicopter-mesh-35) area)
+  
+  (trial:stage (trial:// 'trial-assets:workbench 'helicopter-seats-diffuse) area)
   (v:info :trial.vr "in trial:stage"))
 
