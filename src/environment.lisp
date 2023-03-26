@@ -50,7 +50,7 @@
   "Launch the trial VR workbench."
   (let ((call-lambda (lambda ()
                        (do-start)
-                       (trial:launch 'workbench :width 640 :height 480))))
+                       (trial:launch 'workbench))))
     (if own-thread
         (bt:make-thread call-lambda)
         (funcall call-lambda))))

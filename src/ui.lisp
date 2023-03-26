@@ -18,9 +18,9 @@
    (dui :initarg :dui :initform nil :accessor dui))
   (:default-initargs :name :ui-render-pass))
 
-(defmethod trial:compile-to-pass (object (pass ui-render-pass)))
-(defmethod trial:compile-into-pass (object container (pass ui-render-pass)))
-(defmethod trial:remove-from-pass (object (pass ui-render-pass)))
+;(defmethod trial:compile-to-pass (object (pass ui-render-pass)))
+;(defmethod trial:compile-into-pass (object container (pass ui-render-pass)))
+;(defmethod trial:remove-from-pass (object (pass ui-render-pass)))
 
 
 (defvar *vec* nil)

@@ -5,17 +5,16 @@
 
 (defparameter *emacs-width* 1024)
 (defparameter *emacs-height* 1024)
+(trial:define-pool trial-assets::workbench)
 
-(trial:define-asset (trial-assets:workbench cube-mesh) trial:mesh
-    (trial:make-cube 3))
+(trial:define-asset (trial-assets::workbench cube-mesh) trial:mesh    (trial:make-cube-mesh 3))
 
 (trial:define-shader-entity cube (trial:vertex-entity trial:colored-entity trial:textured-entity
                                                        trial:located-entity trial:rotated-entity
                                                        trial:selectable)
   ((vel :initform 0
         :accessor vel))
-  (:default-initargs :vertex-array (gethash t (slot-value (trial:asset 'trial-assets:workbench 'cube-mesh)
-                                                           'trial:resources))
+  (:default-initargs :vertex-array  (trial:// 'trial-assets::workbench 'cube-mesh)
                      :texture  (make-instance 'trial:texture
                                               :width #+windows 1920 #+linux *emacs-width*
                                               :height #+windows 1080 #+linux *emacs-height*
@@ -26,7 +25,7 @@
                                               :internal-format :rgb
                                               :levels 0)
                      :name :cube
-                     :rotation (trial::vec (/ PI -2) 0 0)
+                     :rotation (trial::qfrom-angle trial::+vx+ (/ PI -2))
                      :color (trial::vec3-random 0.2 0.8)
                      :location (trial::vec3 0.0 3.0 0.0)))
 

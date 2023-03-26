@@ -30,8 +30,7 @@
   ((left-pass-color :port-type trial:input)
    (right-pass-color :port-type trial:input)
    (left-pass-depth :port-type trial:input)
-   (right-pass-depth :port-type trial:input)
-   (ui-pass :port-type trial:input)))
+   (right-pass-depth :port-type trial:input)))
 
 (defmethod trial:project-view ((camera head))
   (let ((eye (current-eye camera))
@@ -65,9 +64,9 @@
           (trial:data-pointer (trial:texture (flow:port pass 'left-pass-color))))
         (right-texture-id
           (trial:data-pointer (trial:texture (flow:port pass 'right-pass-color))))
-        (ui-texture-id
-          (trial:data-pointer (trial:texture (flow:port pass 'ui-pass)))))
+        )
    ; (break)
+   ; (v:info :trial.vr "in render")
     (vr::submit :left left-texture-id :compositor vr::*compositor*)
     (vr::submit :right right-texture-id :compositor vr::*compositor*))
   (alexandria:when-let ((latest-pose (get-latest-hmd-pose))) (setf (hmd-pose (trial::unit :head (trial:container pass))) latest-pose))
@@ -77,20 +76,13 @@
   ;  (print connection)
     (when connection (swank::handle-requests connection t)))
  
-  (setf (slot-value (trial::unit :helicopter-seats (trial:container pass)) 'trial:location)
-   (3d-vectors:vec3 0.0 -150.0 20.0)))
-
-(defmethod trial:render :around ((pass eye-render-pass) target)
-                                        ; (break)
-  (call-next-method)
-  (unless (eq target 'dui)
-    ))
+  )
 
 
-(defmethod trial:compile-to-pass :around (object (pass eye-render-pass))
-  (unless (typep object 'dui)
-    (call-next-method)))
+;; (defmethod trial:compile-to-pass :around (object (pass eye-render-pass))
+;;   (unless (typep object 'dui)
+;;     (call-next-method)))
 
-(defmethod trial:compile-into-pass :around (object container (pass eye-render-pass))
-  (unless (typep object 'dui)
-    (call-next-method)))
+;; (defmethod trial:compile-into-pass :around (object container (pass eye-render-pass))
+;;   (unless (typep object 'dui)
+;;     (call-next-method)))

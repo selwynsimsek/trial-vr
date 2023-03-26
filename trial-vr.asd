@@ -5,6 +5,8 @@
   :depends-on ("trial-glfw"
                "trial-assets"
                "trial-alloy"
+               "trial-png"
+               "trial-jpeg"
                "3b-openvr"
                "sb-cga"
                (:feature :linux "cl-steamworks")
@@ -21,6 +23,8 @@
   :build-pathname "trial-vr"
   :entry-point "org.shirakumo.fraf.trial.vr:launch"
   :depends-on ("trial-vr"
+               "trial-png"
+               "trial-jpeg"
                "rove")
   :components ((:module "src"
                 :components
@@ -35,7 +39,7 @@
                  (:file "low-level" :depends-on ("package"))
                  (:file "event-handling" :depends-on ("package"))
                  (:file "physics" :depends-on ("package"))
-                 ;(:file "particle" :depends-on ("package"))
+                ; (:file "particle" :depends-on ("package"))
                  (:file "debug" :depends-on ("package"))
                  (:file "controllers" :depends-on ("package"))
                  (:file "helicopter" :depends-on ("package"))
